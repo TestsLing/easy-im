@@ -1,0 +1,43 @@
+{
+    "name": "longing/tencent-im",
+    "description": "腾讯IM SDK",
+    "keywords": [
+        "腾讯IM",
+        "腾讯聊天室",
+        "im-sdk",
+        "tencent-im-sdk",
+        "sdk"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hacksmile",
+            "email": "hacksmile@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "ext-openssl": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "mockery/mockery": "^1.2.3",
+        "phpstan/phpstan": "^0.12.0",
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "EasyIM\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EasyTM\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "phpcs": "vendor/bin/php-cs-fixer fix",
+        "phpstan": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/phpunit"
+    }
+}
