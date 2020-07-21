@@ -1,11 +1,13 @@
 {
-    "name": "longing/tencent-im",
-    "description": "腾讯IM SDK",
+    "name": "longing/easy-im",
+    "description": "各大厂商IM SDK",
     "keywords": [
         "腾讯IM",
-        "腾讯聊天室",
+        "网易IM",
+        "快速接口IM",
         "im-sdk",
-        "tencent-im-sdk",
+        "easy-im",
+        "easy-im-sdk",
         "sdk"
     ],
     "license": "MIT",
@@ -17,7 +19,15 @@
     ],
     "require": {
         "php": ">=7.2",
-        "ext-openssl": "*"
+        "ext-openssl": "*",
+        "guzzlehttp/guzzle": "^6.2 || ^7.0",
+        "monolog/monolog": "^1.22 || ^2.0",
+        "pimple/pimple": "^3.0",
+        "psr/simple-cache": "^1.0",
+        "symfony/cache": "^3.3 || ^4.3 || ^5.0",
+        "symfony/event-dispatcher": "^4.3 || ^5.0",
+        "symfony/http-foundation": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+        "symfony/psr-http-message-bridge": "^0.3 || ^1.0 || ^2.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
