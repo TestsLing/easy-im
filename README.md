@@ -1,4 +1,4 @@
-<h1 align="left"><a href="https://www.easywechat.com">EasyIM</a></h1>
+<h1 align="left"><a href="https://www.easyim.cn">EasyIM</a></h1>
 
 📦 基于腾讯IM的php-sdk
 
@@ -12,7 +12,7 @@
 ## Installation
 
 ```shell
-$ composer require "longing/tencent-im"
+$ composer require "longing/easy-im" -vvv
 ```
 
 ## Usage
@@ -20,7 +20,15 @@ $ composer require "longing/tencent-im"
 基本使用（以服务端为例）:
 
 ```php
+use EasyIM\Factory;
 
+$options = [
+    'app_id'    => 'wx3cf0f39249eb0exxx',
+    'secret'    => 'f1c242f4f28f735d4687abb469072xxx',
+    // ...
+];
+
+$app = Factory::TencentIM($options);
 ```
 
 
