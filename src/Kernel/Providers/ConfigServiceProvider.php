@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Providers;
 
 use EasyIM\Kernel\Config;
