@@ -10,7 +10,7 @@ jobs:
     - name: Install Dependencies
       run: composer install --no-progress
     - name: Run PHPStan
-      run: ./vendor/bin/phpstan analyse --no-progress
+      run: ./vendor/bin/phpstan analyse src --level=7 --no-progress
 
   php_cs_fixer:
     name: PHP-CS-Fxier
