@@ -12,5 +12,6 @@ class Application extends ServiceContainer
     protected $providers = [
         Base\ServiceProvider::class,
         Operate\ServiceProvider::class,
+        Speak\ServiceProvider::class,
     ];
 }
