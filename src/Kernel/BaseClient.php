@@ -41,10 +41,9 @@ class BaseClient
      * @param \EasyIM\Kernel\ServiceContainer                    $app
      * @param \EasyIM\Kernel\Contracts\AccessTokenInterface|null $accessToken
      */
-    public function __construct(ServiceContainer $app, AccessTokenInterface $accessToken = null)
+    public function __construct(ServiceContainer $app)
     {
         $this->app = $app;
-        $this->accessToken = $accessToken ?? $this->app['access_token'];
     }
 
     /**
@@ -164,7 +163,9 @@ class BaseClient
             $this->registerHttpMiddlewares();
         }
 
+
         $response = $this->performRequest($url, $method, $options);
+
 
         $this->app->events->dispatch(new Events\HttpResponseCreated($response));
 
