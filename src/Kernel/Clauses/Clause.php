@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Clauses;
 
 /**

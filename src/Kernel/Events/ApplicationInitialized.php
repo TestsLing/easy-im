@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Events;
 
 use EasyIM\Kernel\ServiceContainer;
@@ -15,9 +14,6 @@ class ApplicationInitialized
      */
     public $app;
 
-    /**
-     * @param \EasyIM\Kernel\ServiceContainer $app
-     */
     public function __construct(ServiceContainer $app)
     {
         $this->app = $app;

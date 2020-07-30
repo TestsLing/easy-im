@@ -83,8 +83,9 @@ class ServiceContainer extends Container
             // http://docs.guzzlephp.org/en/stable/request-options.html
             'http' => [
                 'timeout' => 30.0,
-                'base_uri' => 'https://api.x.com/',
-            ],
+                'base_uri' => 'https://console.tim.qq.com/v4/',
+                'verify' => false
+            ]
         ];
 
         return array_replace_recursive($base, $this->defaultConfig, $this->userConfig);

@@ -4,6 +4,7 @@ namespace EasyIM\TencentIM\Base;
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
+use EasyIM\TencentIM\Encryptor;
 
 /**
  * Class Client.
@@ -36,7 +37,7 @@ class Client extends BaseClient
      */
     public function getValidIps()
     {
-        return $this->httpGet('cgi-bin/getcallbackip');
+        return $this->query('openconfigsvr/getappinfo');
     }
 
     /**
@@ -69,5 +70,22 @@ class Client extends BaseClient
         ];
 
         return $this->httpPostJson('cgi-bin/callback/check', $params);
+    }
+
+    public function query(string $url, array $data = [])
+    {
+        $config = $this->app['config']->only(['sdk_app_id', 'identifier', 'secret'])->toArray();
+
+        $encryptor = new Encryptor($config['sdk_app_id'], $config['secret'], $config['identifier']);
+
+        $query = [
+            'usersig' => $encryptor->signature(),
+            'random' => mt_rand(1, 99999999),
+            'sdkappid' => $config['sdk_app_id'],
+            'identifier' => $config['identifier'],
+            'contenttype' => 'json'
+        ];
+
+        return $this->httpPostJson($url, $data, $query);
     }
 }

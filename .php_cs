@@ -3,18 +3,19 @@
 $finder = PhpCsFixer\Finder::create()
     ->exclude('tests/Fixtures')
     ->in(__DIR__)
-    ->append([__DIR__.'/php-cs-fixer']);
+    ->append([__DIR__.'/php-cs-fixer'])
+;
 
 $config = PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR2'=>true,
-        '@PHP56Migration' => true,
+        '@PSR2'                     => true,
+        '@PHP56Migration'           => true,
         '@PHPUnit60Migration:risky' => true,
-        '@PhpCsFixer' => true,
-        '@PhpCsFixer:risky' => true,
+        '@PhpCsFixer'               => true,
+        '@PhpCsFixer:risky'         => true,
         //'header_comment' => ['header' => $header],
-        'list_syntax' => ['syntax' => 'long'],
+        'list_syntax'                                => ['syntax' => 'long'],
         'single_quote'                               => true, //简单字符串应该使用单引号代替双引号；
         'no_unused_imports'                          => true, //删除没用到的use
         'no_singleline_whitespace_before_semicolons' => true, //禁止只有单行空格和分号的写法；
@@ -26,9 +27,10 @@ $config = PhpCsFixer\Config::create()
         'no_trailing_comma_in_list_call'             => true, //删除 list 语句中多余的逗号；
         'no_leading_namespace_whitespace'            => true, //命名空间前面不应该有空格；
         'standardize_not_equals'                     => true, //使用 <> 代替 !=；
-        'binary_operator_spaces'                     => ['default' => 'align_single_space'] //等号对齐、数字箭头符号对齐
+        'binary_operator_spaces'                     => ['default' => 'align_single_space'], //等号对齐、数字箭头符号对齐
     ])
-    ->setFinder($finder);
+    ->setFinder($finder)
+;
 
 // special handling of fabbot.io service if it's using too old PHP CS Fixer version
 if (false !== getenv('FABBOT_IO')) {
@@ -36,7 +38,8 @@ if (false !== getenv('FABBOT_IO')) {
         PhpCsFixer\FixerFactory::create()
             ->registerBuiltInFixers()
             ->registerCustomFixers($config->getCustomFixers())
-            ->useRuleSet(new PhpCsFixer\RuleSet($config->getRules()));
+            ->useRuleSet(new PhpCsFixer\RuleSet($config->getRules()))
+        ;
     } catch (PhpCsFixer\ConfigurationException\InvalidConfigurationException $e) {
         $config->setRules([]);
     } catch (UnexpectedValueException $e) {

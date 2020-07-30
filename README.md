@@ -2,19 +2,17 @@
 
 📦 基于腾讯IM的php-sdk
 
-
 ## Requirement
 
-1. PHP >= 7.2
-2. **[Composer](https://getcomposer.org/)**
-3. openssl 拓展
+1. PHP> = 7.2
+2. ** [Composer](https://getcomposer.org/) **
+3. openssl拓展
 
 ## Installation
 
 ```shell
 $ composer require "longing/easy-im" -vvv
 ```
-
 ## Usage
 
 基本使用（以服务端为例）:
@@ -30,7 +28,6 @@ $options = [
 
 $app = Factory::TencentIM($options);
 ```
-
 
 ## License
 
