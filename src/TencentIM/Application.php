@@ -14,5 +14,6 @@ class Application extends ServiceContainer
         Operate\ServiceProvider::class,
         Speak\ServiceProvider::class,
         Profile\ServiceProvider::class,
+        Account\ServiceProvider::class,
     ];
 }

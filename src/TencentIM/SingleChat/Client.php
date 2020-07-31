@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyIM\TencentIM\Message;
+namespace EasyIM\TencentIM\SingleChat;
 
 use EasyIM\Kernel\BaseClient;
 
