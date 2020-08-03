@@ -92,19 +92,19 @@ abstract class Message implements MessageInterface
     /**
      *
      * @param array $appends
-     * @param bool  $withType
+     * @param bool  $isFlat
      *
-     * @return array
+     * @return array|array[]
+     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      */
-    public function transformToArray(array $appends = []): array
+    public function transformToArray(array $appends = [], bool $isFlat = false): array
     {
         $messageType = $this->getType();
         $messageContent = array_merge($this->propertiesToArray([]), $appends);
 
-        return [
-            'MsgType' => $messageType,
-            'MsgContent' => $messageContent
-        ];
+        $message = ['MsgType' => $messageType, 'MsgContent' => $messageContent];
+
+        return $isFlat ? $message : [$message];
     }
 
     /**

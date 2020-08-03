@@ -2,7 +2,9 @@
 
 namespace EasyIM\TencentIM\SingleChat;
 
+use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\TencentIM\Kernel\IMBaseClient;
+use EasyIM\TencentIM\Kernel\Messages\Message;
 
 
 /**
@@ -12,41 +14,76 @@ class Client extends IMBaseClient
 {
 
     /**
-     * Send single message
+     * Send single message.
      *
-     * @param array $accounts
-     * @param array $tags
+     * @param string      $toAccount
+     * @param MessageInterface     $message
+     * @param string|null $fromAccount
+     * @param int         $msgLifeTime
+     * @param int         $syncOtherMachine
+     * @param array       $forbidCallbackControl
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function sendMsg(array $accounts, array $tags)
-    {
+    public function sendMsg(
+        string $toAccount,
+        MessageInterface $message,
+        string $fromAccount = null,
+        int $msgLifeTime = 604800,
+        int $syncOtherMachine = 2,
+        array $forbidCallbackControl = []
+    ) {
+
         $params = [
-            'To_Account' => $accounts,
-            'TagList' => $tags,
+            'To_Account' => $toAccount,
+            'MsgRandom' => msgRandom(),
+            'MsgBody' => $message->transformToArray(),
+            'MsgTimeStamp' => time(),
+            'SyncOtherMachine' => $syncOtherMachine,
+            'MsgLifeTime' => $msgLifeTime,
+            'ForbidCallbackControl' => $forbidCallbackControl
         ];
+
+        $fromAccount && $params['From_Account'] = $fromAccount;
 
         return $this->httpPostJson('openim/sendmsg', $params);
     }
 
+
     /**
      * Batch send single chat.
      *
-     * @param array $accounts
-     * @param array $tags
+     * @param array $toAccount
+     * @param MessageInterface     $message
+     * @param string|null $fromAccount
+     * @param int         $msgLifeTime
+     * @param int         $syncOtherMachine
+     * @param array       $forbidCallbackControl
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function batchSendMsg(array $accounts, array $tags)
-    {
+    public function batchSendMsg(
+        array $toAccount,
+        MessageInterface $message,
+        string $fromAccount = null,
+        int $msgLifeTime = 604800,
+        int $syncOtherMachine = 2,
+        array $forbidCallbackControl = []
+    ) {
         $params = [
-            'To_Account' => $accounts,
-            'TagList' => $tags,
+            'To_Account' => $toAccount,
+            'MsgRandom' => msgRandom(),
+            'MsgBody' => $message->transformToArray(),
+            'SyncOtherMachine' => $syncOtherMachine,
+            'MsgLifeTime' => $msgLifeTime,
+            'ForbidCallbackControl' => $forbidCallbackControl
         ];
+
+        $fromAccount && $params['From_Account'] = $fromAccount;
 
         return $this->httpPostJson('openim/batchsendmsg', $params);
     }
@@ -63,11 +100,20 @@ class Client extends IMBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function importMsg(array $accounts, array $tags)
-    {
+    public function importMsg(
+        string $toAccount,
+        string $fromAccount,
+        Message $message,
+        int $syncFromOldSystem = 1
+    ) {
+
         $params = [
-            'To_Account' => $accounts,
-            'TagList' => $tags,
+            'To_Account' => $toAccount,
+            'From_Account' => $fromAccount,
+            'MsgRandom' => msgRandom(),
+            'MsgBody' => $message->transformToArray(),
+            'MsgTimeStamp' => time(),
+            'SyncFromOldSystem' => $syncFromOldSystem
         ];
 
         return $this->httpPostJson('openim/importmsg', $params);
@@ -77,21 +123,31 @@ class Client extends IMBaseClient
     /**
      * Query single chat message.
      *
-     * @param array $accounts
-     * @param array $tags
+     * @param string      $fromAccount
+     * @param string      $toAccount
+     * @param int         $maxCnt
+     * @param int         $minTime
+     * @param int         $maxTime
+     * @param string|null $lastMsgKey
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function queryMsg(string $fromAccount, string $toAccount, int $maxcnt, int $minTime, int $maxTime, string $lastMsgKey = null)
-    {
+    public function queryMsg(
+        string $fromAccount,
+        string $toAccount,
+        int $maxCnt,
+        int $minTime,
+        int $maxTime,
+        string $lastMsgKey = null
+    ) {
         $params = [
             'From_Account' => $fromAccount,
-            'To_Account' => $toAccount,
-            'MaxCnt' => $maxcnt,
-            'MinTime' => $minTime,
-            'MaxTime' => $maxTime,
+            'To_Account'   => $toAccount,
+            'MaxCnt'       => $maxCnt,
+            'MinTime'      => $minTime,
+            'MaxTime'      => $maxTime,
         ];
 
         $lastMsgKey && $params['LastMsgKey'] = $lastMsgKey;
@@ -114,13 +170,11 @@ class Client extends IMBaseClient
     {
         $params = [
             'From_Account' => $fromAccount,
-            'To_Account' => $toAccount,
-            'MsgKey' => $msgKey,
+            'To_Account'   => $toAccount,
+            'MsgKey'       => $msgKey,
         ];
 
         return $this->httpPostJson('openim/admin_msgwithdraw', $params);
     }
-
-
 
 }
