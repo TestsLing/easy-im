@@ -2,8 +2,8 @@
 
 namespace EasyIM\TencentIM\Profile;
 
-use EasyIM\Kernel\BaseClient;
-use EasyIM\TencentIM\Base\IMBaseClient;
+use EasyIM\TencentIM\Kernel\IMBaseClient;
+
 
 /**
  * Class Client.

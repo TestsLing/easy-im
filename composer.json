@@ -42,7 +42,10 @@
     "autoload": {
         "psr-4": {
             "EasyIM\\": "src/"
-        }
+        },
+        "files": [
+            "src/Kernel/Helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

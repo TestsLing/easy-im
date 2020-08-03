@@ -2,7 +2,7 @@
 
 namespace EasyIM\TencentIM\Speak;
 
-use EasyIM\TencentIM\Base\IMBaseClient;
+use EasyIM\TencentIM\Kernel\IMBaseClient;
 
 /**
  * Class Client.

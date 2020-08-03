@@ -6,7 +6,7 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
 /**
- * Class ServiceProvider.
+ * Class SignatureProvider.
  */
 class ServiceProvider implements ServiceProviderInterface
 {

@@ -1,25 +1,21 @@
 <?php
 
-namespace EasyIM\TencentIM\Base;
+namespace EasyIM\TencentIM\Kernel\Providers;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Tencent\TLSSigAPIv2;
 
 /**
- * Class ServiceProvider.
+ * Class SignatureProvider.
  */
-class ServiceProvider implements ServiceProviderInterface
+class SignatureProvider implements ServiceProviderInterface
 {
     /**
      * {@inheritdoc}.
      */
     public function register(Container $app)
     {
-
-        $app['base'] = function ($app) {
-            return new Client($app);
-        };
 
         $app['sign'] = function ($app) {
             return new TLSSigAPIv2(

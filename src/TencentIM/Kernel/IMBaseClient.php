@@ -1,7 +1,7 @@
 <?php
 
 
-namespace EasyIM\TencentIM\Base;
+namespace EasyIM\TencentIM\Kernel;
 
 use EasyIM\Kernel\BaseClient;
 
