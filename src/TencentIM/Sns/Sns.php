@@ -6,7 +6,7 @@ namespace EasyIM\TencentIM\Sns;
 
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 
-class Friend
+class Sns extends Client
 {
     /**
      *

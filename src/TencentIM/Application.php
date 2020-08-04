@@ -17,5 +17,7 @@ class Application extends ServiceContainer
         Profile\ServiceProvider::class,
         Account\ServiceProvider::class,
         SingleChat\ServiceProvider::class,
+        Sns\ServiceProvider::class,
+
     ];
 }

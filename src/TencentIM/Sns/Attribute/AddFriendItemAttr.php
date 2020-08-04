@@ -20,7 +20,7 @@ class AddFriendItemAttr extends Message
         'AddWording'
     ];
 
-    protected $required = ['AddSource'];
+    protected $required = ['AddSource', 'To_Account'];
 
     /**
      *
