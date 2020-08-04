@@ -39,7 +39,7 @@ trait HasAttributes
      * Set attribute.
      *
      * @param string $attribute
-     * @param string $value
+     * @param mixed $value
      *
      * @return $this
      */
