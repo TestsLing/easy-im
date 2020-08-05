@@ -14,7 +14,6 @@ use EasyIM\TencentIM\Sns\Attribute\UpdateFriendItemAttr;
  */
 class Client extends IMBaseClient
 {
-
     /**
      *
      * @param string $fromAccount
@@ -48,7 +47,7 @@ class Client extends IMBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getFriendList(string $fromAccount, int $startIndex, int $standardSequence = null, int $customSequence = null)
+    public function getFriendList(string $fromAccount, int $startIndex = 0, int $standardSequence = null, int $customSequence = null)
     {
         $params = [
             'From_Account' => $fromAccount,
@@ -71,7 +70,7 @@ class Client extends IMBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function checkFriend(string $fromAccount, array $toAccount, string $checkType)
+    public function checkFriend(string $fromAccount, array $toAccount, string $checkType = 'CheckResult_Type_Both')
     {
         $params = [
             'From_Account' => $fromAccount,
@@ -92,13 +91,12 @@ class Client extends IMBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function deleteAllFriend(string $fromAccount, string $deleteType = null)
+    public function deleteAllFriend(string $fromAccount, string $deleteType = 'Delete_Type_Both')
     {
         $params = [
             'From_Account' => $fromAccount,
+            'DeleteType' => $deleteType
         ];
-
-        $deleteType && $params['DeleteType'] = $deleteType;
 
         return $this->httpPostJson('sns/friend_delete_all', $params);
 
@@ -115,16 +113,15 @@ class Client extends IMBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function deleteFriend(string $fromAccount, array $toAccount, string $deleteType = null)
+    public function deleteFriend(string $fromAccount, array $toAccount, string $deleteType = 'Delete_Type_Both')
     {
         $params = [
             'From_Account' => $fromAccount,
-            'To_Account' => $toAccount
+            'To_Account' => $toAccount,
+            'DeleteType' => $deleteType
         ];
 
-        $deleteType && $params['DeleteType'] = $deleteType;
-
-        return $this->httpPostJson('sns/friend_delete_all', $params);
+        return $this->httpPostJson('sns/friend_delete', $params);
     }
 
 
@@ -142,7 +139,7 @@ class Client extends IMBaseClient
     {
         $params = [
             'From_Account' => $fromAccount,
-            'UpdateItem' => $updateFriendItemAttr->transformToArray()
+            'UpdateItem' => [$updateFriendItemAttr->transformToArray()]
         ];
 
         return $this->httpPostJson('sns/friend_update', $params);

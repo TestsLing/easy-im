@@ -68,7 +68,20 @@ class ImportFriendItemAttr extends AddFriendItemAttr
             $customItems[] = $item->transformToArray();
         }
 
-        $this->setAttribute('CustomItemAttr', $customItems);
+        $this->setAttribute('CustomItem', $customItems);
         return $this;
     }
+
+    /**
+     *
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function setGroupName($value)
+    {
+        $this->setAttribute('GroupName', $value);
+        return $this;
+    }
+
 }

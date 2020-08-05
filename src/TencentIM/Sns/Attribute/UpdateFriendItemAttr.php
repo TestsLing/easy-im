@@ -41,4 +41,16 @@ class UpdateFriendItemAttr extends Message
         return $this;
     }
 
+    /**
+     *
+     * @param array $appends
+     * @param bool  $isFlat
+     *
+     * @return array
+     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
+     */
+    public function transformToArray(array $appends = [], bool $isFlat = false): array
+    {
+        return $this->propertiesToArray($appends);
+    }
 }

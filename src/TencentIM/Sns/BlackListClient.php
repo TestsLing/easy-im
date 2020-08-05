@@ -60,7 +60,7 @@ class BlackListClient extends IMBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function pull(string $fromAccount, int $startIndex, int $maxLimited, int $lastSequence)
+    public function pull(string $fromAccount, int $startIndex = 0, int $maxLimited = 20, int $lastSequence = 0)
     {
         $params = [
             'From_Account' => $fromAccount,
@@ -83,7 +83,7 @@ class BlackListClient extends IMBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function check(string $fromAccount, array $toAccount, string $checkType)
+    public function check(string $fromAccount, array $toAccount, string $checkType = 'BlackCheckResult_Type_Both')
     {
         $params = [
             'From_Account' => $fromAccount,

@@ -49,5 +49,4 @@ class CustomItemAttr extends Message
     {
         return $this->propertiesToArray($appends);
     }
-
 }
