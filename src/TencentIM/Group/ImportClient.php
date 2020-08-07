@@ -5,8 +5,8 @@ namespace EasyIM\TencentIM\Group;
 
 
 use EasyIM\TencentIM\Group\Attribute\AppDefinedDataAttr;
-use EasyIM\TencentIM\Group\Attribute\ImportMemberItemAttr;
-use EasyIM\TencentIM\Group\Attribute\MsgListItemAttr;
+use EasyIM\TencentIM\Group\Attribute\ImportMemberAttr;
+use EasyIM\TencentIM\Group\Attribute\MsgListAttr;
 
 /**
  * Class ImportClient
@@ -68,18 +68,19 @@ class ImportClient extends GroupBaseClient
     /**
      * Import group message.
      *
-     * @param string          $groupId
-     * @param MsgListItemAttr $msgList
+     * @param string      $groupId
+     * @param MsgListAttr $msgList
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function importGroupMsg(string $groupId, MsgListItemAttr $msgList)
+    public function importGroupMsg(string $groupId, MsgListAttr $msgList)
     {
         $params = [
             'GroupId' => $groupId,
-            'MsgList' => $msgList
+            'MsgList' => $msgList->transformToArray()
         ];
 
         return $this->httpPostJson('group_open_http_svc/import_group_msg', $params);
@@ -88,18 +89,19 @@ class ImportClient extends GroupBaseClient
     /**
      * Import group members.
      *
-     * @param string               $groupId
-     * @param ImportMemberItemAttr $memberList
+     * @param string           $groupId
+     * @param ImportMemberAttr $memberList
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      */
-    public function importGroupMember(string $groupId, ImportMemberItemAttr $memberList)
+    public function importGroupMember(string $groupId, ImportMemberAttr $memberList)
     {
         $params = [
             'GroupId'    => $groupId,
-            'MemberList' => $memberList
+            'MemberList' => $memberList->transformToArray()
         ];
 
         return $this->httpPostJson('group_open_http_svc/import_group_member', $params);

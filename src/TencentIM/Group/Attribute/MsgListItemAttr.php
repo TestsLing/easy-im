@@ -43,11 +43,11 @@ class MsgListItemAttr extends Message
 
     /**
      *
-     * @param string $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setSendTime(string $value)
+    public function setSendTime(int $value)
     {
         $this->setAttribute('SendTime', $value);
 
@@ -70,13 +70,13 @@ class MsgListItemAttr extends Message
 
     /**
      *
-     * @param string $value
+     * @param MessageInterface $value
      *
      * @return $this
      */
     public function setMsgBody(MessageInterface $value)
     {
-        $this->setAttribute('MsgBody', $value);
+        $this->setAttribute('MsgBody', $value->transformToArray());
 
         return $this;
     }
