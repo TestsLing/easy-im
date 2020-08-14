@@ -6,7 +6,15 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
 /**
- * Class SignatureProvider.
+ * Class ServiceProvider
+ *
+ * @property \EasyIM\TencentIM\Sns\Sns          $sns
+ * @property \EasyIM\TencentIM\Sns\Client       $client
+ * @property \EasyIM\TencentIM\Sns\GroupClient  $group
+ * @property \EasyIM\TencentIM\Sns\BlackListClient  blackList
+ *
+ * @package EasyIM\TencentIM\Sns
+ * @author  longing <hacksmile@126.com>
  */
 class ServiceProvider implements ServiceProviderInterface
 {
