@@ -6,7 +6,10 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
 /**
- * Class SignatureProvider.
+ * Class ServiceProvider
+ *
+ * @package EasyIM\TencentIM\Group
+ * @author  yingzhan <519203699@qq.com>
  */
 class ServiceProvider implements ServiceProviderInterface
 {
@@ -15,8 +18,23 @@ class ServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $app)
     {
-        $app['group'] = function ($app) {
+        $app['group']         = function ($app) {
+            return new Group($app);
+        };
+        $app['group.client']  = function ($app) {
             return new Client($app);
+        };
+        $app['group.member']  = function ($app) {
+            return new MemberClient($app);
+        };
+        $app['group.operate'] = function ($app) {
+            return new OperateClient($app);
+        };
+        $app['group.message'] = function ($app) {
+            return new MessageClient($app);
+        };
+        $app['group.import']  = function ($app) {
+            return new ImportClient($app);
         };
     }
 }
