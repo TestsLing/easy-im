@@ -2,9 +2,9 @@
 
 namespace EasyIM\TencentIM\Sns;
 
+use EasyIM\Kernel\ParameterList;
 use EasyIM\TencentIM\Kernel\IMBaseClient;
-use EasyIM\TencentIM\Sns\Attribute\AddFriendAttr;
-use EasyIM\TencentIM\Sns\Attribute\UpdateFriendItemAttr;
+use EasyIM\TencentIM\Sns\Parameter\UpdateFriendParameter;
 
 /**
  * Class Client
@@ -127,15 +127,15 @@ class Client extends IMBaseClient
 
     /**
      *
-     * @param string               $fromAccount
-     * @param UpdateFriendItemAttr $updateFriendItemAttr
+     * @param string                $fromAccount
+     * @param UpdateFriendParameter $updateFriendItemAttr
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function updateFriend(string $fromAccount, UpdateFriendItemAttr $updateFriendItemAttr)
+    public function updateFriend(string $fromAccount, UpdateFriendParameter $updateFriendItemAttr)
     {
         $params = [
             'From_Account' => $fromAccount,
@@ -149,17 +149,17 @@ class Client extends IMBaseClient
     /**
      *
      * @param string        $fromAccount
-     * @param AddFriendAttr $addFriendAttr
+     * @param ParameterList $addFriendAttr
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function importFriend(string $fromAccount, AddFriendAttr $addFriendAttr)
+    public function importFriend(string $fromAccount, ParameterList $addFriendAttr)
     {
         $params = [
             'From_Account' => $fromAccount,
-            'AddFriendItem' => $addFriendAttr->transformToArray()
+            'AddFriendItem' => $addFriendAttr->transformParameterToArray()
         ];
 
         return $this->httpPostJson('sns/friend_import', $params);
@@ -169,7 +169,7 @@ class Client extends IMBaseClient
     /**
      *
      * @param string        $fromAccount
-     * @param AddFriendAttr $addFriendAttr
+     * @param ParameterList $addFriendAttr
      * @param string        $addType
      * @param int           $forceAddFlags
      *
@@ -179,7 +179,7 @@ class Client extends IMBaseClient
      */
     public function addFriend(
         string $fromAccount,
-        AddFriendAttr $addFriendAttr,
+        ParameterList $addFriendAttr,
         string $addType = 'Add_Type_Both',
         int $forceAddFlags = 0
     ) {
@@ -188,7 +188,7 @@ class Client extends IMBaseClient
             'From_Account' => $fromAccount,
             'AddType' => $addType,
             'ForceAddFlags' => $forceAddFlags,
-            'AddFriendItem' => $addFriendAttr->transformToArray()
+            'AddFriendItem' => $addFriendAttr->transformParameterToArray()
         ];
 
         return $this->httpPostJson('sns/friend_add', $params);

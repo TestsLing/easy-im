@@ -1,12 +1,12 @@
 <?php
 
 
-namespace EasyIM\TencentIM\Sns\Attribute;
+namespace EasyIM\TencentIM\Sns\Parameter;
 
 
-use EasyIM\TencentIM\Kernel\Messages\Message;
+use EasyIM\Kernel\Parameter;
 
-class AddFriendItemAttr extends Message
+class AddFriendParameter extends Parameter
 {
 
     /**
@@ -21,19 +21,6 @@ class AddFriendItemAttr extends Message
     ];
 
     protected $required = ['AddSource', 'To_Account'];
-
-    /**
-     *
-     * @param array $appends
-     * @param bool  $isFlat
-     *
-     * @return array
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
-     */
-    public function transformToArray(array $appends = [], bool $isFlat = false): array
-    {
-        return $this->propertiesToArray($appends);
-    }
 
 
     /**

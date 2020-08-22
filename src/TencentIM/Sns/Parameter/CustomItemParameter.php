@@ -1,12 +1,12 @@
 <?php
 
 
-namespace EasyIM\TencentIM\Sns\Attribute;
+namespace EasyIM\TencentIM\Sns\Parameter;
 
 
-use EasyIM\TencentIM\Kernel\Messages\Message;
+use EasyIM\Kernel\Parameter;
 
-class CustomItemAttr extends Message
+class CustomItemParameter extends Parameter
 {
     protected $properties = [
         'Tag',
@@ -35,18 +35,5 @@ class CustomItemAttr extends Message
     {
         $this->setAttribute('Value', $value);
         return $this;
-    }
-
-    /**
-     *
-     * @param array $appends
-     * @param bool  $isFlat
-     *
-     * @return array
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
-     */
-    public function transformToArray(array $appends = [], bool $isFlat = false): array
-    {
-        return $this->propertiesToArray($appends);
     }
 }

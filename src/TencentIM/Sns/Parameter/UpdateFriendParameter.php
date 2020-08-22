@@ -1,12 +1,12 @@
 <?php
 
 
-namespace EasyIM\TencentIM\Sns\Attribute;
+namespace EasyIM\TencentIM\Sns\Parameter;
 
 
-use EasyIM\TencentIM\Kernel\Messages\Message;
+use EasyIM\Kernel\Parameter;
 
-class UpdateFriendItemAttr extends Message
+class UpdateFriendParameter extends Parameter
 {
     protected $properties = [
         'To_Account',
@@ -17,11 +17,11 @@ class UpdateFriendItemAttr extends Message
 
     /**
      *
-     * @param SnsItemAttr ...$snsItemAttr
+     * @param SnsItemParameter ...$snsItemAttr
      *
      * @return $this
      */
-    public function setSnsItem(SnsItemAttr ...$snsItemAttr)
+    public function setSnsItem(SnsItemParameter ...$snsItemAttr)
     {
         $snsItems = [];
 
@@ -41,16 +41,4 @@ class UpdateFriendItemAttr extends Message
         return $this;
     }
 
-    /**
-     *
-     * @param array $appends
-     * @param bool  $isFlat
-     *
-     * @return array
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
-     */
-    public function transformToArray(array $appends = [], bool $isFlat = false): array
-    {
-        return $this->propertiesToArray($appends);
-    }
 }

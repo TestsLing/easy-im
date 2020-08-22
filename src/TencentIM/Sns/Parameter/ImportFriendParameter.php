@@ -1,18 +1,18 @@
 <?php
 
 
-namespace EasyIM\TencentIM\Sns\Attribute;
+namespace EasyIM\TencentIM\Sns\Parameter;
 
 
 use EasyIM\TencentIM\Kernel\Messages\Message;
 
 /**
- * Class ImportFriendItemAttr
+ * Class ImportFriendParameter
  *
  * @package EasyIM\TencentIM\Sns\Attribute
  * @author  longing <hacksmile@126.com>
  */
-class ImportFriendItemAttr extends AddFriendItemAttr
+class ImportFriendParameter extends AddFriendParameter
 {
 
     /**
@@ -26,7 +26,7 @@ class ImportFriendItemAttr extends AddFriendItemAttr
         'AddWording',
         'RemarkTime',
         'AddTime',
-        'CustomItemAttr'
+        'CustomItem'
     ];
 
     /**
@@ -55,20 +55,14 @@ class ImportFriendItemAttr extends AddFriendItemAttr
 
     /**
      *
-     * @param CustomItemAttr ...$customItemAttr
+     * @param CustomItemParameter ...$customItemParameters
      *
      * @return $this
      * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      */
-    public function setCustomItem(CustomItemAttr ...$customItemAttr)
+    public function setCustomItem(CustomItemParameter ...$customItemParameters)
     {
-        $customItems = [];
-
-        foreach ($customItemAttr as $item) {
-            $customItems[] = $item->transformToArray();
-        }
-
-        $this->setAttribute('CustomItem', $customItems);
+        $this->setAttribute('CustomItem', $this->transformParameterToArray(...$customItemParameters));
         return $this;
     }
 
