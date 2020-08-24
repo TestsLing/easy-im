@@ -2,8 +2,8 @@
 
 namespace EasyIM\TencentIM\Sns;
 
+use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\ParameterList;
-use EasyIM\TencentIM\Kernel\IMBaseClient;
 use EasyIM\TencentIM\Sns\Parameter\UpdateFriendParameter;
 
 /**
@@ -12,7 +12,7 @@ use EasyIM\TencentIM\Sns\Parameter\UpdateFriendParameter;
  * @package EasyIM\TencentIM\Sns
  * @author  longing <hacksmile@126.com>
  */
-class Client extends IMBaseClient
+class Client extends BaseClient
 {
     /**
      *

@@ -4,7 +4,7 @@
 namespace EasyIM\TencentIM\Kernel\OfflinePushInfo;
 
 
-use EasyIM\TencentIM\Kernel\Messages\Message;
+use EasyIM\Kernel\Parameter;
 
 /**
  * Class AndroidInfo
@@ -12,7 +12,7 @@ use EasyIM\TencentIM\Kernel\Messages\Message;
  * @package EasyIM\TencentIM\Kernel\OfflinePushInfo
  * @author  longing <hacksmile@126.com>
  */
-class AndroidInfo extends Message
+class AndroidInfo extends Parameter
 {
 
     /**
@@ -23,18 +23,6 @@ class AndroidInfo extends Message
         'OPPOChannelID',
     ];
 
-    /**
-     *
-     * @param array $appends
-     * @param bool  $isFlat
-     *
-     * @return array
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
-     */
-    public function transformToArray(array $appends = [], bool $isFlat = false): array
-    {
-        return $this->propertiesToArray($appends);
-    }
 
     /**
      *

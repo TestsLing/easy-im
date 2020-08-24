@@ -41,9 +41,10 @@ class BaseClient
      * @param \EasyIM\Kernel\ServiceContainer                    $app
      * @param \EasyIM\Kernel\Contracts\AccessTokenInterface|null $accessToken
      */
-    public function __construct(ServiceContainer $app)
+    public function __construct(ServiceContainer $app, AccessTokenInterface $accessToken = null)
     {
         $this->app = $app;
+        $this->accessToken = $accessToken ?? $this->app['access_token'];
     }
 
     /**

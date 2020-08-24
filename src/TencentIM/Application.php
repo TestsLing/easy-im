@@ -17,7 +17,6 @@ use EasyIM\TencentIM\Kernel\Providers\SignatureProvider;
  * @property \EasyIM\TencentIM\Account\Client                     $account
  * @property \EasyIM\TencentIM\SingleChat\Client                  $singleChat
  * @property \EasyIM\TencentIM\Sns\Client                         $sns
- * @property \EasyIM\TencentIM\Kernel\Providers\SignatureProvider $signatureProvider
  */
 class Application extends ServiceContainer
 {
@@ -25,7 +24,7 @@ class Application extends ServiceContainer
      * @var array
      */
     protected $providers = [
-        SignatureProvider::class,
+        Auth\ServiceProvider::class,
         Operate\ServiceProvider::class,
         Speak\ServiceProvider::class,
         Profile\ServiceProvider::class,

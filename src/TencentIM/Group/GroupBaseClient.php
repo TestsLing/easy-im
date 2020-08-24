@@ -4,7 +4,7 @@
 namespace EasyIM\TencentIM\Group;
 
 
-use EasyIM\TencentIM\Kernel\IMBaseClient;
+use EasyIM\Kernel\BaseClient;
 
 /**
  * Class GroupBaseClient
@@ -12,7 +12,7 @@ use EasyIM\TencentIM\Kernel\IMBaseClient;
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
  */
-class GroupBaseClient extends IMBaseClient
+class GroupBaseClient extends BaseClient
 {
     protected $allowTypes     = ['Private', 'Public', 'ChatRoom', 'AVChatRoom', 'BChatRoom'];
     protected $allowApplyJoin = ['FreeAccess', 'NeedPermission', 'DisableApply'];

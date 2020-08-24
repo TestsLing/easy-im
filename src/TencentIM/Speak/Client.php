@@ -2,12 +2,12 @@
 
 namespace EasyIM\TencentIM\Speak;
 
-use EasyIM\TencentIM\Kernel\IMBaseClient;
+use EasyIM\Kernel\BaseClient;
 
 /**
  * Class Client.
  */
-class Client extends IMBaseClient
+class Client extends BaseClient
 {
 
     /**

@@ -4,7 +4,7 @@
 namespace EasyIM\TencentIM\Sns;
 
 
-use EasyIM\TencentIM\Kernel\IMBaseClient;
+use EasyIM\Kernel\BaseClient;
 
 /**
  * Class GroupClient
@@ -12,7 +12,7 @@ use EasyIM\TencentIM\Kernel\IMBaseClient;
  * @package EasyIM\TencentIM\Sns
  * @author  longing <hacksmile@126.com>
  */
-class GroupClient extends IMBaseClient
+class GroupClient extends BaseClient
 {
 
     /**

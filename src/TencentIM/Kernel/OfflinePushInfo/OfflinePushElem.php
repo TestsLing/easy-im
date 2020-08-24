@@ -4,7 +4,7 @@
 namespace EasyIM\TencentIM\Kernel\OfflinePushInfo;
 
 
-use EasyIM\TencentIM\Kernel\Messages\Message;
+use EasyIM\Kernel\Parameter;
 
 /**
  * Class OfflinePushElem
@@ -12,7 +12,7 @@ use EasyIM\TencentIM\Kernel\Messages\Message;
  * @package EasyIM\TencentIM\Kernel\OfflinePushInfo
  * @author  longing <hacksmile@126.com>
  */
-class OfflinePushElem extends Message
+class OfflinePushElem extends Parameter
 {
     protected $properties = [
         'PushFlag',
@@ -22,19 +22,6 @@ class OfflinePushElem extends Message
         'AndroidInfo',
         'ApnsInfo'
     ];
-
-    /**
-     *
-     * @param array $appends
-     * @param bool  $isFlat
-     *
-     * @return array
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
-     */
-    public function transformToArray(array $appends = [], bool $isFlat = false): array
-    {
-        return $this->propertiesToArray($appends);
-    }
 
     /**
      *
@@ -88,12 +75,12 @@ class OfflinePushElem extends Message
 
     /**
      *
-     * @param Message $androidInfo
+     * @param AndroidInfo $androidInfo
      *
      * @return $this
      * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      */
-    public function setAndroidInfo(Message $androidInfo)
+    public function setAndroidInfo(AndroidInfo $androidInfo)
     {
         $this->setAttribute('AndroidInfo', $androidInfo->transformToArray());
         return $this;
@@ -102,12 +89,12 @@ class OfflinePushElem extends Message
 
     /**
      *
-     * @param Message $apnsInfo
+     * @param ApnsInfo $apnsInfo
      *
      * @return $this
      * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      */
-    public function setApnsInfo(Message $apnsInfo)
+    public function setApnsInfo(ApnsInfo $apnsInfo)
     {
         $this->setAttribute('ApnsInfo', $apnsInfo->transformToArray());
         return $this;

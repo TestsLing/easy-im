@@ -4,9 +4,9 @@
 namespace EasyIM\TencentIM\Sns;
 
 
-use EasyIM\TencentIM\Kernel\IMBaseClient;
+use EasyIM\Kernel\BaseClient;
 
-class BlackListClient extends IMBaseClient
+class BlackListClient extends BaseClient
 {
 
 

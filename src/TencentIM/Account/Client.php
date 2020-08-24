@@ -2,14 +2,14 @@
 
 namespace EasyIM\TencentIM\Account;
 
-use EasyIM\TencentIM\Kernel\IMBaseClient;
+use EasyIM\Kernel\BaseClient;
 
 /**
  * Class Client
  *
  * @package EasyIM\TencentIM\Account
  */
-class Client extends IMBaseClient
+class Client extends BaseClient
 {
     /**
      * Import a single account.

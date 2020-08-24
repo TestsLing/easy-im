@@ -4,7 +4,7 @@
 namespace EasyIM\TencentIM\Kernel\OfflinePushInfo;
 
 
-use EasyIM\TencentIM\Kernel\Messages\Message;
+use EasyIM\Kernel\Parameter;
 
 /**
  * Class ApnsInfo
@@ -12,7 +12,7 @@ use EasyIM\TencentIM\Kernel\Messages\Message;
  * @package EasyIM\TencentIM\Kernel\OfflinePushInfo
  * @author  longing <hacksmile@126.com>
  */
-class ApnsInfo extends Message
+class ApnsInfo extends Parameter
 {
 
     /**
@@ -26,18 +26,6 @@ class ApnsInfo extends Message
         'Image'
     ];
 
-    /**
-     *
-     * @param array $appends
-     * @param bool  $isFlat
-     *
-     * @return array
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
-     */
-    public function transformToArray(array $appends = [], bool $isFlat = false): array
-    {
-        return $this->propertiesToArray($appends);
-    }
 
     /**
      *

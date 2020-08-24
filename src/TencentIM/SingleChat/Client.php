@@ -2,8 +2,8 @@
 
 namespace EasyIM\TencentIM\SingleChat;
 
+use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
-use EasyIM\TencentIM\Kernel\IMBaseClient;
 use EasyIM\TencentIM\Kernel\Messages\Message;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 
@@ -11,7 +11,7 @@ use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 /**
  * Class Client.
  */
-class Client extends IMBaseClient
+class Client extends BaseClient
 {
 
     /**
