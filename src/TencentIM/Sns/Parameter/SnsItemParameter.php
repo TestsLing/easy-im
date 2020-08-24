@@ -4,7 +4,6 @@
 namespace EasyIM\TencentIM\Sns\Parameter;
 
 
-use EasyIM\TencentIM\Kernel\Messages\Message;
 
 /**
  * Class SnsItemParameter
