@@ -77,16 +77,15 @@ abstract class Parameter implements ParameterInterface
 
     /**
      *
-     * @param Parameter ...$parameters
      *
      * @return array
      * @throws Exceptions\InvalidArgumentException
      */
-    public function transformParameterToArray(Parameter ...$parameters): array
+    public function transformParameterToArray(): array
     {
         $attrs = [];
 
-        foreach ($parameters as $parameter) {
+        foreach ($this->attributes as $parameter) {
             $attrs[] = $parameter->transformToArray();
         }
 
