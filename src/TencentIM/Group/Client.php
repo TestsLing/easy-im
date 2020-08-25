@@ -3,8 +3,7 @@
 namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
-use EasyIM\TencentIM\Group\Attribute\AppDefinedDataAttr;
-use EasyIM\TencentIM\Group\Attribute\MemberListAttr;
+use EasyIM\Kernel\ParameterList;
 
 /**
  * Class Client
@@ -18,17 +17,17 @@ class Client extends GroupBaseClient
     /**
      * Create Group.
      *
-     * @param string                  $name
-     * @param string                  $type
-     * @param string|null             $owner
-     * @param MemberListAttr|null     $members
-     * @param string|null             $announcement
-     * @param string|null             $intro
-     * @param string|null             $faceUrl
-     * @param string|null             $groupId
-     * @param int|null                $count
-     * @param string|null             $applyJoin
-     * @param AppDefinedDataAttr|null $appDefined
+     * @param string             $name
+     * @param string             $type
+     * @param string|null        $owner
+     * @param ParameterList|null $members
+     * @param string|null        $announcement
+     * @param string|null        $intro
+     * @param string|null        $faceUrl
+     * @param string|null        $groupId
+     * @param int|null           $count
+     * @param string|null        $applyJoin
+     * @param ParameterList|null $appDefined
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws InvalidArgumentException
@@ -39,14 +38,14 @@ class Client extends GroupBaseClient
         string $name,
         string $type,
         string $owner = null,
-        MemberListAttr $members = null,
+        ParameterList $members = null,
         string $announcement = null,
         string $intro = null,
         string $faceUrl = null,
         string $groupId = null,
         int $count = null,
         string $applyJoin = null,
-        AppDefinedDataAttr $appDefined = null
+        ParameterList $appDefined = null
     ) {
         if (!\in_array($type, $this->allowTypes, true)) {
             throw new InvalidArgumentException(sprintf("Unsupported type: '%s'", $type));
@@ -59,14 +58,14 @@ class Client extends GroupBaseClient
             'Name' => $name
         ];
         $owner && $params['Owner_Account'] = $owner;
-        $members && $params['MemberList'] = $members->transformToArray();
+        $members && $params['MemberList'] = $members->transformParameterToArray();
         $announcement && $params['Notification'] = $announcement;
         $intro && $params['Introduction'] = $intro;
         $faceUrl && $params['FaceUrl'] = $faceUrl;
         $groupId && $params['GroupId'] = $groupId;
         $count && $params['MaxMemberCount'] = $count;
         $applyJoin && $params['ApplyJoinOption'] = $applyJoin;
-        $appDefined && $params['AppDefinedData'] = $appDefined->transformToArray();
+        $appDefined && $params['AppDefinedData'] = $appDefined->transformParameterToArray();
 
         return $this->httpPostJson('group_open_http_svc/create_group', $params);
     }
@@ -105,15 +104,15 @@ class Client extends GroupBaseClient
     /**
      * Modify group basic data.
      *
-     * @param string                  $groupId
-     * @param string|null             $name
-     * @param string|null             $introduction
-     * @param string|null             $notification
-     * @param string|null             $faceUrl
-     * @param int|null                $max
-     * @param string|null             $applyJoin
-     * @param AppDefinedDataAttr|null $appDefinedData
-     * @param string|null             $shutUpAll
+     * @param string             $groupId
+     * @param string|null        $name
+     * @param string|null        $introduction
+     * @param string|null        $notification
+     * @param string|null        $faceUrl
+     * @param int|null           $max
+     * @param string|null        $applyJoin
+     * @param ParameterList|null $appDefinedData
+     * @param string|null        $shutUpAll
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws InvalidArgumentException
@@ -128,7 +127,7 @@ class Client extends GroupBaseClient
         string $faceUrl = null,
         int $max = null,
         string $applyJoin = null,
-        AppDefinedDataAttr $appDefinedData = null,
+        ParameterList $appDefinedData = null,
         string $shutUpAll = null
     ) {
         if ($applyJoin && !\in_array($applyJoin, $this->allowApplyJoin, true)) {
@@ -144,7 +143,7 @@ class Client extends GroupBaseClient
         $faceUrl && $params['FaceUrl'] = $faceUrl;
         $max && $params['MaxMemberNum'] = $max;
         $applyJoin && $params['ApplyJoinOption'] = $applyJoin;
-        $appDefinedData && $params['AppDefinedData'] = $appDefinedData;
+        $appDefinedData && $params['AppDefinedData'] = $appDefinedData->transformParameterToArray();
         $shutUpAll && $params['ShutUpAllMember'] = $shutUpAll;
 
         return $this->httpPostJson('group_open_http_svc/modify_group_base_info', $params);

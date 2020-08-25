@@ -5,9 +5,9 @@ namespace EasyIM\TencentIM\Group;
 
 
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
+use EasyIM\Kernel\ParameterList;
 use EasyIM\TencentIM\Group\Attribute\AppDefinedDataMemberAttr;
-use EasyIM\TencentIM\Group\Attribute\MemberListAttr;
-use EasyIM\TencentIM\Group\Attribute\ResponseFilterItemAttr;
+use EasyIM\TencentIM\Group\Parameter\Member\ResponseFilterParameter;
 
 /**
  * Class MemberClient
@@ -52,23 +52,23 @@ class MemberClient extends GroupBaseClient
     /**
      * Increase group members.
      *
-     * @param string         $groupId
-     * @param MemberListAttr $memberList
-     * @param int|null       $silence
+     * @param string        $groupId
+     * @param ParameterList $memberList
+     * @param int|null      $silence
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function addMember(string $groupId, MemberListAttr $memberList, int $silence = null)
+    public function addMember(string $groupId, ParameterList $memberList, int $silence = null)
     {
         if ($silence && !\in_array($silence, $this->silence, true)) {
             throw new InvalidArgumentException(sprintf("Unsupported silence: '%s'", $silence));
         }
         $params = [
             'GroupId'    => $groupId,
-            'MemberList' => $memberList->transformToArray()
+            'MemberList' => $memberList->transformParameterToArray()
         ];
         $silence && $params['Silence'] = $silence;
 
@@ -125,7 +125,7 @@ class MemberClient extends GroupBaseClient
         string $role = null,
         string $msgFlag = null,
         string $nameCard = null,
-        AppDefinedDataMemberAttr $appDefinedDataMember = null,
+        ParameterList $appDefinedDataMember = null,
         int $shuntUpTime = null
     ) {
         if ($role && !\in_array($role, $this->role, true)) {
@@ -141,7 +141,7 @@ class MemberClient extends GroupBaseClient
         $role && $params['Role'] = $role;
         $msgFlag && $params['MsgFlag'] = $msgFlag;
         $nameCard && $params['NameCard'] = $nameCard;
-        $appDefinedDataMember && $params['AppMemberDefinedData'] = $appDefinedDataMember->transformToArray();
+        $appDefinedDataMember && $params['AppMemberDefinedData'] = $appDefinedDataMember->transformParameterToArray();
         $shuntUpTime && $params['ShutUpTime'] = $shuntUpTime;
 
         return $this->httpPostJson('group_open_http_svc/modify_group_member_info', $params);
@@ -156,7 +156,7 @@ class MemberClient extends GroupBaseClient
      * @param int|null                    $limit
      * @param int|null                    $offset
      * @param string|null                 $type
-     * @param ResponseFilterItemAttr|null $filter
+     * @param ResponseFilterParameter|null $filter
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws InvalidArgumentException
@@ -170,7 +170,7 @@ class MemberClient extends GroupBaseClient
         int $limit = null,
         int $offset = null,
         string $type = null,
-        ResponseFilterItemAttr $filter = null
+        ResponseFilterParameter $filter = null
     ) {
         if ($withHuge && !\in_array($withHuge, $this->withHuge, true)) {
             throw new InvalidArgumentException(sprintf("Unsupported withHuge: '%s'", $withHuge));
