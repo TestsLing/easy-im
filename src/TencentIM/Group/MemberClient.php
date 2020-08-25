@@ -6,7 +6,6 @@ namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 use EasyIM\Kernel\ParameterList;
-use EasyIM\TencentIM\Group\Attribute\AppDefinedDataMemberAttr;
 use EasyIM\TencentIM\Group\Parameter\Member\ResponseFilterParameter;
 
 /**
@@ -106,13 +105,13 @@ class MemberClient extends GroupBaseClient
     /**
      * Modify group member information.
      *
-     * @param string                   $groupId
-     * @param string                   $memberAccount
-     * @param string|null              $role
-     * @param string|null              $msgFlag
-     * @param string|null              $nameCard
-     * @param AppDefinedDataMemberAttr $appDefinedDataMember
-     * @param int|null                 $shuntUpTime
+     * @param string             $groupId
+     * @param string             $memberAccount
+     * @param string|null        $role
+     * @param string|null        $msgFlag
+     * @param string|null        $nameCard
+     * @param ParameterList|null $appDefinedDataMember
+     * @param int|null           $shuntUpTime
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
@@ -150,12 +149,12 @@ class MemberClient extends GroupBaseClient
     /**
      * Get the group the user joined.
      *
-     * @param string                      $memberAccount
-     * @param int|null                    $withHuge
-     * @param int|null                    $withNoActive
-     * @param int|null                    $limit
-     * @param int|null                    $offset
-     * @param string|null                 $type
+     * @param string                       $memberAccount
+     * @param int|null                     $withHuge
+     * @param int|null                     $withNoActive
+     * @param int|null                     $limit
+     * @param int|null                     $offset
+     * @param string|null                  $type
      * @param ResponseFilterParameter|null $filter
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
