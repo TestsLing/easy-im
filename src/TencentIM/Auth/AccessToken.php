@@ -109,9 +109,9 @@ class AccessToken extends BaseAccessToken
     {
         $tLSSigAPIv2 = $this->app['sign'];
         $identifier = $this->app['config']['identifier'];
-        $expire = $this->app['config']['expire'];
+        $expire = $this->app['config']['expire'] ?? 180 * 86400;
 
-        return ['usersig' => $tLSSigAPIv2->genSig($identifier, $expire)];
+        return [$this->queryName ?? $this->tokenKey => $tLSSigAPIv2->genSig($identifier, $expire)];
     }
 
     /**
