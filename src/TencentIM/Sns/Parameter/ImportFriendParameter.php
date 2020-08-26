@@ -4,6 +4,7 @@
 namespace EasyIM\TencentIM\Sns\Parameter;
 
 
+use EasyIM\Kernel\ParameterList;
 
 /**
  * Class ImportFriendParameter
@@ -37,6 +38,7 @@ class ImportFriendParameter extends AddFriendParameter
     public function setRemarkTime(int $value)
     {
         $this->setAttribute('RemarkTime', $value);
+
         return $this;
     }
 
@@ -49,6 +51,7 @@ class ImportFriendParameter extends AddFriendParameter
     public function setAddTime(int $value)
     {
         $this->setAttribute('AddTime', $value);
+
         return $this;
     }
 
@@ -61,7 +64,10 @@ class ImportFriendParameter extends AddFriendParameter
      */
     public function setCustomItem(CustomItemParameter ...$customItemParameters)
     {
-        $this->setAttribute('CustomItem', $this->transformParameterToArray(...$customItemParameters));
+        $parameterList = new ParameterList(...$customItemParameters);
+        
+        $this->setAttribute('CustomItem', $parameterList->transformParameterToArray());
+
         return $this;
     }
 
@@ -74,6 +80,7 @@ class ImportFriendParameter extends AddFriendParameter
     public function setGroupName($value)
     {
         $this->setAttribute('GroupName', $value);
+
         return $this;
     }
 

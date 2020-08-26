@@ -5,6 +5,7 @@ namespace EasyIM\TencentIM\Group\Parameter\Member;
 
 
 use EasyIM\Kernel\Parameter;
+use EasyIM\Kernel\ParameterList;
 use EasyIM\TencentIM\Group\Parameter\Base\CommonParameter;
 
 class MemberListParameter extends Parameter
@@ -54,13 +55,9 @@ class MemberListParameter extends Parameter
      */
     public function setAppMemberDefinedData(CommonParameter ...$AppMemberDefineDataItemAttr)
     {
-        $items = [];
+        $parameterList = new ParameterList(...$AppMemberDefineDataItemAttr);
 
-        foreach ($AppMemberDefineDataItemAttr as $item) {
-            $items[] = $item->transformToArray();
-        }
-
-        $this->setAttribute('AppMemberDefinedData', $items);
+        $this->setAttribute('AppMemberDefinedData', $parameterList->transformParameterToArray());
 
         return $this;
     }
