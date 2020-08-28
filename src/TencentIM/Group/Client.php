@@ -36,7 +36,7 @@ class Client extends BaseClient
      */
     public function create(
         string $name,
-        string $type = GroupConstant::PRIVATE,
+        string $type = GroupConstant::PUBLIC,
         string $owner = null,
         ParameterList $members = null,
         string $announcement = null,

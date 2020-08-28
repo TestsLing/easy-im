@@ -55,7 +55,7 @@ class MemberListParameter extends Parameter
      */
     public function setAppMemberDefinedData(CommonParameter ...$AppMemberDefineDataItemAttr)
     {
-        $parameterList = ParameterList(...$AppMemberDefineDataItemAttr);
+        $parameterList = parameterList(...$AppMemberDefineDataItemAttr);
 
         $this->setAttribute('AppMemberDefinedData', $parameterList());
 

@@ -7,7 +7,7 @@ namespace EasyIM\TencentIM\Group;
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
-use EasyIM\Kernel\ParameterList;
+use EasyIM\TencentIM\Group\Parameter\Message\MsgSeqListParameter;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 
 /**
@@ -85,18 +85,18 @@ class MessageClient extends BaseClient
     /**
      * Recall group message.
      *
-     * @param string        $groupId
-     * @param ParameterList $msgSeqList
+     * @param string              $groupId
+     * @param MsgSeqListParameter ...$msgSeqListParameters
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function recallGroupMsg(string $groupId, ParameterList $msgSeqList)
+    public function recallGroupMsg(string $groupId, MsgSeqListParameter ...$msgSeqListParameters)
     {
         $params = [
             'GroupId'    => $groupId,
-            'MsgSeqList' => $msgSeqList()
+            'MsgSeqList' => parameterList(...$msgSeqListParameters)()
         ];
 
         return $this->httpPostJson('group_open_http_svc/group_msg_recall', $params);

@@ -6,6 +6,9 @@ namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\ParameterList;
+use EasyIM\TencentIM\Group\Parameter\Import\ImportMemberParameter;
+use EasyIM\TencentIM\Group\Parameter\Import\ImportMsgListParameter;
+use EasyIM\TencentIM\Group\Parameter\Message\MsgSeqListParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 
 /**
@@ -44,7 +47,7 @@ class ImportClient extends BaseClient
         string $intro = null,
         string $faceUrl = null,
         int $count = null,
-        string $applyJoin = null,
+        string $applyJoin = GroupConstant::NEED_PERMISSION,
         ParameterList $appDefined = null,
         int $createTime = null
     ) {
@@ -68,18 +71,18 @@ class ImportClient extends BaseClient
     /**
      * Import group message.
      *
-     * @param string        $groupId
-     * @param ParameterList $msgList
+     * @param string                 $groupId
+     * @param ImportMsgListParameter ...$msgListParameters
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function importGroupMsg(string $groupId, ParameterList $msgList)
+    public function importGroupMsg(string $groupId, ImportMsgListParameter ...$msgListParameters)
     {
         $params = [
             'GroupId' => $groupId,
-            'MsgList' => $msgList()
+            'MsgList' => parameterList(...$msgListParameters)()
         ];
 
         return $this->httpPostJson('group_open_http_svc/import_group_msg', $params);
@@ -88,19 +91,18 @@ class ImportClient extends BaseClient
     /**
      * Import group members.
      *
-     * @param string        $groupId
-     * @param ParameterList $memberList
+     * @param string                $groupId
+     * @param ImportMemberParameter ...$memberParameters
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function importGroupMember(string $groupId, ParameterList $memberList)
+    public function importGroupMember(string $groupId, ImportMemberParameter ...$memberParameters)
     {
         $params = [
             'GroupId'    => $groupId,
-            'MemberList' => $memberList()
+            'MemberList' => parameterList(...$memberParameters)()
         ];
 
         return $this->httpPostJson('group_open_http_svc/import_group_member', $params);
