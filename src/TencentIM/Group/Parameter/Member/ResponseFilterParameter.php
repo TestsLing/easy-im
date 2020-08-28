@@ -6,6 +6,13 @@ namespace EasyIM\TencentIM\Group\Parameter\Member;
 
 use EasyIM\Kernel\Parameter;
 
+/**
+ * Class ResponseFilterParameter
+ *
+ * @package EasyIM\TencentIM\Group\Parameter\Member
+ * @author  yingzhan <519203699@qq.com>
+ *
+ */
 class ResponseFilterParameter extends Parameter
 {
     /**

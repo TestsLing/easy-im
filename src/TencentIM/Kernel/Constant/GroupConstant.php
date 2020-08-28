@@ -3,7 +3,13 @@
 
 namespace EasyIM\TencentIM\Kernel\Constant;
 
-
+/**
+ * Class GroupConstant
+ *
+ * @package EasyIM\TencentIM\Kernel\Constant
+ * @author  yingzhan <519203699@qq.com>
+ *
+ */
 class GroupConstant
 {
     /*

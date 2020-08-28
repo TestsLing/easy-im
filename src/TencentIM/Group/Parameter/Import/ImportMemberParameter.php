@@ -6,6 +6,13 @@ namespace EasyIM\TencentIM\Group\Parameter\Import;
 
 use EasyIM\Kernel\Parameter;
 
+/**
+ * Class ImportMemberParameter
+ *
+ * @package EasyIM\TencentIM\Group\Parameter\Import
+ * @author  yingzhan <519203699@qq.com>
+ *
+ */
 class ImportMemberParameter extends Parameter
 {
     /**

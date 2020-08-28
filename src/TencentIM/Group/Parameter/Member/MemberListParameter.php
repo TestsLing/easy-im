@@ -5,9 +5,15 @@ namespace EasyIM\TencentIM\Group\Parameter\Member;
 
 
 use EasyIM\Kernel\Parameter;
-use EasyIM\Kernel\ParameterList;
 use EasyIM\TencentIM\Group\Parameter\Base\CommonParameter;
 
+/**
+ * Class MemberListParameter
+ *
+ * @package EasyIM\TencentIM\Group\Parameter\Member
+ * @author  yingzhan <519203699@qq.com>
+ *
+ */
 class MemberListParameter extends Parameter
 {
     /**
