@@ -2,7 +2,7 @@
 
 namespace EasyIM\TencentIM\Group;
 
-use EasyIM\Kernel\Exceptions\InvalidArgumentException;
+use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 
@@ -13,7 +13,7 @@ use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
  * @author  yingzhan <519203699@qq.com>
  *
  */
-class Client extends GroupBaseClient
+class Client extends BaseClient
 {
     /**
      * Create Group.
@@ -31,7 +31,6 @@ class Client extends GroupBaseClient
      * @param ParameterList|null $appDefined
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -45,28 +44,22 @@ class Client extends GroupBaseClient
         string $faceUrl = null,
         string $groupId = null,
         int $count = null,
-        string $applyJoin = null,
+        string $applyJoin = GroupConstant::NEED_PERMISSION,
         ParameterList $appDefined = null
     ) {
-        if (!\in_array($type, $this->allowTypes, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported type: '%s'", $type));
-        }
-        if ($applyJoin && !\in_array($applyJoin, $this->allowApplyJoin, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported applyJoin: '%s'", $applyJoin));
-        }
         $params = [
             'Type' => $type,
             'Name' => $name
         ];
         $owner && $params['Owner_Account'] = $owner;
-        $members && $params['MemberList'] = $members->transformParameterToArray();
+        $members && $params['MemberList'] = $members();
         $announcement && $params['Notification'] = $announcement;
         $intro && $params['Introduction'] = $intro;
         $faceUrl && $params['FaceUrl'] = $faceUrl;
         $groupId && $params['GroupId'] = $groupId;
         $count && $params['MaxMemberCount'] = $count;
         $applyJoin && $params['ApplyJoinOption'] = $applyJoin;
-        $appDefined && $params['AppDefinedData'] = $appDefined->transformParameterToArray();
+        $appDefined && $params['AppDefinedData'] = $appDefined();
 
         return $this->httpPostJson('group_open_http_svc/create_group', $params);
     }
@@ -81,7 +74,6 @@ class Client extends GroupBaseClient
      * @param array|null $appDefinedDataMember
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -116,7 +108,6 @@ class Client extends GroupBaseClient
      * @param string|null        $shutUpAll
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -127,16 +118,10 @@ class Client extends GroupBaseClient
         string $notification = null,
         string $faceUrl = null,
         int $max = null,
-        string $applyJoin = null,
+        string $applyJoin = GroupConstant::NEED_PERMISSION,
         ParameterList $appDefinedData = null,
         string $shutUpAll = null
     ) {
-        if ($applyJoin && !\in_array($applyJoin, $this->allowApplyJoin, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported applyJoin: '%s'", $applyJoin));
-        }
-        if ($shutUpAll && !\in_array($shutUpAll, $this->shutUpAll, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported shutUpAll: '%s'", $shutUpAll));
-        }
         $params['GroupId'] = $groupId;
         $name && $params['Name'] = $name;
         $introduction && $params['Introduction'] = $introduction;
@@ -144,7 +129,7 @@ class Client extends GroupBaseClient
         $faceUrl && $params['FaceUrl'] = $faceUrl;
         $max && $params['MaxMemberNum'] = $max;
         $applyJoin && $params['ApplyJoinOption'] = $applyJoin;
-        $appDefinedData && $params['AppDefinedData'] = $appDefinedData->transformParameterToArray();
+        $appDefinedData && $params['AppDefinedData'] = $appDefinedData();
         $shutUpAll && $params['ShutUpAllMember'] = $shutUpAll;
 
         return $this->httpPostJson('group_open_http_svc/modify_group_base_info', $params);

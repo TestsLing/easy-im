@@ -4,9 +4,11 @@
 namespace EasyIM\TencentIM\Group;
 
 
+use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\TencentIM\Group\Parameter\Member\ResponseFilterParameter;
+use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 
 /**
  * Class MemberClient
@@ -14,7 +16,7 @@ use EasyIM\TencentIM\Group\Parameter\Member\ResponseFilterParameter;
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
  */
-class MemberClient extends GroupBaseClient
+class MemberClient extends BaseClient
 {
     /**
      * Get group member details.
@@ -32,8 +34,8 @@ class MemberClient extends GroupBaseClient
      */
     public function getMember(
         string $groupId,
-        int $limit = null,
-        int $offset = null,
+        int $limit = 100,
+        int $offset = 0,
         array $memberInfo = null,
         array $memberRole = null,
         array $appDefinedDataMember = null
@@ -60,11 +62,8 @@ class MemberClient extends GroupBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function addMember(string $groupId, ParameterList $memberList, int $silence = null)
+    public function addMember(string $groupId, ParameterList $memberList, int $silence = 0)
     {
-        if ($silence && !\in_array($silence, $this->silence, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported silence: '%s'", $silence));
-        }
         $params = [
             'GroupId'    => $groupId,
             'MemberList' => $memberList->transformParameterToArray()
@@ -87,11 +86,8 @@ class MemberClient extends GroupBaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function deleteMember(string $groupId, array $memberList, int $silence = null, string $reason = null)
+    public function deleteMember(string $groupId, array $memberList, int $silence = 0, string $reason = null)
     {
-        if ($silence && !\in_array($silence, $this->silence, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported silence: '%s'", $silence));
-        }
         $params = [
             'GroupId'             => $groupId,
             'MemberToDel_Account' => $memberList
@@ -122,17 +118,11 @@ class MemberClient extends GroupBaseClient
         string $groupId,
         string $memberAccount,
         string $role = null,
-        string $msgFlag = null,
+        string $msgFlag = GroupConstant::ACCEPT_AND_NOTIFY,
         string $nameCard = null,
         ParameterList $appDefinedDataMember = null,
         int $shuntUpTime = null
     ) {
-        if ($role && !\in_array($role, $this->role, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported role: '%s'", $role));
-        }
-        if ($msgFlag && !\in_array($msgFlag, $this->msgFlag, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported msgFlag: '%s'", $msgFlag));
-        }
         $params = [
             'GroupId'        => $groupId,
             'Member_Account' => $memberAccount
@@ -140,7 +130,7 @@ class MemberClient extends GroupBaseClient
         $role && $params['Role'] = $role;
         $msgFlag && $params['MsgFlag'] = $msgFlag;
         $nameCard && $params['NameCard'] = $nameCard;
-        $appDefinedDataMember && $params['AppMemberDefinedData'] = $appDefinedDataMember->transformParameterToArray();
+        $appDefinedDataMember && $params['AppMemberDefinedData'] = $appDefinedDataMember();
         $shuntUpTime && $params['ShutUpTime'] = $shuntUpTime;
 
         return $this->httpPostJson('group_open_http_svc/modify_group_member_info', $params);
@@ -164,22 +154,13 @@ class MemberClient extends GroupBaseClient
      */
     public function getJoined(
         string $memberAccount,
-        int $withHuge = null,
-        int $withNoActive = null,
-        int $limit = null,
-        int $offset = null,
+        int $withHuge = 0,
+        int $withNoActive = 0,
+        int $limit = 10,
+        int $offset = 0,
         string $type = null,
         ResponseFilterParameter $filter = null
     ) {
-        if ($withHuge && !\in_array($withHuge, $this->withHuge, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported withHuge: '%s'", $withHuge));
-        }
-        if ($withNoActive && !\in_array($withNoActive, $this->withNoActive, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported withNoActive: '%s'", $withNoActive));
-        }
-        if ($type && !\in_array($type, $this->allowTypes, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported type: '%s'", $type));
-        }
         $params = [
             'Member_Account' => $memberAccount
         ];
