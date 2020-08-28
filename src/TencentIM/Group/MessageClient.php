@@ -4,6 +4,7 @@
 namespace EasyIM\TencentIM\Group;
 
 
+use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 use EasyIM\Kernel\ParameterList;
@@ -15,7 +16,7 @@ use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
  */
-class MessageClient extends GroupBaseClient
+class MessageClient extends BaseClient
 {
     /**
      * Send normal messages in groups.
@@ -42,9 +43,6 @@ class MessageClient extends GroupBaseClient
         OfflinePushElem $offlinePushInfo = null,
         int $onlineOnlyFlag = null
     ) {
-        if ($onlineOnlyFlag && !\in_array($onlineOnlyFlag, $this->onlineOnlyFlag, true)) {
-            throw new InvalidArgumentException(sprintf("Unsupported onlineOnlyFlag: '%s'", $onlineOnlyFlag));
-        }
         $params = [
             'GroupId' => $groupId,
             'Random'  => msgRandom(7),
@@ -93,13 +91,12 @@ class MessageClient extends GroupBaseClient
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws InvalidArgumentException
      */
     public function recallGroupMsg(string $groupId, ParameterList $msgSeqList)
     {
         $params = [
             'GroupId'    => $groupId,
-            'MsgSeqList' => $msgSeqList->transformParameterToArray()
+            'MsgSeqList' => $msgSeqList()
         ];
 
         return $this->httpPostJson('group_open_http_svc/group_msg_recall', $params);

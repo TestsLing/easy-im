@@ -4,7 +4,9 @@
 namespace EasyIM\TencentIM\Group;
 
 
+use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\ParameterList;
+use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 
 /**
  * Class ImportClient
@@ -12,7 +14,7 @@ use EasyIM\Kernel\ParameterList;
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
  */
-class ImportClient extends GroupBaseClient
+class ImportClient extends BaseClient
 {
     /**
      * Import group basic data.
@@ -32,11 +34,10 @@ class ImportClient extends GroupBaseClient
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      */
     public function importGroup(
         string $name,
-        string $type,
+        string $type = GroupConstant::PUBLIC,
         string $owner = null,
         string $groupId = null,
         string $announcement = null,
@@ -58,7 +59,7 @@ class ImportClient extends GroupBaseClient
         $faceUrl && $params['FaceUrl'] = $faceUrl;
         $count && $params['MaxMemberCount'] = $count;
         $applyJoin && $params['ApplyJoinOption'] = $applyJoin;
-        $appDefined && $params['AppDefinedData'] = $appDefined->transformParameterToArray();
+        $appDefined && $params['AppDefinedData'] = $appDefined();
         $createTime && $params['CreateTime'] = $createTime;
 
         return $this->httpPostJson('group_open_http_svc/import_group', $params);
@@ -71,7 +72,6 @@ class ImportClient extends GroupBaseClient
      * @param ParameterList $msgList
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -79,7 +79,7 @@ class ImportClient extends GroupBaseClient
     {
         $params = [
             'GroupId' => $groupId,
-            'MsgList' => $msgList->transformParameterToArray()
+            'MsgList' => $msgList()
         ];
 
         return $this->httpPostJson('group_open_http_svc/import_group_msg', $params);
@@ -100,7 +100,7 @@ class ImportClient extends GroupBaseClient
     {
         $params = [
             'GroupId'    => $groupId,
-            'MemberList' => $memberList->transformParameterToArray()
+            'MemberList' => $memberList()
         ];
 
         return $this->httpPostJson('group_open_http_svc/import_group_member', $params);

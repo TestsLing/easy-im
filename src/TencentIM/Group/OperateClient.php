@@ -3,13 +3,15 @@
 
 namespace EasyIM\TencentIM\Group;
 
+use EasyIM\Kernel\BaseClient;
+
 /**
  * Class OperateClient
  *
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
  */
-class OperateClient extends GroupBaseClient
+class OperateClient extends BaseClient
 {
     /**
      * Mass prohibitions and cancellations chat.
@@ -39,8 +41,7 @@ class OperateClient extends GroupBaseClient
      * @param string $groupId
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException|\GuzzleHttp\Exception\GuzzleException
      */
     public function getGroupShut(string $groupId)
     {
