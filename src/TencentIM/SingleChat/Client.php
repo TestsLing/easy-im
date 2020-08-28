@@ -77,18 +77,14 @@ class Client extends BaseClient
         array $toAccount,
         MessageInterface $message,
         string $fromAccount = null,
-        int $msgLifeTime = 604800,
         int $syncOtherMachine = 2,
-        OfflinePushElem $offlinePushInfo = null,
-        array $forbidCallbackControl = []
+        OfflinePushElem $offlinePushInfo = null
     ) {
         $params = [
             'To_Account' => $toAccount,
             'MsgRandom' => msgRandom(),
             'MsgBody' => $message->transformToArray(),
             'SyncOtherMachine' => $syncOtherMachine,
-            'MsgLifeTime' => $msgLifeTime,
-            'ForbidCallbackControl' => $forbidCallbackControl
         ];
 
         $fromAccount && $params['From_Account'] = $fromAccount;
@@ -112,7 +108,7 @@ class Client extends BaseClient
     public function importMsg(
         string $toAccount,
         string $fromAccount,
-        Message $message,
+        MessageInterface $message,
         int $syncFromOldSystem = 1
     ) {
 
@@ -146,9 +142,9 @@ class Client extends BaseClient
     public function queryMsg(
         string $fromAccount,
         string $toAccount,
-        int $maxCnt,
         int $minTime,
         int $maxTime,
+        int $maxCnt = 60,
         string $lastMsgKey = null
     ) {
         $params = [

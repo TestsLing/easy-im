@@ -3,6 +3,7 @@
 namespace EasyIM\TencentIM\Profile;
 
 use EasyIM\Kernel\BaseClient;
+use EasyIM\TencentIM\Profile\Parameter\TagParameter;
 
 
 /**
@@ -43,16 +44,12 @@ class Client extends BaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function setPortrait(string $account, string $tag, $value)
+    public function setPortrait(string $account, TagParameter ...$tagParameters)
     {
+
         $params = [
             'From_Account' => $account,
-            'ProfileItem' => [
-                [
-                    'Tag' => $tag,
-                    'Value' => $value,
-                ],
-            ],
+            'ProfileItem' => parameterList(...$tagParameters)()
         ];
 
         return $this->httpPostJson('profile/portrait_set', $params);

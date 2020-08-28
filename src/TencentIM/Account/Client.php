@@ -3,6 +3,7 @@
 namespace EasyIM\TencentIM\Account;
 
 use EasyIM\Kernel\BaseClient;
+use EasyIM\Kernel\Support\Arr;
 
 /**
  * Class Client
@@ -22,13 +23,14 @@ class Client extends BaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function accountImport(string $id, string $name, string $avatar)
+    public function accountImport(string $id, string $name = null, string $avatar = null)
     {
         $params = [
-            'Identifier' => $id,
-            'Nick'       => $name,
-            'FaceUrl'    => $avatar
+            'Identifier' => $id
         ];
+
+        $name && $params['Nick'] = $name;
+        $avatar && $params['FaceUrl'] = $avatar;
 
         return $this->httpPostJson('im_open_login_svc/account_import', $params);
     }
@@ -63,9 +65,13 @@ class Client extends BaseClient
     public function accountDelete(array $accounts)
     {
         $accountList = [];
+
         foreach ($accounts as $user) {
             $accountList[]['UserID'] = $user;
         }
+
+        unset($user);
+
         $params = [
             'DeleteItem' => $accountList
         ];
@@ -85,9 +91,13 @@ class Client extends BaseClient
     public function accountCheck(array $accounts)
     {
         $accountList = [];
+
         foreach ($accounts as $user) {
             $accountList[]['UserID'] = $user;
         }
+
+        unset($user);
+
         $params = [
             'CheckItem' => $accountList
         ];
@@ -123,7 +133,7 @@ class Client extends BaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function queryState(array $accounts, int $isNeedDetail = 0)
+    public function queryState(array $accounts, int $isNeedDetail = 1)
     {
         $params = [
             'To_Account'   => $accounts,

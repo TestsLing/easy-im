@@ -4,6 +4,7 @@ namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 use EasyIM\Kernel\ParameterList;
+use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 
 /**
  * Class Client
@@ -36,7 +37,7 @@ class Client extends GroupBaseClient
      */
     public function create(
         string $name,
-        string $type,
+        string $type = GroupConstant::PRIVATE,
         string $owner = null,
         ParameterList $members = null,
         string $announcement = null,

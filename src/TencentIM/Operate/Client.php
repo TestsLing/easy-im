@@ -30,14 +30,14 @@ class Client extends BaseClient
     /**
      * Download recent message log.
      *
-     * @param string $chatType
+     * @param string $chatType C2C or Group
      * @param string $megTime
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getHistory(string $chatType, string $megTime)
+    public function getHistory(string $megTime, string $chatType = 'C2C')
     {
         $params = [
             'ChatType' => $chatType,

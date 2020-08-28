@@ -19,6 +19,9 @@ use EasyIM\Kernel\Exceptions\InvalidArgumentException;
  */
 class Group extends Client
 {
+
+
+
     public function __get($property)
     {
         if (isset($this->app["group.{$property}"])) {
