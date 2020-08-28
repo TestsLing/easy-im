@@ -6,16 +6,21 @@ namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
+use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
+use EasyIM\Kernel\Support\Collection;
 use EasyIM\TencentIM\Group\Parameter\Member\ResponseFilterParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class MemberClient
  *
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
+ *
  */
 class MemberClient extends BaseClient
 {
@@ -29,9 +34,9 @@ class MemberClient extends BaseClient
      * @param array|null $memberRole
      * @param array|null $appDefinedDataMember
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function getMember(
         string $groupId,
@@ -58,10 +63,10 @@ class MemberClient extends BaseClient
      * @param ParameterList $memberList
      * @param int|null      $silence
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidArgumentException
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function addMember(string $groupId, ParameterList $memberList, int $silence = 0)
     {
@@ -82,10 +87,9 @@ class MemberClient extends BaseClient
      * @param int|null    $silence
      * @param string|null $reason
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws InvalidArgumentException
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function deleteMember(string $groupId, array $memberList, int $silence = 0, string $reason = null)
     {
@@ -110,9 +114,9 @@ class MemberClient extends BaseClient
      * @param ParameterList|null $appDefinedDataMember
      * @param int|null           $shuntUpTime
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      * @throws InvalidArgumentException
      */
     public function modifyMember(
@@ -148,10 +152,10 @@ class MemberClient extends BaseClient
      * @param string|null                  $type
      * @param ResponseFilterParameter|null $filter
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidArgumentException
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function getJoined(
         string $memberAccount,
@@ -181,9 +185,9 @@ class MemberClient extends BaseClient
      * @param string $groupId
      * @param array  $memberAccount
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function getRole(string $groupId, array $memberAccount)
     {

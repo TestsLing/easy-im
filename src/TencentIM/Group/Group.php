@@ -12,10 +12,10 @@ use EasyIM\Kernel\Exceptions\InvalidArgumentException;
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
  *
- * @property \EasyIM\TencentIM\Group\MemberClient  $member
- * @property \EasyIM\TencentIM\Group\OperateClient $operate
- * @property \EasyIM\TencentIM\Group\MessageClient $message
- * @property \EasyIM\TencentIM\Group\ImportClient  $import
+ * @property MemberClient  $member
+ * @property OperateClient $operate
+ * @property MessageClient $message
+ * @property ImportClient  $import
  */
 class Group extends Client
 {

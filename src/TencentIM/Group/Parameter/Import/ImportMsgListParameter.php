@@ -7,6 +7,13 @@ namespace EasyIM\TencentIM\Group\Parameter\Import;
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Parameter;
 
+/**
+ * Class ImportMsgListParameter
+ *
+ * @package EasyIM\TencentIM\Group\Parameter\Import
+ * @author  yingzhan <519203699@qq.com>
+ *
+ */
 class ImportMsgListParameter extends Parameter
 {
     /**

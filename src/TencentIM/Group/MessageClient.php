@@ -7,15 +7,20 @@ namespace EasyIM\TencentIM\Group;
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
+use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\Support\Arr;
+use EasyIM\Kernel\Support\Collection;
 use EasyIM\TencentIM\Group\Parameter\Message\MsgSeqListParameter;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class MessageClient
  *
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
+ *
  */
 class MessageClient extends BaseClient
 {
@@ -30,10 +35,10 @@ class MessageClient extends BaseClient
      * @param OfflinePushElem|null $offlinePushInfo
      * @param int|null             $onlineOnlyFlag
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidArgumentException
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function sendMsg(
         string $groupId,
@@ -65,9 +70,9 @@ class MessageClient extends BaseClient
      * @param string     $content
      * @param array|null $toMembersAccount
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function sendNotification(
         string $groupId,
@@ -89,9 +94,9 @@ class MessageClient extends BaseClient
      * @param string              $groupId
      * @param MsgSeqListParameter ...$msgSeqListParameters
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function recallGroupMsg(string $groupId, MsgSeqListParameter ...$msgSeqListParameters)
     {
@@ -109,9 +114,9 @@ class MessageClient extends BaseClient
      * @param string $groupId
      * @param string $senderAccount
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function deleteGroupMsg(string $groupId, string $senderAccount)
     {
@@ -130,9 +135,9 @@ class MessageClient extends BaseClient
      * @param int      $reqMsgNumber
      * @param int|null $reqMsgSeq
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function getMsgSimple(string $groupId, int $reqMsgNumber, int $reqMsgSeq = null)
     {

@@ -4,6 +4,10 @@
 namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\BaseClient;
+use EasyIM\Kernel\Exceptions\InvalidConfigException;
+use EasyIM\Kernel\Support\Collection;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class OperateClient
@@ -20,9 +24,9 @@ class OperateClient extends BaseClient
      * @param array  $membersAccount
      * @param int    $shutUpTime
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function forbidMsg(string $groupId, array $membersAccount, int $shutUpTime)
     {
@@ -40,8 +44,8 @@ class OperateClient extends BaseClient
      *
      * @param string $groupId
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException|\GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException|GuzzleException
      */
     public function getGroupShut(string $groupId)
     {
@@ -58,9 +62,9 @@ class OperateClient extends BaseClient
      * @param string $groupId
      * @param string $newOwnerAccount
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function changeOwner(string $groupId, string $newOwnerAccount)
     {
@@ -79,9 +83,9 @@ class OperateClient extends BaseClient
      * @param string $memberAccount
      * @param int    $unreadMsgNum
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function setUnreadMsgNum(string $groupId, string $memberAccount, int $unreadMsgNum)
     {

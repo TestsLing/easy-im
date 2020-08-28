@@ -5,17 +5,22 @@ namespace EasyIM\TencentIM\Group;
 
 
 use EasyIM\Kernel\BaseClient;
+use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
+use EasyIM\Kernel\Support\Collection;
 use EasyIM\TencentIM\Group\Parameter\Import\ImportMemberParameter;
 use EasyIM\TencentIM\Group\Parameter\Import\ImportMsgListParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class ImportClient
  *
  * @package EasyIM\TencentIM\Group
  * @author  yingzhan <519203699@qq.com>
+ *
  */
 class ImportClient extends BaseClient
 {
@@ -34,9 +39,9 @@ class ImportClient extends BaseClient
      * @param ParameterList|null $appDefined
      * @param int|null           $createTime
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function importGroup(
         string $name,
@@ -74,9 +79,9 @@ class ImportClient extends BaseClient
      * @param string                 $groupId
      * @param ImportMsgListParameter ...$msgListParameters
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function importGroupMsg(string $groupId, ImportMsgListParameter ...$msgListParameters)
     {
@@ -94,9 +99,9 @@ class ImportClient extends BaseClient
      * @param string                $groupId
      * @param ImportMemberParameter ...$memberParameters
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function importGroupMember(string $groupId, ImportMemberParameter ...$memberParameters)
     {

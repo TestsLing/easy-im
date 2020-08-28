@@ -3,9 +3,13 @@
 namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\BaseClient;
+use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
+use EasyIM\Kernel\Support\Collection;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Client
@@ -31,9 +35,9 @@ class Client extends BaseClient
      * @param string|null        $applyJoin
      * @param ParameterList|null $appDefined
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function create(
         string $name,
@@ -74,9 +78,9 @@ class Client extends BaseClient
      * @param array|null $appDefinedData
      * @param array|null $appDefinedDataMember
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function get(
         array $groupIds,
@@ -108,9 +112,9 @@ class Client extends BaseClient
      * @param ParameterList|null $appDefinedData
      * @param string|null        $shutUpAll
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function modify(
         string $groupId,
@@ -141,9 +145,9 @@ class Client extends BaseClient
      *
      * @param string $groupId
      *
-     * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws GuzzleException
      */
     public function destroy(string $groupId)
     {

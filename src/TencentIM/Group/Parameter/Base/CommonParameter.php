@@ -6,6 +6,13 @@ namespace EasyIM\TencentIM\Group\Parameter\Base;
 
 use EasyIM\Kernel\Parameter;
 
+/**
+ * Class CommonParameter
+ *
+ * @package EasyIM\TencentIM\Group\Parameter\Base
+ * @author  yingzhan <519203699@qq.com>
+ *
+ */
 class CommonParameter extends Parameter
 {
     /**
@@ -16,7 +23,7 @@ class CommonParameter extends Parameter
         'Value'
     ];
 
-    protected $required   = ['Key', 'Value'];
+    protected $required = ['Key', 'Value'];
 
     /**
      *
