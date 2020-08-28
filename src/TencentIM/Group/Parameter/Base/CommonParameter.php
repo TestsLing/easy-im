@@ -16,6 +16,8 @@ class CommonParameter extends Parameter
         'Value'
     ];
 
+    protected $required   = ['Key', 'Value'];
+
     /**
      *
      * @param string $value

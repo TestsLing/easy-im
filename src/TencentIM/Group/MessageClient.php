@@ -7,6 +7,7 @@ namespace EasyIM\TencentIM\Group;
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
+use EasyIM\Kernel\Support\Arr;
 use EasyIM\TencentIM\Group\Parameter\Message\MsgSeqListParameter;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 
@@ -48,11 +49,11 @@ class MessageClient extends BaseClient
             'Random'  => msgRandom(7),
             'MsgBody' => $msgBody->transformToArray()
         ];
-        $fromAccount && $params['From_Account'] = $fromAccount;
-        $msgPriority && $params['MsgPriority'] = $msgPriority;
-        $forbidCallbackControl && $params['ForbidCallbackControl'] = $forbidCallbackControl;
-        $offlinePushInfo && $params['OfflinePushInfo'] = $offlinePushInfo->transformToArray();
-        $onlineOnlyFlag && $params['OnlineOnlyFlag'] = $onlineOnlyFlag;
+        Arr::setNotNullValue($params, 'From_Account', $fromAccount);
+        Arr::setNotNullValue($params, 'MsgPriority', $msgPriority);
+        Arr::setNotNullValue($params, 'ForbidCallbackControl', $forbidCallbackControl);
+        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo->transformToArray());
+        Arr::setNotNullValue($params, 'OnlineOnlyFlag', $onlineOnlyFlag);
 
         return $this->httpPostJson('group_open_http_svc/send_group_msg', $params);
     }
@@ -77,7 +78,7 @@ class MessageClient extends BaseClient
             'GroupId' => $groupId,
             'Content' => $content
         ];
-        $toMembersAccount && $params['ToMembers_Account'] = $toMembersAccount;
+        Arr::setNotNullValue($params, 'ToMembers_Account', $toMembersAccount);
 
         return $this->httpPostJson('group_open_http_svc/send_group_system_notification', $params);
     }
@@ -139,7 +140,7 @@ class MessageClient extends BaseClient
             'GroupId'      => $groupId,
             'ReqMsgNumber' => $reqMsgNumber
         ];
-        $reqMsgSeq && $params['ReqMsgSeq'] = $reqMsgSeq;
+        Arr::setNotNullValue($params, 'ReqMsgSeq', $reqMsgSeq);
 
         return $this->httpPostJson('group_open_http_svc/group_msg_get_simple', $params);
     }
