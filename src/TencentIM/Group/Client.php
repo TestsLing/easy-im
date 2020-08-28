@@ -4,6 +4,7 @@ namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\ParameterList;
+use EasyIM\Kernel\Support\Arr;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 
 /**
@@ -44,22 +45,22 @@ class Client extends BaseClient
         string $faceUrl = null,
         string $groupId = null,
         int $count = null,
-        string $applyJoin = GroupConstant::NEED_PERMISSION,
+        string $applyJoin = null,
         ParameterList $appDefined = null
     ) {
         $params = [
             'Type' => $type,
             'Name' => $name
         ];
-        $owner && $params['Owner_Account'] = $owner;
-        $members && $params['MemberList'] = $members();
-        $announcement && $params['Notification'] = $announcement;
-        $intro && $params['Introduction'] = $intro;
-        $faceUrl && $params['FaceUrl'] = $faceUrl;
-        $groupId && $params['GroupId'] = $groupId;
-        $count && $params['MaxMemberCount'] = $count;
-        $applyJoin && $params['ApplyJoinOption'] = $applyJoin;
-        $appDefined && $params['AppDefinedData'] = $appDefined();
+        Arr::setNotNullValue($params, 'Owner_Account', $owner);
+        Arr::setNotNullValue($params, 'MemberList', $members());
+        Arr::setNotNullValue($params, 'Notification', $announcement);
+        Arr::setNotNullValue($params, 'Introduction', $intro);
+        Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
+        Arr::setNotNullValue($params, 'GroupId', $groupId);
+        Arr::setNotNullValue($params, 'MaxMemberCount', $count);
+        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
+        Arr::setNotNullValue($params, 'AppDefinedData', $appDefined());
 
         return $this->httpPostJson('group_open_http_svc/create_group', $params);
     }
@@ -85,10 +86,10 @@ class Client extends BaseClient
         array $appDefinedDataMember = null
     ) {
         $params['GroupIdList'] = $groupIds;
-        $groupBaseInfo && $params['ResponseFilter']['GroupBaseInfoFilter'] = $groupBaseInfo;
-        $memberInfo && $params['ResponseFilter']['MemberInfoFilter'] = $groupBaseInfo;
-        $appDefinedData && $params['ResponseFilter']['AppDefinedDataFilter_Group'] = $groupBaseInfo;
-        $appDefinedDataMember && $params['ResponseFilter']['AppDefinedDataFilter_GroupMember'] = $groupBaseInfo;
+        Arr::setNotNullValue($params, 'ResponseFilter.GroupBaseInfoFilter', $groupBaseInfo);
+        Arr::setNotNullValue($params, 'ResponseFilter.MemberInfoFilter', $memberInfo);
+        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_Group', $appDefinedData);
+        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_GroupMember', $appDefinedDataMember);
 
         return $this->httpPostJson('group_open_http_svc/get_group_info', $params);
     }
@@ -118,19 +119,19 @@ class Client extends BaseClient
         string $notification = null,
         string $faceUrl = null,
         int $max = null,
-        string $applyJoin = GroupConstant::NEED_PERMISSION,
+        string $applyJoin = null,
         ParameterList $appDefinedData = null,
         string $shutUpAll = null
     ) {
         $params['GroupId'] = $groupId;
-        $name && $params['Name'] = $name;
-        $introduction && $params['Introduction'] = $introduction;
-        $notification && $params['Notification'] = $notification;
-        $faceUrl && $params['FaceUrl'] = $faceUrl;
-        $max && $params['MaxMemberNum'] = $max;
-        $applyJoin && $params['ApplyJoinOption'] = $applyJoin;
-        $appDefinedData && $params['AppDefinedData'] = $appDefinedData();
-        $shutUpAll && $params['ShutUpAllMember'] = $shutUpAll;
+        Arr::setNotNullValue($params, 'Name', $name);
+        Arr::setNotNullValue($params, 'Introduction', $introduction);
+        Arr::setNotNullValue($params, 'Notification', $notification);
+        Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
+        Arr::setNotNullValue($params, 'MaxMemberNum', $max);
+        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
+        Arr::setNotNullValue($params, 'AppDefinedData', $appDefinedData());
+        Arr::setNotNullValue($params, 'ShutUpAllMember', $shutUpAll);
 
         return $this->httpPostJson('group_open_http_svc/modify_group_base_info', $params);
     }

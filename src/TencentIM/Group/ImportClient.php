@@ -6,9 +6,9 @@ namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\ParameterList;
+use EasyIM\Kernel\Support\Arr;
 use EasyIM\TencentIM\Group\Parameter\Import\ImportMemberParameter;
 use EasyIM\TencentIM\Group\Parameter\Import\ImportMsgListParameter;
-use EasyIM\TencentIM\Group\Parameter\Message\MsgSeqListParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 
 /**
@@ -47,7 +47,7 @@ class ImportClient extends BaseClient
         string $intro = null,
         string $faceUrl = null,
         int $count = null,
-        string $applyJoin = GroupConstant::NEED_PERMISSION,
+        string $applyJoin = null,
         ParameterList $appDefined = null,
         int $createTime = null
     ) {
@@ -55,15 +55,15 @@ class ImportClient extends BaseClient
             'Name' => $name,
             'Type' => $type
         ];
-        $owner && $params['Owner_Account'] = $owner;
-        $groupId && $params['GroupId'] = $groupId;
-        $announcement && $params['Notification'] = $announcement;
-        $intro && $params['Introduction'] = $intro;
-        $faceUrl && $params['FaceUrl'] = $faceUrl;
-        $count && $params['MaxMemberCount'] = $count;
-        $applyJoin && $params['ApplyJoinOption'] = $applyJoin;
-        $appDefined && $params['AppDefinedData'] = $appDefined();
-        $createTime && $params['CreateTime'] = $createTime;
+        Arr::setNotNullValue($params, 'Owner_Account', $owner);
+        Arr::setNotNullValue($params, 'GroupId', $groupId);
+        Arr::setNotNullValue($params, 'Notification', $announcement);
+        Arr::setNotNullValue($params, 'Introduction', $intro);
+        Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
+        Arr::setNotNullValue($params, 'MaxMemberCount', $count);
+        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
+        Arr::setNotNullValue($params, 'AppDefinedData', $appDefined());
+        Arr::setNotNullValue($params, 'CreateTime', $createTime);
 
         return $this->httpPostJson('group_open_http_svc/import_group', $params);
     }

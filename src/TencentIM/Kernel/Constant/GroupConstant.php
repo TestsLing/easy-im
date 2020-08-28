@@ -33,7 +33,7 @@ class GroupConstant
     const AV_CHAT_ROOM = 'AVChatRoom';
 
     const B_CHAT_ROOM = 'BChatRoom';
-    
+
     /*
     |--------------------------------------------------------------------------
     | ApplyJoin Type

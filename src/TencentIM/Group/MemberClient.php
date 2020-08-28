@@ -7,6 +7,7 @@ namespace EasyIM\TencentIM\Group;
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 use EasyIM\Kernel\ParameterList;
+use EasyIM\Kernel\Support\Arr;
 use EasyIM\TencentIM\Group\Parameter\Member\ResponseFilterParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 
@@ -41,11 +42,11 @@ class MemberClient extends BaseClient
         array $appDefinedDataMember = null
     ) {
         $params['GroupId'] = $groupId;
-        $memberInfo && $params['MemberInfoFilter'] = $memberInfo;
-        $memberRole && $params['MemberRoleFilter'] = $memberRole;
-        $appDefinedDataMember && $params['AppDefinedDataFilter_GroupMember'] = $appDefinedDataMember;
-        $limit && $params['Limit'] = $limit;
-        $offset && $params['Offset'] = $offset;
+        Arr::setNotNullValue($params, 'MemberInfoFilter', $memberInfo);
+        Arr::setNotNullValue($params, 'MemberRoleFilter', $memberRole);
+        Arr::setNotNullValue($params, 'AppDefinedDataFilter_GroupMember', $appDefinedDataMember);
+        Arr::setNotNullValue($params, 'Limit', $limit);
+        Arr::setNotNullValue($params, 'Offset', $offset);
 
         return $this->httpPostJson('group_open_http_svc/get_group_member_info', $params);
     }
@@ -68,7 +69,7 @@ class MemberClient extends BaseClient
             'GroupId'    => $groupId,
             'MemberList' => $memberList->transformParameterToArray()
         ];
-        $silence && $params['Silence'] = $silence;
+        Arr::setNotNullValue($params, 'Silence', $silence);
 
         return $this->httpPostJson('group_open_http_svc/add_group_member', $params);
     }
@@ -92,8 +93,8 @@ class MemberClient extends BaseClient
             'GroupId'             => $groupId,
             'MemberToDel_Account' => $memberList
         ];
-        $silence && $params['Silence'] = $silence;
-        $reason && $params['Reason'] = $reason;
+        Arr::setNotNullValue($params, 'Silence', $silence);
+        Arr::setNotNullValue($params, 'Reason', $reason);
 
         return $this->httpPostJson('group_open_http_svc/delete_group_member', $params);
     }
@@ -127,11 +128,11 @@ class MemberClient extends BaseClient
             'GroupId'        => $groupId,
             'Member_Account' => $memberAccount
         ];
-        $role && $params['Role'] = $role;
-        $msgFlag && $params['MsgFlag'] = $msgFlag;
-        $nameCard && $params['NameCard'] = $nameCard;
-        $appDefinedDataMember && $params['AppMemberDefinedData'] = $appDefinedDataMember();
-        $shuntUpTime && $params['ShutUpTime'] = $shuntUpTime;
+        Arr::setNotNullValue($params, 'Role', $role);
+        Arr::setNotNullValue($params, 'MsgFlag', $msgFlag);
+        Arr::setNotNullValue($params, 'NameCard', $nameCard);
+        Arr::setNotNullValue($params, 'AppMemberDefinedData', $appDefinedDataMember());
+        Arr::setNotNullValue($params, 'ShutUpTime', $shuntUpTime);
 
         return $this->httpPostJson('group_open_http_svc/modify_group_member_info', $params);
     }
@@ -164,12 +165,12 @@ class MemberClient extends BaseClient
         $params = [
             'Member_Account' => $memberAccount
         ];
-        $withHuge && $params['WithHugeGroups'] = $withHuge;
-        $withNoActive && $params['WithNoActiveGroups'] = $withNoActive;
-        $limit && $params['Limit'] = $limit;
-        $offset && $params['Offset'] = $offset;
-        $type && $params['GroupType'] = $type;
-        $filter && $params['ResponseFilter'] = $filter->transformToArray();
+        Arr::setNotNullValue($params, 'WithHugeGroups', $withHuge);
+        Arr::setNotNullValue($params, 'WithNoActiveGroups', $withNoActive);
+        Arr::setNotNullValue($params, 'Limit', $limit);
+        Arr::setNotNullValue($params, 'Offset', $offset);
+        Arr::setNotNullValue($params, 'GroupType', $type);
+        Arr::setNotNullValue($params, 'ResponseFilter', $filter->transformToArray());
 
         return $this->httpPostJson('group_open_http_svc/get_joined_group_list', $params);
     }
