@@ -248,7 +248,7 @@ class BaseClient
                 // Retry on server errors
                 $response = json_decode($body, true);
 
-                if (!empty($response['errcode']) && in_array(abs($response['errcode']), [40001, 40014, 42001], true)) {
+                if (!empty($response['ErrorCode']) && in_array(abs($response['ErrorCode']), [6206], true)) {
                     $this->accessToken->refresh();
                     $this->app['logger']->debug('Retrying with refreshed access token.');
 
