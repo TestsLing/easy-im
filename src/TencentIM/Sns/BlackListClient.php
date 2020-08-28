@@ -5,12 +5,19 @@ namespace EasyIM\TencentIM\Sns;
 
 
 use EasyIM\Kernel\BaseClient;
+use EasyIM\TencentIM\Kernel\Constant\SnsConstant;
 
+/**
+ * Class BlackListClient
+ *
+ * @package EasyIM\TencentIM\Sns
+ * @author  longing <hacksmile@126.com>
+ */
 class BlackListClient extends BaseClient
 {
 
-
     /**
+     * Add blacklist.
      *
      * @param string $fromAccount
      * @param array  $toAccount
@@ -30,6 +37,7 @@ class BlackListClient extends BaseClient
     }
 
     /**
+     * Delete blacklist.
      *
      * @param string $fromAccount
      * @param array  $toAccount
@@ -50,6 +58,7 @@ class BlackListClient extends BaseClient
 
 
     /**
+     * Get blacklist.
      *
      * @param string $fromAccount
      * @param int    $startIndex
@@ -74,6 +83,7 @@ class BlackListClient extends BaseClient
 
 
     /**
+     * Check blacklist.
      *
      * @param string $fromAccount
      * @param array  $toAccount
@@ -83,7 +93,7 @@ class BlackListClient extends BaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function check(string $fromAccount, array $toAccount, string $checkType = 'BlackCheckResult_Type_Both')
+    public function check(string $fromAccount, array $toAccount, string $checkType = SnsConstant::BLACK_CHECK_RESULT_TYPE_BOTH)
     {
         $params = [
             'From_Account' => $fromAccount,

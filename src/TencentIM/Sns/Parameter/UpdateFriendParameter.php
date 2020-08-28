@@ -5,6 +5,7 @@ namespace EasyIM\TencentIM\Sns\Parameter;
 
 
 use EasyIM\Kernel\Parameter;
+use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
 
 class UpdateFriendParameter extends Parameter
 {
@@ -17,20 +18,13 @@ class UpdateFriendParameter extends Parameter
 
     /**
      *
-     * @param SnsItemParameter ...$snsItemAttr
+     * @param TagParameter ...$tagParameters
      *
      * @return $this
      */
-    public function setSnsItem(SnsItemParameter ...$snsItemAttr)
+    public function setSnsItem(TagParameter ...$tagParameters)
     {
-        $snsItems = [];
-
-        foreach ($snsItemAttr as $snsItem) {
-            $snsItems[] = $snsItem->transformToArray();
-        }
-
-        $this->setAttribute('SnsItem', $snsItems);
-
+        $this->setAttribute('SnsItem', parameterList(...$tagParameters)());
         return $this;
     }
 

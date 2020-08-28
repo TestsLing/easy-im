@@ -24,5 +24,5 @@ function msgRandom($length = 5) : int
  */
 function parameterList(\EasyIM\Kernel\Parameter ...$parameters)
 {
-    return EasyIM\Kernel\ParameterList::getInstance(...$parameters);
+    return new EasyIM\Kernel\ParameterList(...$parameters);
 }

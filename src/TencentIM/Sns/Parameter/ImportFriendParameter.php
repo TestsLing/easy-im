@@ -4,7 +4,7 @@
 namespace EasyIM\TencentIM\Sns\Parameter;
 
 
-use EasyIM\Kernel\ParameterList;
+use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
 
 /**
  * Class ImportFriendParameter
@@ -55,19 +55,16 @@ class ImportFriendParameter extends AddFriendParameter
         return $this;
     }
 
+
     /**
      *
-     * @param CustomItemParameter ...$customItemParameters
+     * @param TagParameter ...$tagParameters
      *
      * @return $this
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      */
-    public function setCustomItem(CustomItemParameter ...$customItemParameters)
+    public function setCustomItem(TagParameter ...$tagParameters)
     {
-        $parameterList = new ParameterList(...$customItemParameters);
-        
-        $this->setAttribute('CustomItem', $parameterList->transformParameterToArray());
-
+        $this->setAttribute('CustomItem', parameterList(...$tagParameters)());
         return $this;
     }
 
@@ -80,8 +77,8 @@ class ImportFriendParameter extends AddFriendParameter
     public function setGroupName($value)
     {
         $this->setAttribute('GroupName', $value);
-
         return $this;
     }
+
 
 }

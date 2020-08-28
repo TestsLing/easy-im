@@ -4,6 +4,9 @@ namespace EasyIM\TencentIM\Sns;
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\ParameterList;
+use EasyIM\TencentIM\Kernel\Constant\SnsConstant;
+use EasyIM\TencentIM\Sns\Parameter\AddFriendParameter;
+use EasyIM\TencentIM\Sns\Parameter\ImportFriendParameter;
 use EasyIM\TencentIM\Sns\Parameter\UpdateFriendParameter;
 
 /**
@@ -70,7 +73,7 @@ class Client extends BaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function checkFriend(string $fromAccount, array $toAccount, string $checkType = 'CheckResult_Type_Both')
+    public function checkFriend(string $fromAccount, array $toAccount, string $checkType = SnsConstant::CHECK_RESULT_TYPE_BOTH)
     {
         $params = [
             'From_Account' => $fromAccount,
@@ -91,7 +94,7 @@ class Client extends BaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function deleteAllFriend(string $fromAccount, string $deleteType = 'Delete_Type_Both')
+    public function deleteAllFriend(string $fromAccount, string $deleteType = SnsConstant::DELETE_TYPE_BOTH)
     {
         $params = [
             'From_Account' => $fromAccount,
@@ -113,7 +116,7 @@ class Client extends BaseClient
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function deleteFriend(string $fromAccount, array $toAccount, string $deleteType = 'Delete_Type_Both')
+    public function deleteFriend(string $fromAccount, array $toAccount, string $deleteType = SnsConstant::DELETE_TYPE_BOTH)
     {
         $params = [
             'From_Account' => $fromAccount,
@@ -128,18 +131,18 @@ class Client extends BaseClient
     /**
      *
      * @param string                $fromAccount
-     * @param UpdateFriendParameter $updateFriendItemAttr
+     * @param UpdateFriendParameter ...$updateFriendParameters
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function updateFriend(string $fromAccount, UpdateFriendParameter $updateFriendItemAttr)
+    public function updateFriend(string $fromAccount, UpdateFriendParameter ...$updateFriendParameters)
     {
+
         $params = [
             'From_Account' => $fromAccount,
-            'UpdateItem' => [$updateFriendItemAttr->transformToArray()]
+            'UpdateItem' => \parameterList(...$updateFriendParameters)()
         ];
 
         return $this->httpPostJson('sns/friend_update', $params);
@@ -148,18 +151,18 @@ class Client extends BaseClient
 
     /**
      *
-     * @param string        $fromAccount
-     * @param ParameterList $addFriendAttr
+     * @param string                $fromAccount
+     * @param ImportFriendParameter ...$importFriendParameters
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function importFriend(string $fromAccount, ParameterList $addFriendAttr)
+    public function importFriend(string $fromAccount, ImportFriendParameter ...$importFriendParameters)
     {
         $params = [
             'From_Account' => $fromAccount,
-            'AddFriendItem' => $addFriendAttr->transformParameterToArray()
+            'AddFriendItem' => \parameterList(...$importFriendParameters)()
         ];
 
         return $this->httpPostJson('sns/friend_import', $params);
@@ -179,16 +182,16 @@ class Client extends BaseClient
      */
     public function addFriend(
         string $fromAccount,
-        ParameterList $addFriendAttr,
-        string $addType = 'Add_Type_Both',
-        int $forceAddFlags = 0
+        string $addType = SnsConstant::ADD_TYPE_BOTH,
+        int $forceAddFlags = SnsConstant::NORMAL_ADD_FRIEND,
+        AddFriendParameter ...$addFriendParameters
     ) {
 
         $params = [
             'From_Account' => $fromAccount,
             'AddType' => $addType,
             'ForceAddFlags' => $forceAddFlags,
-            'AddFriendItem' => $addFriendAttr->transformParameterToArray()
+            'AddFriendItem' => \parameterList(...$addFriendParameters)()
         ];
 
         return $this->httpPostJson('sns/friend_add', $params);

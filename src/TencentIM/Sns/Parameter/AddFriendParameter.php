@@ -49,11 +49,11 @@ class AddFriendParameter extends Parameter
 
     /**
      *
-     * @param string $value
+     * @param mixed $value
      *
      * @return $this
      */
-    public function setGroupName(string $value)
+    public function setGroupName($value)
     {
         $this->setAttribute('GroupName', $value);
         return $this;

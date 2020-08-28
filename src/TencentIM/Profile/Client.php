@@ -3,7 +3,7 @@
 namespace EasyIM\TencentIM\Profile;
 
 use EasyIM\Kernel\BaseClient;
-use EasyIM\TencentIM\Profile\Parameter\TagParameter;
+use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
 
 
 /**
@@ -11,7 +11,6 @@ use EasyIM\TencentIM\Profile\Parameter\TagParameter;
  */
 class Client extends BaseClient
 {
-
 
     /**
      * Get User Profile.
@@ -34,11 +33,10 @@ class Client extends BaseClient
     }
 
     /**
-     *  Set User Profile.
+     * Set User Profile.
      *
-     * @param string $account
-     * @param string $tag
-     * @param  $value
+     * @param string       $account
+     * @param TagParameter ...$tagParameters
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException

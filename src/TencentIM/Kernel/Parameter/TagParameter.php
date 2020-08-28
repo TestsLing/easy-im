@@ -1,25 +1,26 @@
 <?php
 
 
-namespace EasyIM\TencentIM\Sns\Parameter;
-
+namespace EasyIM\TencentIM\Kernel\Parameter;
 
 use EasyIM\Kernel\Parameter;
 
-class CustomItemParameter extends Parameter
+class TagParameter extends Parameter
 {
     protected $properties = [
         'Tag',
         'Value'
     ];
 
+    protected $required = ['Tag', 'Value'];
+
     /**
      *
-     * @param $value
+     * @param string $value
      *
      * @return $this
      */
-    public function setTag($value)
+    public function setTag(string $value)
     {
         $this->setAttribute('Tag', $value);
         return $this;
