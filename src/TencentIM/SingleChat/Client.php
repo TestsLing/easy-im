@@ -5,7 +5,7 @@ namespace EasyIM\TencentIM\SingleChat;
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Support\Arr;
-use EasyIM\TencentIM\Kernel\Messages\Message;
+use EasyIM\TencentIM\Kernel\Constant\SingleChatConstant;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 
 
@@ -79,7 +79,7 @@ class Client extends BaseClient
         array $toAccount,
         MessageInterface $message,
         string $fromAccount = null,
-        int $syncOtherMachine = 2,
+        int $syncOtherMachine = SingleChatConstant::UN_SYNC_OTHER_MACHINE,
         OfflinePushElem $offlinePushInfo = null
     ) {
         $params = [
@@ -111,7 +111,7 @@ class Client extends BaseClient
         string $toAccount,
         string $fromAccount,
         MessageInterface $message,
-        int $syncFromOldSystem = 1
+        int $syncFromOldSystem = SingleChatConstant::SYNC_FROM_OLD_SYSTEM_COUNT
     ) {
 
         $params = [
