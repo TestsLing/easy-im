@@ -7,6 +7,12 @@ namespace EasyIM\TencentIM\Sns\Parameter;
 use EasyIM\Kernel\Parameter;
 use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
 
+/**
+ * Class UpdateFriendParameter
+ *
+ * @package EasyIM\TencentIM\Sns\Parameter
+ * @author  longing <hacksmile@126.com>
+ */
 class UpdateFriendParameter extends Parameter
 {
     protected $properties = [

@@ -5,12 +5,15 @@ namespace EasyIM\TencentIM\SingleChat;
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Support\Arr;
-use EasyIM\TencentIM\Kernel\Messages\Message;
+use EasyIM\TencentIM\Kernel\Constant\SingleChatConstant;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 
 
 /**
- * Class Client.
+ * Class Client
+ *
+ * @package EasyIM\TencentIM\SingleChat
+ * @author  longing <hacksmile@126.com>
  */
 class Client extends BaseClient
 {
@@ -51,8 +54,9 @@ class Client extends BaseClient
             'ForbidCallbackControl' => $forbidCallbackControl
         ];
 
-        $fromAccount && $params['From_Account'] = $fromAccount;
-        $offlinePushInfo && $params['OfflinePushInfo'] = $offlinePushInfo->transformToArray();
+
+        Arr::setNotNullValue($params, 'From_Account', $fromAccount);
+        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo->transformToArray());
 
         return $this->httpPostJson('openim/sendmsg', $params);
     }
@@ -78,7 +82,7 @@ class Client extends BaseClient
         array $toAccount,
         MessageInterface $message,
         string $fromAccount = null,
-        int $syncOtherMachine = 2,
+        int $syncOtherMachine = SingleChatConstant::UN_SYNC_OTHER_MACHINE,
         OfflinePushElem $offlinePushInfo = null
     ) {
         $params = [
@@ -110,7 +114,7 @@ class Client extends BaseClient
         string $toAccount,
         string $fromAccount,
         MessageInterface $message,
-        int $syncFromOldSystem = 1
+        int $syncFromOldSystem = SingleChatConstant::SYNC_FROM_OLD_SYSTEM_COUNT
     ) {
 
         $params = [
@@ -156,7 +160,7 @@ class Client extends BaseClient
             'MaxTime'      => $maxTime,
         ];
 
-        $lastMsgKey && $params['LastMsgKey'] = $lastMsgKey;
+        Arr::setNotNullValue($params, 'LastMsgKey', $lastMsgKey);
 
         return $this->httpPostJson('openim/admin_getroammsg', $params);
     }

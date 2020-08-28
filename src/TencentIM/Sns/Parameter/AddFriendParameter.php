@@ -6,6 +6,12 @@ namespace EasyIM\TencentIM\Sns\Parameter;
 
 use EasyIM\Kernel\Parameter;
 
+/**
+ * Class AddFriendParameter
+ *
+ * @package EasyIM\TencentIM\Sns\Parameter
+ * @author  longing <hacksmile@126.com>
+ */
 class AddFriendParameter extends Parameter
 {
 

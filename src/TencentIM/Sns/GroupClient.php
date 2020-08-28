@@ -5,6 +5,7 @@ namespace EasyIM\TencentIM\Sns;
 
 
 use EasyIM\Kernel\BaseClient;
+use EasyIM\Kernel\Support\Arr;
 
 /**
  * Class GroupClient
@@ -33,7 +34,7 @@ class GroupClient extends BaseClient
             'GroupName' => $groupName
         ];
 
-        $toAccount && $params['To_Account'] = $toAccount;
+        Arr::setNotNullValue($params, 'To_Account', $toAccount);
 
         return $this->httpPostJson('sns/group_add', $params);
     }

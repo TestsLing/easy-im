@@ -5,7 +5,10 @@ namespace EasyIM\TencentIM\Operate;
 use EasyIM\Kernel\BaseClient;
 
 /**
- * Class Client.
+ * Class Client
+ *
+ * @package EasyIM\TencentIM\Operate
+ * @author  longing <hacksmile@126.com>
  */
 class Client extends BaseClient
 {
@@ -49,6 +52,7 @@ class Client extends BaseClient
 
     /**
      * Get server IP address.
+     *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException

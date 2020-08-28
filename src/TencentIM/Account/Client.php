@@ -9,6 +9,7 @@ use EasyIM\Kernel\Support\Arr;
  * Class Client
  *
  * @package EasyIM\TencentIM\Account
+ * @author  longing <hacksmile@126.com>
  */
 class Client extends BaseClient
 {
@@ -29,8 +30,8 @@ class Client extends BaseClient
             'Identifier' => $id
         ];
 
-        $name && $params['Nick'] = $name;
-        $avatar && $params['FaceUrl'] = $avatar;
+        Arr::setNotNullValue($params, 'Nick', $name);
+        Arr::setNotNullValue($params, 'FaceUrl', $avatar);
 
         return $this->httpPostJson('im_open_login_svc/account_import', $params);
     }
