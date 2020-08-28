@@ -442,7 +442,7 @@ class Arr
      */
     public static function setNotNullValue(array &$array, string $key, $value)
     {
-        if (!blank($value)) {
+        if (!free($value)) {
             Arr::set($array, $key, $value);
         }
     }

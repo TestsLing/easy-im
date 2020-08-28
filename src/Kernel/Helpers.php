@@ -34,7 +34,7 @@ function parameterList(\EasyIM\Kernel\Parameter ...$parameters)
  *
  * @return bool
  */
-function blank($value)
+function free($value)
 {
     if (is_null($value)) {
         return true;
