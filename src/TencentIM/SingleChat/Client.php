@@ -4,6 +4,7 @@ namespace EasyIM\TencentIM\SingleChat;
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
+use EasyIM\Kernel\Support\Arr;
 use EasyIM\TencentIM\Kernel\Messages\Message;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 
@@ -87,8 +88,8 @@ class Client extends BaseClient
             'SyncOtherMachine' => $syncOtherMachine,
         ];
 
-        $fromAccount && $params['From_Account'] = $fromAccount;
-        $offlinePushInfo && $params['OfflinePushInfo'] = $offlinePushInfo->transformToArray();
+        Arr::setNotNullValue($params, 'From_Account', $fromAccount);
+        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo->transformToArray());
 
         return $this->httpPostJson('openim/batchsendmsg', $params);
     }

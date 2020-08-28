@@ -435,6 +435,19 @@ class Arr
     }
 
     /**
+     *
+     * @param array  $array
+     * @param string $key
+     * @param        $value
+     */
+    public static function setNotNullValue(array &$array, string $key, $value)
+    {
+        if (!blank($value)) {
+            Arr::set($array, $key, $value);
+        }
+    }
+
+    /**
      * Filter the array using the given callback.
      *
      * @param array    $array
