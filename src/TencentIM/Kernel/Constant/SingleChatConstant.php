@@ -3,7 +3,12 @@
 
 namespace EasyIM\TencentIM\Kernel\Constant;
 
-
+/**
+ * Class SingleChatConstant
+ *
+ * @package EasyIM\TencentIM\Kernel\Constant
+ * @author  longing <hacksmile@126.com>
+ */
 class SingleChatConstant
 {
 

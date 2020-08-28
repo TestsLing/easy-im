@@ -3,7 +3,6 @@
 namespace EasyIM\TencentIM;
 
 use EasyIM\Kernel\ServiceContainer;
-use EasyIM\TencentIM\Kernel\Providers\SignatureProvider;
 
 /**
  * Class Application.

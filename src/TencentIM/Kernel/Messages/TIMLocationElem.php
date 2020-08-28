@@ -3,7 +3,12 @@
 
 namespace EasyIM\TencentIM\Kernel\Messages;
 
-
+/**
+ * Class TIMLocationElem
+ *
+ * @package EasyIM\TencentIM\Kernel\Messages
+ * @author  longing <hacksmile@126.com>
+ */
 class TIMLocationElem extends Message
 {
     /**

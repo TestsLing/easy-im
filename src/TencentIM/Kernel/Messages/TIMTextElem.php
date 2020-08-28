@@ -4,6 +4,12 @@
 namespace EasyIM\TencentIM\Kernel\Messages;
 
 
+/**
+ * Class TIMTextElem
+ *
+ * @package EasyIM\TencentIM\Kernel\Messages
+ * @author  longing <hacksmile@126.com>
+ */
 class TIMTextElem extends Message
 {
     /**

@@ -3,7 +3,12 @@
 
 namespace EasyIM\TencentIM\Kernel\Constant;
 
-
+/**
+ * Class SnsConstant
+ *
+ * @package EasyIM\TencentIM\Kernel\Constant
+ * @author  longing <hacksmile@126.com>
+ */
 class SnsConstant
 {
 

@@ -6,6 +6,12 @@ namespace EasyIM\TencentIM\Kernel\Messages;
 
 use EasyIM\Kernel\Contracts\MessageInterface;
 
+/**
+ * Class TIMCombinationElem
+ *
+ * @package EasyIM\TencentIM\Kernel\Messages
+ * @author  longing <hacksmile@126.com>
+ */
 class TIMCombinationElem implements MessageInterface
 {
 

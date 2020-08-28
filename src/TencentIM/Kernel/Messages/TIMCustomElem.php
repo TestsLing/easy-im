@@ -3,7 +3,12 @@
 
 namespace EasyIM\TencentIM\Kernel\Messages;
 
-
+/**
+ * Class TIMCustomElem
+ *
+ * @package EasyIM\TencentIM\Kernel\Messages
+ * @author  longing <hacksmile@126.com>
+ */
 class TIMCustomElem extends Message
 {
     /**
