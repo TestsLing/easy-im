@@ -7,7 +7,10 @@ use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
 
 
 /**
- * Class Client.
+ * Class Client
+ *
+ * @package EasyIM\TencentIM\Profile
+ * @author  longing <hacksmile@126.com>
  */
 class Client extends BaseClient
 {

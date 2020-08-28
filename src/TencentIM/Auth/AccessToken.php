@@ -1,13 +1,5 @@
 <?php
 
-/*
- * This file is part of the overtrue/wechat.
- *
- * (c) overtrue <i@overtrue.me>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 namespace EasyIM\TencentIM\Auth;
 
@@ -16,9 +8,10 @@ use EasyIM\Kernel\Events\AccessTokenRefreshed;
 use Psr\Http\Message\RequestInterface;
 
 /**
- * Class AuthorizerAccessToken.
+ * Class AccessToken
  *
- * @author overtrue <i@overtrue.me>
+ * @package EasyIM\TencentIM\Auth
+ * @author  longing <hacksmile@126.com>
  */
 class AccessToken extends BaseAccessToken
 {
@@ -66,6 +59,7 @@ class AccessToken extends BaseAccessToken
     }
 
     /**
+     * verifySig
      *
      * @param $sign
      *
@@ -105,6 +99,11 @@ class AccessToken extends BaseAccessToken
         return $request->withUri($request->getUri()->withQuery($query));
     }
 
+    /**
+     * requestToken
+     *
+     * @return array
+     */
     public function requestToken(): array
     {
         $tLSSigAPIv2 = $this->app['sign'];

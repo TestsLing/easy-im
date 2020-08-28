@@ -5,7 +5,10 @@ namespace EasyIM\TencentIM\Speak;
 use EasyIM\Kernel\BaseClient;
 
 /**
- * Class Client.
+ * Class Client
+ *
+ * @package EasyIM\TencentIM\Speak
+ * @author  longing <hacksmile@126.com>
  */
 class Client extends BaseClient
 {

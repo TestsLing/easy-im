@@ -6,6 +6,12 @@ namespace EasyIM\TencentIM\Sns;
 
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 
+/**
+ * Class Sns
+ *
+ * @package EasyIM\TencentIM\Sns
+ * @author  longing <hacksmile@126.com>
+ */
 class Sns extends Client
 {
     /**

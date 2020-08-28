@@ -6,7 +6,10 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
 /**
- * Class SignatureProvider.
+ * Class ServiceProvider
+ *
+ * @package EasyIM\TencentIM\Speak
+ * @author  longing <hacksmile@126.com>
  */
 class ServiceProvider implements ServiceProviderInterface
 {

@@ -10,7 +10,10 @@ use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 
 
 /**
- * Class Client.
+ * Class Client
+ *
+ * @package EasyIM\TencentIM\SingleChat
+ * @author  longing <hacksmile@126.com>
  */
 class Client extends BaseClient
 {

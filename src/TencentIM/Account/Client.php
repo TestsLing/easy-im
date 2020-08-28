@@ -9,6 +9,7 @@ use EasyIM\Kernel\Support\Arr;
  * Class Client
  *
  * @package EasyIM\TencentIM\Account
+ * @author  longing <hacksmile@126.com>
  */
 class Client extends BaseClient
 {

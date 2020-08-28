@@ -19,6 +19,7 @@ use EasyIM\TencentIM\Sns\Parameter\UpdateFriendParameter;
 class Client extends BaseClient
 {
     /**
+     * get Friends.
      *
      * @param string $fromAccount
      * @param array  $toAccount
@@ -41,6 +42,7 @@ class Client extends BaseClient
 
 
     /**
+     * get Friend List.
      *
      * @param string   $fromAccount
      * @param int      $startIndex
@@ -65,6 +67,7 @@ class Client extends BaseClient
     }
 
     /**
+     * check Friend.
      *
      * @param string $fromAccount
      * @param array  $toAccount
@@ -87,6 +90,7 @@ class Client extends BaseClient
     }
 
     /**
+     * delete All Friend.
      *
      * @param string      $fromAccount
      * @param string|null $deleteType
@@ -108,6 +112,7 @@ class Client extends BaseClient
 
 
     /**
+     * delete Friend.
      *
      * @param string      $fromAccount
      * @param array       $toAccount
@@ -130,6 +135,7 @@ class Client extends BaseClient
 
 
     /**
+     * update Friend.
      *
      * @param string                $fromAccount
      * @param UpdateFriendParameter ...$updateFriendParameters
@@ -151,6 +157,7 @@ class Client extends BaseClient
 
 
     /**
+     * import Friend.
      *
      * @param string                $fromAccount
      * @param ImportFriendParameter ...$importFriendParameters
@@ -171,6 +178,7 @@ class Client extends BaseClient
 
 
     /**
+     * add Friend.
      *
      * @param string        $fromAccount
      * @param ParameterList $addFriendAttr
