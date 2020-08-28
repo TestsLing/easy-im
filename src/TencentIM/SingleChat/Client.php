@@ -51,8 +51,9 @@ class Client extends BaseClient
             'ForbidCallbackControl' => $forbidCallbackControl
         ];
 
-        $fromAccount && $params['From_Account'] = $fromAccount;
-        $offlinePushInfo && $params['OfflinePushInfo'] = $offlinePushInfo->transformToArray();
+
+        Arr::setNotNullValue($params, 'From_Account', $fromAccount);
+        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo->transformToArray());
 
         return $this->httpPostJson('openim/sendmsg', $params);
     }
@@ -156,7 +157,7 @@ class Client extends BaseClient
             'MaxTime'      => $maxTime,
         ];
 
-        $lastMsgKey && $params['LastMsgKey'] = $lastMsgKey;
+        Arr::setNotNullValue($params, 'LastMsgKey', $lastMsgKey);
 
         return $this->httpPostJson('openim/admin_getroammsg', $params);
     }

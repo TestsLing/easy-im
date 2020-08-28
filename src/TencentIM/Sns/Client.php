@@ -4,6 +4,7 @@ namespace EasyIM\TencentIM\Sns;
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\ParameterList;
+use EasyIM\Kernel\Support\Arr;
 use EasyIM\TencentIM\Kernel\Constant\SnsConstant;
 use EasyIM\TencentIM\Sns\Parameter\AddFriendParameter;
 use EasyIM\TencentIM\Sns\Parameter\ImportFriendParameter;
@@ -57,8 +58,8 @@ class Client extends BaseClient
             'StartIndex' => $startIndex,
         ];
 
-        $standardSequence && $params['StandardSequence'] = $standardSequence;
-        $customSequence && $params['CustomSequence'] = $customSequence;
+        Arr::setNotNullValue($params, 'StandardSequence', $standardSequence);
+        Arr::setNotNullValue($params, 'CustomSequence', $customSequence);
 
         return $this->httpPostJson('sns/friend_get', $params);
     }
