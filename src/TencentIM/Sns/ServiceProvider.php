@@ -11,7 +11,7 @@ use Pimple\ServiceProviderInterface;
  * @property \EasyIM\TencentIM\Sns\Sns              $sns
  * @property \EasyIM\TencentIM\Sns\Client           $client
  * @property \EasyIM\TencentIM\Sns\GroupClient      $group
- * @property \EasyIM\TencentIM\Sns\BlackListClient  $blackList
+ * @property \EasyIM\TencentIM\Sns\BlackListClient  $black_list
  *
  * @package EasyIM\TencentIM\Sns
  * @author  longing <hacksmile@126.com>
