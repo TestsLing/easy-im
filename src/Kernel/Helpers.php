@@ -44,8 +44,12 @@ function free($value)
         return trim($value) === '';
     }
 
-    if (is_numeric($value) || is_bool($value)) {
+    if (is_numeric($value)) {
         return false;
+    }
+
+    if(is_bool($value)){
+        return true;
     }
 
     if ($value instanceof Countable) {

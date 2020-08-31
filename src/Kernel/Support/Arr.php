@@ -4,8 +4,6 @@
 namespace EasyIM\Kernel\Support;
 
 
-use EasyIM\Kernel\Support\Collection;
-
 /**
  * Array helper from Illuminate\Support\Arr.
  */
@@ -20,7 +18,7 @@ class Arr
      *
      * @return array
      */
-    public static function add(array $array, $key, $value)
+    public static function add(array $array, $key, $value): array
     {
         if (is_null(static::get($array, $key))) {
             static::set($array, $key, $value);
@@ -77,15 +75,15 @@ class Arr
      *
      * @return array
      */
-    public static function dot(array $array, $prepend = '')
+    public static function dot(array $array, $prepend = ''): array
     {
         $results = [];
 
         foreach ($array as $key => $value) {
             if (is_array($value) && !empty($value)) {
-                $results = array_merge($results, static::dot($value, $prepend.$key.'.'));
+                $results = array_merge($results, static::dot($value, $prepend . $key . '.'));
             } else {
-                $results[$prepend.$key] = $value;
+                $results[$prepend . $key] = $value;
             }
         }
 
@@ -100,7 +98,7 @@ class Arr
      *
      * @return array
      */
-    public static function except(array $array, $keys)
+    public static function except(array $array, $keys): array
     {
         static::forget($array, $keys);
 
@@ -115,7 +113,7 @@ class Arr
      *
      * @return bool
      */
-    public static function exists(array $array, $key)
+    public static function exists(array $array, $key): bool
     {
         return array_key_exists($key, $array);
     }
@@ -197,11 +195,11 @@ class Arr
      * @param array        $array
      * @param array|string $keys
      */
-    public static function forget(array &$array, $keys)
+    public static function forget(array &$array, $keys): void
     {
         $original = &$array;
 
-        $keys = (array) $keys;
+        $keys = (array)$keys;
 
         if (0 === count($keys)) {
             return;
@@ -272,13 +270,13 @@ class Arr
      *
      * @return bool
      */
-    public static function has(array $array, $keys)
+    public static function has(array $array, $keys): bool
     {
         if (is_null($keys)) {
             return false;
         }
 
-        $keys = (array) $keys;
+        $keys = (array)$keys;
 
         if (empty($array)) {
             return false;
@@ -331,9 +329,9 @@ class Arr
      *
      * @return array
      */
-    public static function only(array $array, $keys)
+    public static function only(array $array, $keys): array
     {
-        return array_intersect_key($array, array_flip((array) $keys));
+        return array_intersect_key($array, array_flip((array)$keys));
     }
 
     /**
@@ -345,7 +343,7 @@ class Arr
      *
      * @return array
      */
-    public static function prepend(array $array, $value, $key = null)
+    public static function prepend(array $array, $value, $key = null): array
     {
         if (is_null($key)) {
             array_unshift($array, $value);
@@ -394,7 +392,7 @@ class Arr
 
         $results = [];
 
-        foreach ((array) $keys as $key) {
+        foreach ((array)$keys as $key) {
             $results[] = $array[$key];
         }
 
@@ -412,7 +410,7 @@ class Arr
      *
      * @return array
      */
-    public static function set(array &$array, string $key, $value)
+    public static function set(array &$array, string $key, $value): array
     {
         $keys = explode('.', $key);
 
@@ -440,10 +438,10 @@ class Arr
      * @param string $key
      * @param        $value
      */
-    public static function setNotNullValue(array &$array, string $key, $value)
+    public static function setNotNullValue(array &$array, string $key, $value): void
     {
         if (!free($value)) {
-            Arr::set($array, $key, $value);
+            self::set($array, $key, $value);
         }
     }
 
@@ -455,7 +453,7 @@ class Arr
      *
      * @return array
      */
-    public static function where(array $array, callable $callback)
+    public static function where(array $array, callable $callback): array
     {
         return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
     }
@@ -467,7 +465,7 @@ class Arr
      *
      * @return array
      */
-    public static function wrap($value)
+    public static function wrap($value): array
     {
         return !is_array($value) ? [$value] : $value;
     }
