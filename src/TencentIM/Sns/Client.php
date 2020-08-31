@@ -180,10 +180,11 @@ class Client extends BaseClient
     /**
      * add Friend.
      *
-     * @param string        $fromAccount
-     * @param ParameterList $addFriendAttr
-     * @param string        $addType
-     * @param int           $forceAddFlags
+     * @param string               $fromAccount
+     * @param string               $addType
+     * @param int                  $forceAddFlags
+     *
+     * @param AddFriendParameter[] $addFriendParameters
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException

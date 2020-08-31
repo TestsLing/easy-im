@@ -14,7 +14,7 @@ use EasyIM\Kernel\ServiceContainer;
  * @property \EasyIM\TencentIM\Speak\Client                       $speak
  * @property \EasyIM\TencentIM\Profile\Client                     $profile
  * @property \EasyIM\TencentIM\Account\Client                     $account
- * @property \EasyIM\TencentIM\SingleChat\Client                  $singleChat
+ * @property \EasyIM\TencentIM\SingleChat\Client                  $single_chat
  * @property \EasyIM\TencentIM\Sns\Client                         $sns
  */
 class Application extends ServiceContainer

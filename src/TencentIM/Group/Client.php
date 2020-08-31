@@ -57,14 +57,14 @@ class Client extends BaseClient
             'Name' => $name
         ];
         Arr::setNotNullValue($params, 'Owner_Account', $owner);
-        Arr::setNotNullValue($params, 'MemberList', $members());
+        Arr::setNotNullValue($params, 'MemberList', $members && $members());
         Arr::setNotNullValue($params, 'Notification', $announcement);
         Arr::setNotNullValue($params, 'Introduction', $intro);
         Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
         Arr::setNotNullValue($params, 'GroupId', $groupId);
         Arr::setNotNullValue($params, 'MaxMemberCount', $count);
         Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
-        Arr::setNotNullValue($params, 'AppDefinedData', $appDefined());
+        Arr::setNotNullValue($params, 'AppDefinedData', $appDefined && $appDefined());
 
         return $this->httpPostJson('group_open_http_svc/create_group', $params);
     }
@@ -134,7 +134,7 @@ class Client extends BaseClient
         Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
         Arr::setNotNullValue($params, 'MaxMemberNum', $max);
         Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
-        Arr::setNotNullValue($params, 'AppDefinedData', $appDefinedData());
+        Arr::setNotNullValue($params, 'AppDefinedData', $appDefinedData && $appDefinedData());
         Arr::setNotNullValue($params, 'ShutUpAllMember', $shutUpAll);
 
         return $this->httpPostJson('group_open_http_svc/modify_group_base_info', $params);

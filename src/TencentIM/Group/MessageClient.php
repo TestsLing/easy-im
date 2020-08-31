@@ -57,7 +57,7 @@ class MessageClient extends BaseClient
         Arr::setNotNullValue($params, 'From_Account', $fromAccount);
         Arr::setNotNullValue($params, 'MsgPriority', $msgPriority);
         Arr::setNotNullValue($params, 'ForbidCallbackControl', $forbidCallbackControl);
-        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo->transformToArray());
+        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo && $offlinePushInfo->transformToArray());
         Arr::setNotNullValue($params, 'OnlineOnlyFlag', $onlineOnlyFlag);
 
         return $this->httpPostJson('group_open_http_svc/send_group_msg', $params);

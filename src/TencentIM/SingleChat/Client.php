@@ -45,18 +45,18 @@ class Client extends BaseClient
     ) {
 
         $params = [
-            'To_Account' => $toAccount,
-            'MsgRandom' => msgRandom(),
-            'MsgBody' => $message->transformToArray(),
-            'MsgTimeStamp' => time(),
-            'SyncOtherMachine' => $syncOtherMachine,
-            'MsgLifeTime' => $msgLifeTime,
+            'To_Account'            => $toAccount,
+            'MsgRandom'             => msgRandom(),
+            'MsgBody'               => $message->transformToArray(),
+            'MsgTimeStamp'          => time(),
+            'SyncOtherMachine'      => $syncOtherMachine,
+            'MsgLifeTime'           => $msgLifeTime,
             'ForbidCallbackControl' => $forbidCallbackControl
         ];
 
 
         Arr::setNotNullValue($params, 'From_Account', $fromAccount);
-        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo->transformToArray());
+        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo && $offlinePushInfo->transformToArray());
 
         return $this->httpPostJson('openim/sendmsg', $params);
     }
@@ -68,10 +68,8 @@ class Client extends BaseClient
      * @param array                $toAccount
      * @param MessageInterface     $message
      * @param string|null          $fromAccount
-     * @param int                  $msgLifeTime
      * @param int                  $syncOtherMachine
      * @param OfflinePushElem|null $offlinePushInfo
-     * @param array                $forbidCallbackControl
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
@@ -86,14 +84,14 @@ class Client extends BaseClient
         OfflinePushElem $offlinePushInfo = null
     ) {
         $params = [
-            'To_Account' => $toAccount,
-            'MsgRandom' => msgRandom(),
-            'MsgBody' => $message->transformToArray(),
+            'To_Account'       => $toAccount,
+            'MsgRandom'        => msgRandom(),
+            'MsgBody'          => $message->transformToArray(),
             'SyncOtherMachine' => $syncOtherMachine,
         ];
 
         Arr::setNotNullValue($params, 'From_Account', $fromAccount);
-        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo->transformToArray());
+        Arr::setNotNullValue($params, 'OfflinePushInfo', $offlinePushInfo && $offlinePushInfo->transformToArray());
 
         return $this->httpPostJson('openim/batchsendmsg', $params);
     }
@@ -103,8 +101,10 @@ class Client extends BaseClient
      *
      * Import single chat message.
      *
-     * @param array $accounts
-     * @param array $tags
+     * @param string           $toAccount
+     * @param string           $fromAccount
+     * @param MessageInterface $message
+     * @param int              $syncFromOldSystem
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
@@ -118,11 +118,11 @@ class Client extends BaseClient
     ) {
 
         $params = [
-            'To_Account' => $toAccount,
-            'From_Account' => $fromAccount,
-            'MsgRandom' => msgRandom(),
-            'MsgBody' => $message->transformToArray(),
-            'MsgTimeStamp' => time(),
+            'To_Account'        => $toAccount,
+            'From_Account'      => $fromAccount,
+            'MsgRandom'         => msgRandom(),
+            'MsgBody'           => $message->transformToArray(),
+            'MsgTimeStamp'      => time(),
             'SyncFromOldSystem' => $syncFromOldSystem
         ];
 

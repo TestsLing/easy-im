@@ -135,7 +135,7 @@ class MemberClient extends BaseClient
         Arr::setNotNullValue($params, 'Role', $role);
         Arr::setNotNullValue($params, 'MsgFlag', $msgFlag);
         Arr::setNotNullValue($params, 'NameCard', $nameCard);
-        Arr::setNotNullValue($params, 'AppMemberDefinedData', $appDefinedDataMember());
+        Arr::setNotNullValue($params, 'AppMemberDefinedData', $appDefinedDataMember && $appDefinedDataMember());
         Arr::setNotNullValue($params, 'ShutUpTime', $shuntUpTime);
 
         return $this->httpPostJson('group_open_http_svc/modify_group_member_info', $params);
@@ -174,7 +174,7 @@ class MemberClient extends BaseClient
         Arr::setNotNullValue($params, 'Limit', $limit);
         Arr::setNotNullValue($params, 'Offset', $offset);
         Arr::setNotNullValue($params, 'GroupType', $type);
-        Arr::setNotNullValue($params, 'ResponseFilter', $filter->transformToArray());
+        Arr::setNotNullValue($params, 'ResponseFilter', $filter && $filter->transformToArray());
 
         return $this->httpPostJson('group_open_http_svc/get_joined_group_list', $params);
     }

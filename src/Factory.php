@@ -8,7 +8,7 @@ use EasyIM\TencentIM\Application;
 /**
  * Class Factory
  *
- * @method static \EasyIM\TencentIM\Application  tencentIm(array $config)
+ * @method static \EasyIM\TencentIM\Application  TencentIM(array $config)
  */
 class Factory
 {

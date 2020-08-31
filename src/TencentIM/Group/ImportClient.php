@@ -67,7 +67,7 @@ class ImportClient extends BaseClient
         Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
         Arr::setNotNullValue($params, 'MaxMemberCount', $count);
         Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
-        Arr::setNotNullValue($params, 'AppDefinedData', $appDefined());
+        Arr::setNotNullValue($params, 'AppDefinedData', $appDefined && $appDefined());
         Arr::setNotNullValue($params, 'CreateTime', $createTime);
 
         return $this->httpPostJson('group_open_http_svc/import_group', $params);
