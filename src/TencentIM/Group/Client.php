@@ -48,11 +48,11 @@ class Client extends BaseClient
         string $faceUrl = null,
         string $type = GroupConstant::PUBLIC,
         string $ownerAccount = null,
-        string $groupId = null,
         int $maxMemberCount = null,
-        string $applyJoinOption = null,
         ParameterList $memberList = null,
-        ParameterList $appDefinedData = null
+        ParameterList $appDefinedData = null,
+        string $applyJoinOption = GroupConstant::FREE_ACCESS,
+        string $groupId = null
     ) {
         $params = [
             'Type' => $type,
@@ -124,9 +124,9 @@ class Client extends BaseClient
         string $notification = null,
         string $faceUrl = null,
         int $maxMemberNum = null,
-        string $applyJoinOption = null,
-        ParameterList $appDefinedData = null,
-        string $shutUpAll = null
+        string $shutUpAll = null,
+        string $applyJoinOption = GroupConstant::FREE_ACCESS,
+        ParameterList $appDefinedData = null
     ) {
         $params['GroupId'] = $groupId;
         Arr::setNotNullValue($params, 'Name', $name);
