@@ -9,6 +9,7 @@ use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
 use EasyIM\Kernel\Support\Collection;
+use EasyIM\TencentIM\Group\Parameter\Base\CommonParameter;
 use EasyIM\TencentIM\Group\Parameter\Import\ImportMemberParameter;
 use EasyIM\TencentIM\Group\Parameter\Import\ImportMsgListParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
@@ -36,7 +37,7 @@ class ImportClient extends BaseClient
      * @param string|null        $faceUrl
      * @param int|null           $count
      * @param string|null        $applyJoin
-     * @param ParameterList|null $appDefined
+     * @param ParameterList<CommonParameter>|null $appDefined
      * @param int|null           $createTime
      *
      * @return array|Collection|object|ResponseInterface|string

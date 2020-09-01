@@ -7,6 +7,8 @@ use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
 use EasyIM\Kernel\Support\Collection;
+use EasyIM\TencentIM\Group\Parameter\Base\CommonParameter;
+use EasyIM\TencentIM\Group\Parameter\Member\MemberListParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
@@ -24,47 +26,47 @@ class Client extends BaseClient
      * Create Group.
      *
      * @param string             $name
-     * @param string             $type
-     * @param string|null        $owner
-     * @param ParameterList|null $members
-     * @param string|null        $announcement
-     * @param string|null        $intro
+     * @param string|null        $introduction
+     * @param string|null        $notification
      * @param string|null        $faceUrl
+     * @param string             $type
+     * @param string|null        $ownerAccount
      * @param string|null        $groupId
-     * @param int|null           $count
-     * @param string|null        $applyJoin
-     * @param ParameterList|null $appDefined
+     * @param int|null           $maxMemberCount
+     * @param string|null        $applyJoinOption
+     * @param ParameterList<MemberListParameter>|null $memberList
+     * @param ParameterList<CommonParameter>|null $appDefinedData
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws InvalidConfigException
      * @throws GuzzleException
+     * @throws InvalidConfigException
      */
     public function create(
         string $name,
-        string $type = GroupConstant::PUBLIC,
-        string $owner = null,
-        ParameterList $members = null,
-        string $announcement = null,
-        string $intro = null,
+        string $introduction = null,
+        string $notification = null,
         string $faceUrl = null,
+        string $type = GroupConstant::PUBLIC,
+        string $ownerAccount = null,
         string $groupId = null,
-        int $count = null,
-        string $applyJoin = null,
-        ParameterList $appDefined = null
+        int $maxMemberCount = null,
+        string $applyJoinOption = null,
+        ParameterList $memberList = null,
+        ParameterList $appDefinedData = null
     ) {
         $params = [
             'Type' => $type,
             'Name' => $name
         ];
-        Arr::setNotNullValue($params, 'Owner_Account', $owner);
-        Arr::setNotNullValue($params, 'MemberList', $members && $members());
-        Arr::setNotNullValue($params, 'Notification', $announcement);
-        Arr::setNotNullValue($params, 'Introduction', $intro);
+        Arr::setNotNullValue($params, 'Owner_Account', $ownerAccount);
+        Arr::setNotNullValue($params, 'MemberList', $memberList && $memberList());
+        Arr::setNotNullValue($params, 'Notification', $notification);
+        Arr::setNotNullValue($params, 'Introduction', $introduction);
         Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
         Arr::setNotNullValue($params, 'GroupId', $groupId);
-        Arr::setNotNullValue($params, 'MaxMemberCount', $count);
-        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
-        Arr::setNotNullValue($params, 'AppDefinedData', $appDefined && $appDefined());
+        Arr::setNotNullValue($params, 'MaxMemberCount', $maxMemberCount);
+        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoinOption);
+        Arr::setNotNullValue($params, 'AppDefinedData', $appDefinedData && $appDefinedData());
 
         return $this->httpPostJson('group_open_http_svc/create_group', $params);
     }
@@ -73,27 +75,27 @@ class Client extends BaseClient
      * Get group details.
      *
      * @param array      $groupIds
-     * @param array|null $groupBaseInfo
-     * @param array|null $memberInfo
-     * @param array|null $appDefinedData
-     * @param array|null $appDefinedDataMember
+     * @param array|null $groupBaseInfoFilter
+     * @param array|null $memberInfoFilter
+     * @param array|null $appDefinedDataFilterGroup
+     * @param array|null $appDefinedDataFilterGroupMember
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws InvalidConfigException
      * @throws GuzzleException
+     * @throws InvalidConfigException
      */
     public function get(
         array $groupIds,
-        array $groupBaseInfo = null,
-        array $memberInfo = null,
-        array $appDefinedData = null,
-        array $appDefinedDataMember = null
+        array $groupBaseInfoFilter = null,
+        array $memberInfoFilter = null,
+        array $appDefinedDataFilterGroup = null,
+        array $appDefinedDataFilterGroupMember = null
     ) {
         $params['GroupIdList'] = $groupIds;
-        Arr::setNotNullValue($params, 'ResponseFilter.GroupBaseInfoFilter', $groupBaseInfo);
-        Arr::setNotNullValue($params, 'ResponseFilter.MemberInfoFilter', $memberInfo);
-        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_Group', $appDefinedData);
-        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_GroupMember', $appDefinedDataMember);
+        Arr::setNotNullValue($params, 'ResponseFilter.GroupBaseInfoFilter', $groupBaseInfoFilter);
+        Arr::setNotNullValue($params, 'ResponseFilter.MemberInfoFilter', $memberInfoFilter);
+        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_Group', $appDefinedDataFilterGroup);
+        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_GroupMember', $appDefinedDataFilterGroupMember);
 
         return $this->httpPostJson('group_open_http_svc/get_group_info', $params);
     }
@@ -101,20 +103,19 @@ class Client extends BaseClient
 
     /**
      * Modify group basic data.
-     *
      * @param string             $groupId
      * @param string|null        $name
      * @param string|null        $introduction
      * @param string|null        $notification
      * @param string|null        $faceUrl
-     * @param int|null           $max
-     * @param string|null        $applyJoin
-     * @param ParameterList|null $appDefinedData
+     * @param int|null           $maxMemberNum
+     * @param string|null        $applyJoinOption
+     * @param ParameterList<CommonParameter>|null $appDefinedData
      * @param string|null        $shutUpAll
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws InvalidConfigException
      * @throws GuzzleException
+     * @throws InvalidConfigException
      */
     public function modify(
         string $groupId,
@@ -122,8 +123,8 @@ class Client extends BaseClient
         string $introduction = null,
         string $notification = null,
         string $faceUrl = null,
-        int $max = null,
-        string $applyJoin = null,
+        int $maxMemberNum = null,
+        string $applyJoinOption = null,
         ParameterList $appDefinedData = null,
         string $shutUpAll = null
     ) {
@@ -132,8 +133,8 @@ class Client extends BaseClient
         Arr::setNotNullValue($params, 'Introduction', $introduction);
         Arr::setNotNullValue($params, 'Notification', $notification);
         Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
-        Arr::setNotNullValue($params, 'MaxMemberNum', $max);
-        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
+        Arr::setNotNullValue($params, 'MaxMemberNum', $maxMemberNum);
+        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoinOption);
         Arr::setNotNullValue($params, 'AppDefinedData', $appDefinedData && $appDefinedData());
         Arr::setNotNullValue($params, 'ShutUpAllMember', $shutUpAll);
 

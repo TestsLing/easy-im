@@ -3,7 +3,6 @@
 namespace EasyIM\TencentIM\Sns;
 
 use EasyIM\Kernel\BaseClient;
-use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
 use EasyIM\TencentIM\Kernel\Constant\SnsConstant;
 use EasyIM\TencentIM\Sns\Parameter\AddFriendParameter;
