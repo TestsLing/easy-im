@@ -91,18 +91,20 @@ class MessageClient extends BaseClient
     /**
      * Recall group message.
      *
-     * @param string              $groupId
-     * @param MsgSeqListParameter ...$msgSeqListParameters
+     * @param string    $groupId
+     * @param array     $msgSeqList
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
      * @throws GuzzleException
      */
-    public function recallGroupMsg(string $groupId, MsgSeqListParameter ...$msgSeqListParameters)
+    public function recallGroupMsg(string $groupId, array $msgSeqList)
     {
         $params = [
             'GroupId'    => $groupId,
-            'MsgSeqList' => parameterList(...$msgSeqListParameters)()
+            'MsgSeqList' => array_map(function ($item) {
+                return ['MsgSeq' => $item];
+            }, $msgSeqList)
         ];
 
         return $this->httpPostJson('group_open_http_svc/group_msg_recall', $params);
