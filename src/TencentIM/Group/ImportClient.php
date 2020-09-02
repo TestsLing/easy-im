@@ -30,30 +30,30 @@ class ImportClient extends BaseClient
      *
      * @param string             $name
      * @param string             $type
-     * @param string|null        $owner
+     * @param string|null        $ownerAccount
      * @param string|null        $groupId
-     * @param string|null        $announcement
-     * @param string|null        $intro
+     * @param string|null        $notification
+     * @param string|null        $introduction
      * @param string|null        $faceUrl
-     * @param int|null           $count
-     * @param string|null        $applyJoin
-     * @param ParameterList<CommonParameter>|null $appDefined
+     * @param int|null           $maxMemberCount
+     * @param string|null        $applyJoinOption
+     * @param ParameterList|null $appDefined
      * @param int|null           $createTime
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws InvalidConfigException
      * @throws GuzzleException
+     * @throws InvalidConfigException
      */
     public function importGroup(
         string $name,
         string $type = GroupConstant::PUBLIC,
-        string $owner = null,
+        string $ownerAccount = null,
         string $groupId = null,
-        string $announcement = null,
-        string $intro = null,
+        string $notification = null,
+        string $introduction = null,
         string $faceUrl = null,
-        int $count = null,
-        string $applyJoin = null,
+        int $maxMemberCount = null,
+        string $applyJoinOption = null,
         ParameterList $appDefined = null,
         int $createTime = null
     ) {
@@ -61,13 +61,13 @@ class ImportClient extends BaseClient
             'Name' => $name,
             'Type' => $type
         ];
-        Arr::setNotNullValue($params, 'Owner_Account', $owner);
+        Arr::setNotNullValue($params, 'Owner_Account', $ownerAccount);
         Arr::setNotNullValue($params, 'GroupId', $groupId);
-        Arr::setNotNullValue($params, 'Notification', $announcement);
-        Arr::setNotNullValue($params, 'Introduction', $intro);
+        Arr::setNotNullValue($params, 'Notification', $notification);
+        Arr::setNotNullValue($params, 'Introduction', $introduction);
         Arr::setNotNullValue($params, 'FaceUrl', $faceUrl);
-        Arr::setNotNullValue($params, 'MaxMemberCount', $count);
-        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoin);
+        Arr::setNotNullValue($params, 'MaxMemberCount', $maxMemberCount);
+        Arr::setNotNullValue($params, 'ApplyJoinOption', $applyJoinOption);
         Arr::setNotNullValue($params, 'AppDefinedData', $appDefined && $appDefined());
         Arr::setNotNullValue($params, 'CreateTime', $createTime);
 
