@@ -11,7 +11,7 @@
 ## Installation
 
 ```shell
-$ composer require "longing/easy-im" -vvv
+$ composer require longing/easy-im:~1.0 -vvv
 ```
 ## Usage
 
@@ -21,13 +21,17 @@ $ composer require "longing/easy-im" -vvv
 use EasyIM\Factory;
 
 $options = [
-    'app_id'    => 'wx3cf0f39249eb0exxx',
-    'secret'    => 'f1c242f4f28f735d4687abb469072xxx',
+    'sdk_app_id'    => '1400306676',                                                        // sdkAppId
+    'secret'        => '3e373d1ef02ef192ee26c94760681cdf492b4b7f053fc16504d30a77a028e76d',  // secret
+    'identifier'    => 'admin',                                                             // 管理员账号
+    'expire'        => 86400,                                                               // 签名过期时间
     // ...
 ];
 
 $app = Factory::TencentIM($options);
 ```
+
+[更多](https://www.easyim.cn)
 
 ## License
 
