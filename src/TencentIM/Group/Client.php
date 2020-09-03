@@ -7,8 +7,6 @@ use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
 use EasyIM\Kernel\Support\Collection;
-use EasyIM\TencentIM\Group\Parameter\Base\CommonParameter;
-use EasyIM\TencentIM\Group\Parameter\Member\MemberListParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
@@ -33,9 +31,9 @@ class Client extends BaseClient
      * @param string|null        $ownerAccount
      * @param string|null        $groupId
      * @param int|null           $maxMemberCount
-     * @param string|null        $applyJoinOption
-     * @param ParameterList<MemberListParameter>|null $memberList
-     * @param ParameterList<CommonParameter>|null $appDefinedData
+     * @param string             $applyJoinOption
+     * @param ParameterList|null $memberList     ... MemberListParameter
+     * @param ParameterList|null $appDefinedData ...CommonParameter
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws GuzzleException
@@ -95,7 +93,8 @@ class Client extends BaseClient
         Arr::setNotNullValue($params, 'ResponseFilter.GroupBaseInfoFilter', $groupBaseInfoFilter);
         Arr::setNotNullValue($params, 'ResponseFilter.MemberInfoFilter', $memberInfoFilter);
         Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_Group', $appDefinedDataFilterGroup);
-        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_GroupMember', $appDefinedDataFilterGroupMember);
+        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_GroupMember',
+            $appDefinedDataFilterGroupMember);
 
         return $this->httpPostJson('group_open_http_svc/get_group_info', $params);
     }
@@ -103,14 +102,15 @@ class Client extends BaseClient
 
     /**
      * Modify group basic data.
+     *
      * @param string             $groupId
      * @param string|null        $name
      * @param string|null        $introduction
      * @param string|null        $notification
      * @param string|null        $faceUrl
      * @param int|null           $maxMemberNum
-     * @param string        $applyJoinOption
-     * @param ParameterList<CommonParameter> |null $appDefinedData
+     * @param string             $applyJoinOption
+     * @param ParameterList|null $appDefinedData ...CommonParameter
      * @param string|null        $shutUpAll
      *
      * @return array|Collection|object|ResponseInterface|string

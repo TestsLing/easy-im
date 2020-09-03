@@ -8,8 +8,6 @@ use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
 use EasyIM\Kernel\Support\Collection;
-use EasyIM\TencentIM\Group\Parameter\Base\CommonParameter;
-use EasyIM\TencentIM\Group\Parameter\Member\MemberListParameter;
 use EasyIM\TencentIM\Group\Parameter\Member\ResponseFilterParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
 use GuzzleHttp\Exception\GuzzleException;
@@ -60,7 +58,7 @@ class MemberClient extends BaseClient
      * Increase group members.
      *
      * @param string        $groupId
-     * @param ParameterList<MemberListParameter> $memberList
+     * @param ParameterList $memberList  ...MemberListParameter
      * @param int      $silence
      *
      * @return array|Collection|object|ResponseInterface|string
@@ -111,7 +109,7 @@ class MemberClient extends BaseClient
      * @param string|null        $role
      * @param string        $msgFlag
      * @param string|null        $nameCard
-     * @param ParameterList<CommonParameter>|null $appDefinedDataMember
+     * @param ParameterList|null $appDefinedDataMember ...CommonParameter
      * @param int|null           $shuntUpTime
      *
      * @return array|Collection|object|ResponseInterface|string

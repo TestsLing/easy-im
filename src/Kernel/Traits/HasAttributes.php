@@ -26,7 +26,7 @@ trait HasAttributes
      *
      * @param array $attributes
      *
-     * @return \EasyIM\Kernel\Traits\HasAttributes
+     * @return $this
      */
     public function setAttributes(array $attributes = [])
     {
