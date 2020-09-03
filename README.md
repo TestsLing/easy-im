@@ -47,13 +47,3 @@ $app = Factory::TencentIM($options);
 
 MIT
 
-
-
-[![Test Status](https://github.com/TestsLing/easy-im/workflows/Test/badge.svg)](//github.com/TestsLing/easy-im/actions)
-[![Lint Status](https://github.com/TestsLing/easy-im/workflows/Lint/badge.svg)](//github.com/TestsLing/easy-im/actions)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TestsLing/easy-im/badges/quality-score.png?b=master)](//scrutinizer-ci.com/g/TestsLing/easy-im/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/TestsLing/easy-im/badges/coverage.png?b=master)](//scrutinizer-ci.com/g/TestsLing/easy-im/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/longing/easy-im/v)](//packagist.org/packages/longing/easy-im)
-[![Total Downloads](https://poser.pugx.org/longing/easy-im/downloads)](//packagist.org/packages/longing/easy-im)
-[![Latest Unstable Version](https://poser.pugx.org/longing/easy-im/v/unstable)](//packagist.org/packages/longing/easy-im)
-[![License](https://poser.pugx.org/longing/easy-im/license)](//packagist.org/packages/longing/easy-im)
