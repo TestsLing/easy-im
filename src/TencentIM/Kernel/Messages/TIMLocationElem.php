@@ -24,17 +24,13 @@ class TIMLocationElem extends Message
      */
     protected $properties = ['Desc', 'Latitude', 'Longitude'];
 
-    /**
-     * required attr
-     *
-     * @var array
-     */
-//    protected $required = ['Text'];
 
     /**
-     * TIMTextElem constructor.
+     * TIMLocationElem constructor.
      *
-     * @param string $Text
+     * @param string $Desc
+     * @param float  $Latitude
+     * @param float  $Longitude
      */
     public function __construct(string $Desc, float $Latitude, float $Longitude)
     {

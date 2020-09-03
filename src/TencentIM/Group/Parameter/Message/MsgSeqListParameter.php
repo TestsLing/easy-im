@@ -25,14 +25,13 @@ class MsgSeqListParameter extends Parameter
 
     /**
      *
-     * @param string $value
+     * @param int $value
      *
      * @return $this
      */
     public function setMsgSeq(int $value)
     {
         $this->setAttribute('MsgSeq', $value);
-
         return $this;
     }
 }

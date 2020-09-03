@@ -24,46 +24,9 @@ abstract class Parameter implements ParameterInterface
         $this->setAttributes($attributes);
     }
 
-
-    /**
-     * Magic getter.
-     *
-     * @param string $property
-     *
-     * @return mixed
-     */
-    public function __get($property)
-    {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
-
-        return $this->getAttribute($property);
-    }
-
-    /**
-     * Magic setter.
-     *
-     * @param string $property
-     * @param mixed  $value
-     *
-     * @return Parameter
-     */
-    public function __set($property, $value)
-    {
-        if (property_exists($this, $property)) {
-            $this->$property = $value;
-        } else {
-            $this->setAttribute($property, $value);
-        }
-
-        return $this;
-    }
-
     /**
      *
      * @param array $appends
-     * @param bool  $isFlat
      *
      * @return array|array[]
      * @throws \EasyIM\Kernel\Exceptions\InvalidArgumentException
@@ -75,9 +38,7 @@ abstract class Parameter implements ParameterInterface
 
     /**
      *
-     *
      * @return array
-     * @throws Exceptions\InvalidArgumentException
      */
     public function transformParameterToArray(): array
     {

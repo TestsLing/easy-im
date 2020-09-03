@@ -21,12 +21,12 @@ class TIMCombinationElem implements MessageInterface
         $this->messages = $messages;
     }
 
-    public function transformToArray(): array
+    public function transformToArray(array $appends = [], bool $isFlat = true): array
     {
         $msgBody = [];
 
         foreach ($this->messages as $message) {
-            $msgBody[] = $message->transformToArray([], true);
+            $msgBody[] = $message->transformToArray($appends, $isFlat);
         }
 
         return $msgBody;

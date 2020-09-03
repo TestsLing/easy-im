@@ -14,12 +14,12 @@ class Sns extends Client
 {
     /**
      *
-     * @param $property
+     * @param string $property
      *
      * @return mixed
      * @throws InvalidArgumentException
      */
-    public function __get($property)
+    public function __get(string $property)
     {
         if (isset($this->app["sns.{$property}"])) {
             return $this->app["sns.{$property}"];

@@ -41,6 +41,7 @@ class AccessToken extends BaseAccessToken
         $cache = $this->getCache();
 
         if (!$refresh && $cache->has($cacheKey)) {
+            /** @var array $sign */
             $sign = $cache->get($cacheKey);
             if ($this->verifySig($sign)) {
                 return $sign;
@@ -60,11 +61,11 @@ class AccessToken extends BaseAccessToken
     /**
      * verifySig
      *
-     * @param $sign
+     * @param array $sign
      *
      * @return mixed
      */
-    public function verifySig($sign)
+    public function verifySig(array $sign)
     {
         $tLSSigAPIv2 = $this->app['sign'];
         $identifier = $this->app['config']['identifier'];

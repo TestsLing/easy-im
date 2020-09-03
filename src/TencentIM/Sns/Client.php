@@ -91,7 +91,7 @@ class Client extends BaseClient
      * delete All Friend.
      *
      * @param string      $fromAccount
-     * @param string|null $deleteType
+     * @param string $deleteType
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
@@ -113,7 +113,7 @@ class Client extends BaseClient
      *
      * @param string      $fromAccount
      * @param array       $toAccount
-     * @param string|null $deleteType
+     * @param string      $deleteType
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException
@@ -179,8 +179,7 @@ class Client extends BaseClient
      * @param string               $fromAccount
      * @param string               $addType
      * @param int                  $forceAddFlags
-     *
-     * @param AddFriendParameter[] $addFriendParameters
+     * @param AddFriendParameter   $addFriendParameters
      *
      * @return array|\EasyIM\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \EasyIM\Kernel\Exceptions\InvalidConfigException

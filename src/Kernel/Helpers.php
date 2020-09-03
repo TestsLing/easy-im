@@ -30,7 +30,7 @@ function parameterList(\EasyIM\Kernel\Parameter ...$parameters)
 
 /**
  *
- * @param $value
+ * @param mixed $value
  *
  * @return bool
  */

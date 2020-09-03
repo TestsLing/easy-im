@@ -109,8 +109,8 @@ class Client extends BaseClient
      * @param string|null        $notification
      * @param string|null        $faceUrl
      * @param int|null           $maxMemberNum
-     * @param string|null        $applyJoinOption
-     * @param ParameterList<CommonParameter>|null $appDefinedData
+     * @param string        $applyJoinOption
+     * @param ParameterList<CommonParameter> |null $appDefinedData
      * @param string|null        $shutUpAll
      *
      * @return array|Collection|object|ResponseInterface|string

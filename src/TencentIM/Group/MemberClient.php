@@ -28,11 +28,11 @@ class MemberClient extends BaseClient
      * Get group member details.
      *
      * @param string     $groupId
-     * @param int|null   $limit
-     * @param int|null   $offset
-     * @param array|null $memberInfo
-     * @param array|null $memberRole
-     * @param array|null $appDefinedDataMember
+     * @param int   $limit
+     * @param int   $offset
+     * @param array $memberInfo
+     * @param array $memberRole
+     * @param array $appDefinedDataMember
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
@@ -42,9 +42,9 @@ class MemberClient extends BaseClient
         string $groupId,
         int $limit = 100,
         int $offset = 0,
-        array $memberInfo = null,
-        array $memberRole = null,
-        array $appDefinedDataMember = null
+        array $memberInfo = [],
+        array $memberRole = [],
+        array $appDefinedDataMember = []
     ) {
         $params['GroupId'] = $groupId;
         Arr::setNotNullValue($params, 'MemberInfoFilter', $memberInfo);
@@ -61,7 +61,7 @@ class MemberClient extends BaseClient
      *
      * @param string        $groupId
      * @param ParameterList<MemberListParameter> $memberList
-     * @param int|null      $silence
+     * @param int      $silence
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidArgumentException
@@ -84,7 +84,7 @@ class MemberClient extends BaseClient
      *
      * @param string      $groupId
      * @param array       $memberList
-     * @param int|null    $silence
+     * @param int    $silence
      * @param string|null $reason
      *
      * @return array|Collection|object|ResponseInterface|string
@@ -109,7 +109,7 @@ class MemberClient extends BaseClient
      * @param string             $groupId
      * @param string             $memberAccount
      * @param string|null        $role
-     * @param string|null        $msgFlag
+     * @param string        $msgFlag
      * @param string|null        $nameCard
      * @param ParameterList<CommonParameter>|null $appDefinedDataMember
      * @param int|null           $shuntUpTime
@@ -145,10 +145,10 @@ class MemberClient extends BaseClient
      * Get the group the user joined.
      *
      * @param string                       $memberAccount
-     * @param int|null                     $withHuge
-     * @param int|null                     $withNoActive
-     * @param int|null                     $limit
-     * @param int|null                     $offset
+     * @param int                     $withHuge
+     * @param int                     $withNoActive
+     * @param int                     $limit
+     * @param int                     $offset
      * @param string|null                  $type
      * @param ResponseFilterParameter|null $filter
      *

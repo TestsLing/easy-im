@@ -103,7 +103,6 @@ class ServiceContainer extends Container
             LogServiceProvider::class,
             RequestServiceProvider::class,
             HttpClientServiceProvider::class,
-            ExtensionServiceProvider::class,
             EventDispatcherServiceProvider::class,
         ], $this->providers);
     }

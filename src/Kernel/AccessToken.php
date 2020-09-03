@@ -99,6 +99,7 @@ abstract class AccessToken implements AccessTokenInterface
         /** @var array $token */
         $token = $this->requestToken();
 
+
         $this->setToken($token[$this->tokenKey], $token['expires_in']);
 
         $this->app->events->dispatch(new Events\AccessTokenRefreshed($this));
@@ -148,7 +149,7 @@ abstract class AccessToken implements AccessTokenInterface
 
     /**
      *
-     * @return mixed
+     * @return array
      */
     abstract public function requestToken(): array;
 

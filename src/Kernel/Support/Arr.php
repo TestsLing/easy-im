@@ -168,7 +168,7 @@ class Arr
      * Flatten a multi-dimensional array into a single level.
      *
      * @param array $array
-     * @param int   $depth
+     * @param float   $depth
      *
      * @return array
      */
@@ -434,7 +434,7 @@ class Arr
      *
      * @param array  $array
      * @param string $key
-     * @param        $value
+     * @param mixed $value
      */
     public static function setNotNullValue(array &$array, string $key, $value): void
     {
