@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Log;
 
 use EasyIM\Kernel\ServiceContainer;

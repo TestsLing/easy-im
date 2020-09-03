@@ -18,13 +18,13 @@ class ServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $app)
     {
-        $app['group']         = function ($app) {
+        $app['group'] = function ($app) {
             return new Group($app);
         };
-        $app['group.client']  = function ($app) {
+        $app['group.client'] = function ($app) {
             return new Client($app);
         };
-        $app['group.member']  = function ($app) {
+        $app['group.member'] = function ($app) {
             return new MemberClient($app);
         };
         $app['group.operate'] = function ($app) {
@@ -33,7 +33,7 @@ class ServiceProvider implements ServiceProviderInterface
         $app['group.message'] = function ($app) {
             return new MessageClient($app);
         };
-        $app['group.import']  = function ($app) {
+        $app['group.import'] = function ($app) {
             return new ImportClient($app);
         };
     }

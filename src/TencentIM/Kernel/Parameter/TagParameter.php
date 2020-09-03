@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\Parameter;
 
 use EasyIM\Kernel\Parameter;

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Sns\Parameter;
-
 
 use EasyIM\Kernel\Parameter;
 
@@ -14,7 +12,6 @@ use EasyIM\Kernel\Parameter;
  */
 class AddFriendParameter extends Parameter
 {
-
     /**
      * @var array
      */
@@ -88,5 +85,4 @@ class AddFriendParameter extends Parameter
         $this->setAttribute('AddWording', $value);
         return $this;
     }
-
 }

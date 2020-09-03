@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\OfflinePushInfo;
-
 
 use EasyIM\Kernel\Parameter;
 
@@ -14,7 +12,6 @@ use EasyIM\Kernel\Parameter;
  */
 class ApnsInfo extends Parameter
 {
-
     /**
      * @var string[]
      */
@@ -86,5 +83,4 @@ class ApnsInfo extends Parameter
         $this->setAttribute('Image', $value);
         return $this;
     }
-
 }

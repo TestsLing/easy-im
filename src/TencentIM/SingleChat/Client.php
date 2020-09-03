@@ -8,7 +8,6 @@ use EasyIM\Kernel\Support\Arr;
 use EasyIM\TencentIM\Kernel\Constant\SingleChatConstant;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 
-
 /**
  * Class Client
  *
@@ -17,7 +16,6 @@ use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
  */
 class Client extends BaseClient
 {
-
     /**
      * Send single message.
      *
@@ -43,14 +41,13 @@ class Client extends BaseClient
         OfflinePushElem $offlinePushInfo = null,
         array $forbidCallbackControl = []
     ) {
-
         $params = [
-            'To_Account'            => $toAccount,
-            'MsgRandom'             => msgRandom(),
-            'MsgBody'               => $message->transformToArray(),
-            'MsgTimeStamp'          => time(),
-            'SyncOtherMachine'      => $syncOtherMachine,
-            'MsgLifeTime'           => $msgLifeTime,
+            'To_Account' => $toAccount,
+            'MsgRandom' => msgRandom(),
+            'MsgBody' => $message->transformToArray(),
+            'MsgTimeStamp' => time(),
+            'SyncOtherMachine' => $syncOtherMachine,
+            'MsgLifeTime' => $msgLifeTime,
             'ForbidCallbackControl' => $forbidCallbackControl
         ];
 
@@ -84,9 +81,9 @@ class Client extends BaseClient
         OfflinePushElem $offlinePushInfo = null
     ) {
         $params = [
-            'To_Account'       => $toAccount,
-            'MsgRandom'        => msgRandom(),
-            'MsgBody'          => $message->transformToArray(),
+            'To_Account' => $toAccount,
+            'MsgRandom' => msgRandom(),
+            'MsgBody' => $message->transformToArray(),
             'SyncOtherMachine' => $syncOtherMachine,
         ];
 
@@ -116,13 +113,12 @@ class Client extends BaseClient
         MessageInterface $message,
         int $syncFromOldSystem = SingleChatConstant::SYNC_FROM_OLD_SYSTEM_COUNT
     ) {
-
         $params = [
-            'To_Account'        => $toAccount,
-            'From_Account'      => $fromAccount,
-            'MsgRandom'         => msgRandom(),
-            'MsgBody'           => $message->transformToArray(),
-            'MsgTimeStamp'      => time(),
+            'To_Account' => $toAccount,
+            'From_Account' => $fromAccount,
+            'MsgRandom' => msgRandom(),
+            'MsgBody' => $message->transformToArray(),
+            'MsgTimeStamp' => time(),
             'SyncFromOldSystem' => $syncFromOldSystem
         ];
 
@@ -154,10 +150,10 @@ class Client extends BaseClient
     ) {
         $params = [
             'From_Account' => $fromAccount,
-            'To_Account'   => $toAccount,
-            'MaxCnt'       => $maxCnt,
-            'MinTime'      => $minTime,
-            'MaxTime'      => $maxTime,
+            'To_Account' => $toAccount,
+            'MaxCnt' => $maxCnt,
+            'MinTime' => $minTime,
+            'MaxTime' => $maxTime,
         ];
 
         Arr::setNotNullValue($params, 'LastMsgKey', $lastMsgKey);
@@ -180,11 +176,10 @@ class Client extends BaseClient
     {
         $params = [
             'From_Account' => $fromAccount,
-            'To_Account'   => $toAccount,
-            'MsgKey'       => $msgKey,
+            'To_Account' => $toAccount,
+            'MsgKey' => $msgKey,
         ];
 
         return $this->httpPostJson('openim/admin_msgwithdraw', $params);
     }
-
 }

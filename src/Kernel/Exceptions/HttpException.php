@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Exceptions;
 
 use Psr\Http\Message\ResponseInterface;

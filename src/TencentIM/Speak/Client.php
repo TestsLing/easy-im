@@ -12,7 +12,6 @@ use EasyIM\Kernel\BaseClient;
  */
 class Client extends BaseClient
 {
-
     /**
      *
      * Query user forbidden words.
@@ -53,5 +52,4 @@ class Client extends BaseClient
 
         return $this->httpPostJson('openconfigsvr/setnospeaking', $params);
     }
-
 }

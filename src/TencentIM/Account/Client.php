@@ -137,7 +137,7 @@ class Client extends BaseClient
     public function queryState(array $accounts, int $isNeedDetail = 1)
     {
         $params = [
-            'To_Account'   => $accounts,
+            'To_Account' => $accounts,
             'IsNeedDetail' => $isNeedDetail
         ];
 

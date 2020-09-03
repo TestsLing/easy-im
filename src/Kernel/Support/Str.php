@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Support;
 
 use EasyIM\Kernel\Exceptions\RuntimeException;

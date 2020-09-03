@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Group;
-
 
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 

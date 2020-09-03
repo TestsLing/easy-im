@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\Kernel;
-
 
 use EasyIM\Kernel\Contracts\ParameterInterface;
 use EasyIM\Kernel\Traits\HasAttributes;
@@ -113,5 +111,4 @@ abstract class Parameter implements ParameterInterface
 
         return $data;
     }
-
 }

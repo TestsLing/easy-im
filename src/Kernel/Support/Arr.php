@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\Kernel\Support;
-
 
 /**
  * Array helper from Illuminate\Support\Arr.

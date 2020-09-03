@@ -5,7 +5,6 @@ namespace EasyIM\TencentIM\Profile;
 use EasyIM\Kernel\BaseClient;
 use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
 
-
 /**
  * Class Client
  *
@@ -14,7 +13,6 @@ use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
  */
 class Client extends BaseClient
 {
-
     /**
      * Get User Profile.
      *
@@ -47,7 +45,6 @@ class Client extends BaseClient
      */
     public function setPortrait(string $account, TagParameter ...$tagParameters)
     {
-
         $params = [
             'From_Account' => $account,
             'ProfileItem' => parameterList(...$tagParameters)()
@@ -55,5 +52,4 @@ class Client extends BaseClient
 
         return $this->httpPostJson('profile/portrait_set', $params);
     }
-
 }

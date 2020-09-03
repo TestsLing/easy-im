@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\Messages;
 
 /**
@@ -41,5 +40,4 @@ class TIMLocationElem extends Message
     {
         parent::__construct(compact('Desc', 'Latitude', 'Longitude'));
     }
-
 }

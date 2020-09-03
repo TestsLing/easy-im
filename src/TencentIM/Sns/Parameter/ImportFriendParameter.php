@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Sns\Parameter;
-
 
 use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
 
@@ -14,7 +12,6 @@ use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
  */
 class ImportFriendParameter extends AddFriendParameter
 {
-
     /**
      * @var array
      */
@@ -79,6 +76,4 @@ class ImportFriendParameter extends AddFriendParameter
         $this->setAttribute('GroupName', $value);
         return $this;
     }
-
-
 }

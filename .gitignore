@@ -4,3 +4,4 @@ test.php
 index.php
 EasyIM
 .php_cs.cache
+composer.lock

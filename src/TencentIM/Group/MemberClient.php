@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Group;
-
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;
@@ -73,7 +71,7 @@ class MemberClient extends BaseClient
     public function addMember(string $groupId, ParameterList $memberList, int $silence = 0)
     {
         $params = [
-            'GroupId'    => $groupId,
+            'GroupId' => $groupId,
             'MemberList' => $memberList->transformParameterToArray()
         ];
         Arr::setNotNullValue($params, 'Silence', $silence);
@@ -96,7 +94,7 @@ class MemberClient extends BaseClient
     public function deleteMember(string $groupId, array $memberList, int $silence = 0, string $reason = null)
     {
         $params = [
-            'GroupId'             => $groupId,
+            'GroupId' => $groupId,
             'MemberToDel_Account' => $memberList
         ];
         Arr::setNotNullValue($params, 'Silence', $silence);
@@ -131,7 +129,7 @@ class MemberClient extends BaseClient
         int $shuntUpTime = null
     ) {
         $params = [
-            'GroupId'        => $groupId,
+            'GroupId' => $groupId,
             'Member_Account' => $memberAccount
         ];
         Arr::setNotNullValue($params, 'Role', $role);
@@ -194,7 +192,7 @@ class MemberClient extends BaseClient
     public function getRole(string $groupId, array $memberAccount)
     {
         $params = [
-            'GroupId'      => $groupId,
+            'GroupId' => $groupId,
             'User_Account' => $memberAccount
         ];
 

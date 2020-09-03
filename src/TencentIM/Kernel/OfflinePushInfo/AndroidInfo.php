@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\OfflinePushInfo;
-
 
 use EasyIM\Kernel\Parameter;
 
@@ -14,7 +12,6 @@ use EasyIM\Kernel\Parameter;
  */
 class AndroidInfo extends Parameter
 {
-
     /**
      * @var string[]
      */
@@ -47,5 +44,4 @@ class AndroidInfo extends Parameter
         $this->setAttribute('OPPOChannelID', $value);
         return $this;
     }
-
 }

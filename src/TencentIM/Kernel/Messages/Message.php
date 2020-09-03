@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\Messages;
-
 
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Traits\HasAttributes;
@@ -135,7 +133,7 @@ abstract class Message implements MessageInterface
      *
      * @return string
      */
-    public function transformToJson(array $appends = []) :string
+    public function transformToJson(array $appends = []): string
     {
         return json_encode($this->transformToArray($appends));
     }

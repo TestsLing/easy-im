@@ -12,7 +12,6 @@ use EasyIM\Kernel\BaseClient;
  */
 class Client extends BaseClient
 {
-
     /**
      *
      * Pull operation data.
@@ -44,7 +43,7 @@ class Client extends BaseClient
     {
         $params = [
             'ChatType' => $chatType,
-            'MsgTime'  => $megTime
+            'MsgTime' => $megTime
         ];
 
         return $this->httpPostJson('open_msg_svc/get_history', $params);

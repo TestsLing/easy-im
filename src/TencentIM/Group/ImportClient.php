@@ -1,15 +1,12 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Group;
-
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\ParameterList;
 use EasyIM\Kernel\Support\Arr;
 use EasyIM\Kernel\Support\Collection;
-use EasyIM\TencentIM\Group\Parameter\Base\CommonParameter;
 use EasyIM\TencentIM\Group\Parameter\Import\ImportMemberParameter;
 use EasyIM\TencentIM\Group\Parameter\Import\ImportMsgListParameter;
 use EasyIM\TencentIM\Kernel\Constant\GroupConstant;
@@ -107,7 +104,7 @@ class ImportClient extends BaseClient
     public function importGroupMember(string $groupId, ImportMemberParameter ...$memberParameters)
     {
         $params = [
-            'GroupId'    => $groupId,
+            'GroupId' => $groupId,
             'MemberList' => parameterList(...$memberParameters)()
         ];
 

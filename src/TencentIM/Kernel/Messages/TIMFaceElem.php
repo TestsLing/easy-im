@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\Messages;
-
 
 /**
  * Class TIMFaceElem

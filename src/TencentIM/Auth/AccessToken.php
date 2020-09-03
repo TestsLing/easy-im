@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Auth;
 
 use EasyIM\Kernel\AccessToken as BaseAccessToken;
@@ -68,9 +67,9 @@ class AccessToken extends BaseAccessToken
     public function verifySig($sign)
     {
         $tLSSigAPIv2 = $this->app['sign'];
-        $identifier  = $this->app['config']['identifier'];
+        $identifier = $this->app['config']['identifier'];
 
-       return $tLSSigAPIv2->verifySig($sign[$this->tokenKey], $identifier, $initTime, $expireTime, $errorMsg);
+        return $tLSSigAPIv2->verifySig($sign[$this->tokenKey], $identifier, $initTime, $expireTime, $errorMsg);
     }
 
     /**

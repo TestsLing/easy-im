@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Group\Parameter\Import;
-
 
 use EasyIM\Kernel\Contracts\MessageInterface;
 use EasyIM\Kernel\Parameter;

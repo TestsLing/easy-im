@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace EasyIM\Kernel;
 
 use EasyIM\Kernel\Contracts\AccessTokenInterface;

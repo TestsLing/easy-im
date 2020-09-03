@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\Messages;
-
 
 use EasyIM\Kernel\Contracts\MessageInterface;
 
@@ -14,7 +12,6 @@ use EasyIM\Kernel\Contracts\MessageInterface;
  */
 class TIMCombinationElem implements MessageInterface
 {
-
     public $type = 'TIMCombinationElem';
 
     protected $messages = [];

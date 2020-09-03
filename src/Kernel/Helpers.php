@@ -11,7 +11,7 @@
 function msgRandom($length = 5): int
 {
     $start = (int)str_pad(1, $length, '0', STR_PAD_RIGHT);
-    $end   = (int)str_pad(9, $length, '9', STR_PAD_RIGHT);
+    $end = (int)str_pad(9, $length, '9', STR_PAD_RIGHT);
 
     return mt_rand($start, $end);
 }
@@ -48,7 +48,7 @@ function free($value)
         return false;
     }
 
-    if(is_bool($value)){
+    if (is_bool($value)) {
         return true;
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Contracts;
 
 use Psr\Http\Message\RequestInterface;

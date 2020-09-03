@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\Kernel\Contracts;
-
 
 interface MessageInterface
 {

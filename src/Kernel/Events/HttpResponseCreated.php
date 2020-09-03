@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Events;
 
 use Psr\Http\Message\ResponseInterface;

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\Messages;
 
 /**
@@ -30,5 +29,4 @@ class TIMCustomElem extends Message
     {
         parent::__construct(compact('Data'));
     }
-
 }

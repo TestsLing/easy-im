@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Sns;
-
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Support\Arr;
@@ -15,7 +13,6 @@ use EasyIM\Kernel\Support\Arr;
  */
 class GroupClient extends BaseClient
 {
-
     /**
      * Add group.
      *
@@ -59,7 +56,4 @@ class GroupClient extends BaseClient
 
         return $this->httpPostJson('sns/group_delete', $params);
     }
-
-
-
 }

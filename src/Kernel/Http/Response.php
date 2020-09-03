@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Http;
 
 use EasyIM\Kernel\Support\Collection;

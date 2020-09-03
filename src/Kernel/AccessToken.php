@@ -150,7 +150,7 @@ abstract class AccessToken implements AccessTokenInterface
      *
      * @return mixed
      */
-    abstract public function requestToken() : array;
+    abstract public function requestToken(): array;
 
     /**
      * @param \Psr\Http\Message\RequestInterface $request
@@ -205,5 +205,4 @@ abstract class AccessToken implements AccessTokenInterface
      * @return array
      */
     abstract protected function getCredentials(): array;
-
 }

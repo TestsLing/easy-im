@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Group\Parameter\Message;
-
 
 use EasyIM\Kernel\Parameter;
 

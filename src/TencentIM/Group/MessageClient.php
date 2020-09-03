@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Group;
-
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Contracts\MessageInterface;
@@ -10,7 +8,6 @@ use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 use EasyIM\Kernel\Exceptions\InvalidConfigException;
 use EasyIM\Kernel\Support\Arr;
 use EasyIM\Kernel\Support\Collection;
-use EasyIM\TencentIM\Group\Parameter\Message\MsgSeqListParameter;
 use EasyIM\TencentIM\Kernel\OfflinePushInfo\OfflinePushElem;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
@@ -51,7 +48,7 @@ class MessageClient extends BaseClient
     ) {
         $params = [
             'GroupId' => $groupId,
-            'Random'  => msgRandom(7),
+            'Random' => msgRandom(7),
             'MsgBody' => $msgBody->transformToArray()
         ];
         Arr::setNotNullValue($params, 'From_Account', $fromAccount);
@@ -101,7 +98,7 @@ class MessageClient extends BaseClient
     public function recallGroupMsg(string $groupId, array $msgSeqList)
     {
         $params = [
-            'GroupId'    => $groupId,
+            'GroupId' => $groupId,
             'MsgSeqList' => array_map(function ($item) {
                 return ['MsgSeq' => $item];
             }, $msgSeqList)
@@ -123,7 +120,7 @@ class MessageClient extends BaseClient
     public function deleteGroupMsg(string $groupId, string $senderAccount)
     {
         $params = [
-            'GroupId'        => $groupId,
+            'GroupId' => $groupId,
             'Sender_Account' => $senderAccount
         ];
 
@@ -144,7 +141,7 @@ class MessageClient extends BaseClient
     public function getMsgSimple(string $groupId, int $reqMsgNumber, int $reqMsgSeq = null)
     {
         $params = [
-            'GroupId'      => $groupId,
+            'GroupId' => $groupId,
             'ReqMsgNumber' => $reqMsgNumber
         ];
         Arr::setNotNullValue($params, 'ReqMsgSeq', $reqMsgSeq);

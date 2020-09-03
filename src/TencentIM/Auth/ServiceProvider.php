@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Auth;
 
 use Pimple\Container;

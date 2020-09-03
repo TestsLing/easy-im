@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Group;
 
 use EasyIM\Kernel\BaseClient;
@@ -31,9 +30,9 @@ class OperateClient extends BaseClient
     public function forbidMsg(string $groupId, array $membersAccount, int $shutUpTime)
     {
         $params = [
-            'GroupId'         => $groupId,
+            'GroupId' => $groupId,
             'Members_Account' => $membersAccount,
-            'ShutUpTime'      => $shutUpTime
+            'ShutUpTime' => $shutUpTime
         ];
 
         return $this->httpPostJson('group_open_http_svc/forbid_send_msg', $params);
@@ -69,7 +68,7 @@ class OperateClient extends BaseClient
     public function changeOwner(string $groupId, string $newOwnerAccount)
     {
         $params = [
-            'GroupId'          => $groupId,
+            'GroupId' => $groupId,
             'NewOwner_Account' => $newOwnerAccount
         ];
 
@@ -90,9 +89,9 @@ class OperateClient extends BaseClient
     public function setUnreadMsgNum(string $groupId, string $memberAccount, int $unreadMsgNum)
     {
         $params = [
-            'GroupId'        => $groupId,
+            'GroupId' => $groupId,
             'Member_Account' => $memberAccount,
-            'UnreadMsgNum'   => $unreadMsgNum
+            'UnreadMsgNum' => $unreadMsgNum
         ];
 
         return $this->httpPostJson('group_open_http_svc/set_unread_msg_num', $params);

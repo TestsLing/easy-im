@@ -85,7 +85,6 @@ class Client extends BaseClient
         ];
 
         return $this->httpPostJson('sns/friend_check', $params);
-
     }
 
     /**
@@ -106,7 +105,6 @@ class Client extends BaseClient
         ];
 
         return $this->httpPostJson('sns/friend_delete_all', $params);
-
     }
 
 
@@ -145,7 +143,6 @@ class Client extends BaseClient
      */
     public function updateFriend(string $fromAccount, UpdateFriendParameter ...$updateFriendParameters)
     {
-
         $params = [
             'From_Account' => $fromAccount,
             'UpdateItem' => \parameterList(...$updateFriendParameters)()
@@ -195,7 +192,6 @@ class Client extends BaseClient
         int $forceAddFlags = SnsConstant::NORMAL_ADD_FRIEND,
         AddFriendParameter ...$addFriendParameters
     ) {
-
         $params = [
             'From_Account' => $fromAccount,
             'AddType' => $addType,
@@ -205,6 +201,4 @@ class Client extends BaseClient
 
         return $this->httpPostJson('sns/friend_add', $params);
     }
-
-
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\OfflinePushInfo;
-
 
 use EasyIM\Kernel\Parameter;
 
@@ -58,7 +56,6 @@ class OfflinePushElem extends Parameter
     {
         $this->setAttribute('Desc', $value);
         return $this;
-
     }
 
     /**
@@ -99,6 +96,4 @@ class OfflinePushElem extends Parameter
         $this->setAttribute('ApnsInfo', $apnsInfo->transformToArray());
         return $this;
     }
-
-
 }

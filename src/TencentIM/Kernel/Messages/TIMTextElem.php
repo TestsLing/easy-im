@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\Messages;
-
 
 /**
  * Class TIMTextElem
@@ -42,5 +40,4 @@ class TIMTextElem extends Message
     {
         parent::__construct(compact('Text'));
     }
-
 }

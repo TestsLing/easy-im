@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Kernel\Constant;
 
 /**
@@ -21,24 +20,24 @@ class GroupConstant
     /**
      * 即 Work，好友工作群
      */
-    const PRIVATE = 'Private';
+    public const PRIVATE = 'Private';
 
     /**
      * 陌生人社交群
      */
-    const PUBLIC  = 'Public';
+    public const PUBLIC = 'Public';
 
     /**
      * 即 Meeting，会议群
      */
-    const CHAT_ROOM = 'ChatRoom';
+    public const CHAT_ROOM = 'ChatRoom';
 
     /**
      * 直播群
      */
-    const AV_CHAT_ROOM = 'AVChatRoom';
+    public const AV_CHAT_ROOM = 'AVChatRoom';
 
-    const B_CHAT_ROOM = 'BChatRoom';
+    public const B_CHAT_ROOM = 'BChatRoom';
 
     /*
     |--------------------------------------------------------------------------
@@ -49,17 +48,17 @@ class GroupConstant
     /**
      * 自由加入
      */
-    const FREE_ACCESS = 'FreeAccess';
+    public const FREE_ACCESS = 'FreeAccess';
 
     /**
      * 需要验证
      */
-    const NEED_PERMISSION = 'NeedPermission';
+    public const NEED_PERMISSION = 'NeedPermission';
 
     /**
      * 禁止加群
      */
-    const DISABLE_APPLY = 'DisableApply';
+    public const DISABLE_APPLY = 'DisableApply';
 
 
     /*
@@ -71,12 +70,12 @@ class GroupConstant
     /**
      * 开启
      */
-    const ON = 'On';
+    public const ON = 'On';
 
     /**
      * 关闭
      */
-    const OFF = 'Off';
+    public const OFF = 'Off';
 
     /*
     |--------------------------------------------------------------------------
@@ -87,12 +86,12 @@ class GroupConstant
     /**
      * 设置管理员
      */
-    const ADMIN = 'Admin';
+    public const ADMIN = 'Admin';
 
     /**
      * 取消管理员
      */
-    const MEMBER = 'Member';
+    public const MEMBER = 'Member';
 
     /*
     |--------------------------------------------------------------------------
@@ -103,16 +102,15 @@ class GroupConstant
     /**
      * 接收并提示消息
      */
-    const ACCEPT_AND_NOTIFY = 'AcceptAndNotify';
+    public const ACCEPT_AND_NOTIFY = 'AcceptAndNotify';
 
     /**
      * 不接收也不提示消息
      */
-    const DISCARD = 'Discard';
+    public const DISCARD = 'Discard';
 
     /**
      * 接收消息但不提示
      */
-    const ACCEPT_NOT_NOTIFY = 'AcceptNotNotify';
-
+    public const ACCEPT_NOT_NOTIFY = 'AcceptNotNotify';
 }

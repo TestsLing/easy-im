@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyIM\Kernel\Traits;
 
 use EasyIM\Kernel\Exceptions\InvalidArgumentException;

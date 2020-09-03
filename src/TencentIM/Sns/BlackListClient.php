@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Sns;
-
 
 use EasyIM\Kernel\BaseClient;
 use EasyIM\TencentIM\Kernel\Constant\SnsConstant;
@@ -15,7 +13,6 @@ use EasyIM\TencentIM\Kernel\Constant\SnsConstant;
  */
 class BlackListClient extends BaseClient
 {
-
     /**
      * Add blacklist.
      *
@@ -103,5 +100,4 @@ class BlackListClient extends BaseClient
 
         return $this->httpPostJson('sns/black_list_check', $params);
     }
-
 }

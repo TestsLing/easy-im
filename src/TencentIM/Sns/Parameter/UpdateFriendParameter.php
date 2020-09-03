@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EasyIM\TencentIM\Sns\Parameter;
-
 
 use EasyIM\Kernel\Parameter;
 use EasyIM\TencentIM\Kernel\Parameter\TagParameter;
@@ -40,5 +38,4 @@ class UpdateFriendParameter extends Parameter
 
         return $this;
     }
-
 }
