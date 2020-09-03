@@ -52,8 +52,18 @@
             "EasyTM\\Tests\\": "tests/"
         }
     },
+    "extra": {
+        "hooks": {
+            "pre-commit": "composer check-style",
+            "pre-push": [
+                "composer test",
+                "composer fix-style"
+            ]
+        }
+    },
     "scripts": {
         "phpcs": "vendor/bin/php-cs-fixer fix",
+        "check-style": "php-cs-fixer fix --using-cache=no --diff --config=.php_cs --dry-run --ansi",
         "phpstan": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/phpunit"
     }

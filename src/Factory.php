@@ -1,9 +1,6 @@
 <?php
 
-
 namespace EasyIM;
-
-use EasyIM\TencentIM\Application;
 
 /**
  * Class Factory
