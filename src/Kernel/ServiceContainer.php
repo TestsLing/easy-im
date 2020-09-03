@@ -4,7 +4,6 @@ namespace EasyIM\Kernel;
 
 use EasyIM\Kernel\Providers\ConfigServiceProvider;
 use EasyIM\Kernel\Providers\EventDispatcherServiceProvider;
-use EasyIM\Kernel\Providers\ExtensionServiceProvider;
 use EasyIM\Kernel\Providers\HttpClientServiceProvider;
 use EasyIM\Kernel\Providers\LogServiceProvider;
 use EasyIM\Kernel\Providers\RequestServiceProvider;

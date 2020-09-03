@@ -93,8 +93,11 @@ class Client extends BaseClient
         Arr::setNotNullValue($params, 'ResponseFilter.GroupBaseInfoFilter', $groupBaseInfoFilter);
         Arr::setNotNullValue($params, 'ResponseFilter.MemberInfoFilter', $memberInfoFilter);
         Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_Group', $appDefinedDataFilterGroup);
-        Arr::setNotNullValue($params, 'ResponseFilter.AppDefinedDataFilter_GroupMember',
-            $appDefinedDataFilterGroupMember);
+        Arr::setNotNullValue(
+            $params,
+            'ResponseFilter.AppDefinedDataFilter_GroupMember',
+            $appDefinedDataFilterGroupMember
+        );
 
         return $this->httpPostJson('group_open_http_svc/get_group_info', $params);
     }
