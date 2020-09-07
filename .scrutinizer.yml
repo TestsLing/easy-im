@@ -1,4 +1,5 @@
 filter:
+  paths: [src/*]
   excluded_paths: [tests/*]
 
 checks:
@@ -16,6 +17,22 @@ checks:
     fix_line_ending: true
     fix_identation_4spaces: true
     fix_doc_comments: true
+    code_rating: true
+
+
+tools:
+  external_code_coverage:
+    timeout: 600
+    runs: 3
+  php_code_coverage: false
+  php_loc:
+    enabled: true
+    excluded_dirs: [tests, vendor]
+  php_cpd:
+    enabled: true
+    excluded_dirs: [tests, vendor]
+
+
 build:
   tests:
     override:
