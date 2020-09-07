@@ -10,7 +10,6 @@ class ApplicationTest extends TestCase
     public function testProperties()
     {
         $app = new Application();
-
         $this->assertInstanceOf(\EasyIM\TencentIM\Account\Client::class, $app->account);
         $this->assertInstanceOf(\EasyIM\TencentIM\Sns\Client::class, $app->sns);
         $this->assertInstanceOf(\EasyIM\TencentIM\Speak\Client::class, $app->speak);
