@@ -14,7 +14,6 @@ class HelpersTest extends TestCase
 
         $str10 = (string) msgRandom(10);
         $this->assertEquals(10, strlen($str10));
-
     }
 
     public function testParameterList()
@@ -30,5 +29,4 @@ class HelpersTest extends TestCase
         $this->assertTrue(free(false));
         $this->assertTrue(free([]));
     }
-
 }
