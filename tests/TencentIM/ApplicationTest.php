@@ -18,5 +18,4 @@ class ApplicationTest extends TestCase
         $this->assertInstanceOf(\EasyIM\TencentIM\Profile\Client::class, $app->profile);
         $this->assertInstanceOf(\EasyIM\TencentIM\Group\Client::class, $app->group);
     }
-
 }

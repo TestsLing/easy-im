@@ -67,7 +67,7 @@ class ObservableTest extends TestCase
 
     public function testAddObserverWithEventName()
     {
-        $c        = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $handler2 = \Mockery::mock(EventHandlerInterface::class);
         $c->push($handler1, 'foo');
@@ -83,7 +83,7 @@ class ObservableTest extends TestCase
 
     public function testAddObserverWithEventNames()
     {
-        $c        = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $handler2 = \Mockery::mock(EventHandlerInterface::class);
         $c->push($handler1, 'foo' | 'bar');
@@ -99,7 +99,7 @@ class ObservableTest extends TestCase
 
     public function testUnshift()
     {
-        $c        = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $c->push($handler1, 'foo');
 
@@ -118,7 +118,7 @@ class ObservableTest extends TestCase
 
     public function testNotify()
     {
-        $c        = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $handler1->expects()->handle(['foo' => 'bar'])->andReturn('mock-response');
 
@@ -151,7 +151,7 @@ class ObservableTest extends TestCase
 
     public function testNotifyWithStopPropagation()
     {
-        $c        = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $handler1->expects()->handle(['foo' => 'bar'])->andReturn(null);
 
@@ -169,7 +169,7 @@ class ObservableTest extends TestCase
 
     public function testNotifyWithBitOperation()
     {
-        $c        = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $handler1->allows()->handle(['foo' => 'bar'])->andReturn('handler1-response');
 
@@ -198,18 +198,18 @@ class ObservableTest extends TestCase
     public function testNotifyWithHandlerExceptionThrown()
     {
         $exception = new Exception('handler2 exception thrown.', -204);
-        $line      = __LINE__ - 1;
-        $logger    = \Mockery::mock('stdClass');
+        $line = __LINE__ - 1;
+        $logger = \Mockery::mock('stdClass');
         $logger->expects()->error('-204: handler2 exception thrown.', [
-            'code'    => -204,
+            'code' => -204,
             'message' => 'handler2 exception thrown.',
-            'file'    => __FILE__,
-            'line'    => $line,
+            'file' => __FILE__,
+            'line' => $line,
         ]);
-        $app      = new ServiceContainer([], [
+        $app = new ServiceContainer([], [
             'logger' => $logger,
         ]);
-        $c        = new DummyClassForObservableTest($app);
+        $c = new DummyClassForObservableTest($app);
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $handler1->expects()->handle(['foo' => 'bar'])->andReturn('mock-response');
 
@@ -227,7 +227,7 @@ class ObservableTest extends TestCase
 
     public function testTerminateResultHandler()
     {
-        $c        = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $handler1->expects()->handle(['foo' => 'bar'])->andReturn(new TerminateResult('mock-terminate-response'));
 
@@ -276,13 +276,13 @@ class ObservableTest extends TestCase
         self::assertSame('closure handler', $c->getHandlers()['foo'][0](['foo' => 'bar']));
 
         // class name
-        $c       = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler = new DummyHandlerClassForObservableTest();
         $c->push(get_class($handler), 'foo');
         self::assertSame('handled', $c->getHandlers()['foo'][0](['foo' => 'bar']));
 
         // class instance
-        $c       = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler = \Mockery::mock(EventHandlerInterface::class);
         $handler->expects()->handle(['foo' => 'bar'])->andReturn('class instance handle');
         $c->push($handler, 'foo');
@@ -302,8 +302,10 @@ class ObservableTest extends TestCase
             $c = new DummyClassForObservableTest();
             $c->push('stdClass', 'foo');
         } catch (\Exception $e) {
-            self::assertSame('Class "stdClass" not an instance of "EasyIM\Kernel\Contracts\EventHandlerInterface".',
-                $e->getMessage());
+            self::assertSame(
+                'Class "stdClass" not an instance of "EasyIM\Kernel\Contracts\EventHandlerInterface".',
+                $e->getMessage()
+            );
         }
 
         try {
@@ -316,28 +318,28 @@ class ObservableTest extends TestCase
 
     public function testWhereClause()
     {
-        $c        = new DummyClassForObservableTest();
+        $c = new DummyClassForObservableTest();
         $handler1 = \Mockery::mock(EventHandlerInterface::class);
         $handler1->allows()->handle(['Type' => 'testing'])->andReturn('handler1-response');
         $c->push($handler1)->where('Type', 'staging');
 
         self::assertNull($c->notify('foo', ['Type' => 'testing']));
 
-        $c2       = new DummyClassForObservableTest();
+        $c2 = new DummyClassForObservableTest();
         $handler2 = \Mockery::mock(EventHandlerInterface::class);
         $handler2->allows()->handle(['Type' => 'testing'])->andReturn('handler2-response');
         $c2->push($handler2)->where('Type', 'testing');
 
         self::assertSame('handler2-response', $c2->notify('foo', ['Type' => 'testing']));
 
-        $c3       = new DummyClassForObservableTest();
+        $c3 = new DummyClassForObservableTest();
         $handler3 = \Mockery::mock(EventHandlerInterface::class);
         $handler3->allows()->handle(['Type' => 'testing', 'User' => 'user-123'])->andReturn('handler3-response');
         $c3->push($handler3)->where('Type', 'testing')->where('User', 'user-456');
 
         self::assertNull($c3->notify('foo', ['Type' => 'testing', 'User' => 'user-123']));
 
-        $c4       = new DummyClassForObservableTest();
+        $c4 = new DummyClassForObservableTest();
         $handler4 = \Mockery::mock(EventHandlerInterface::class);
         $handler4->allows()->handle(['Type' => 'testing', 'User' => 'user-123'])->andReturn('handler4-response');
         $handler5 = \Mockery::mock(EventHandlerInterface::class);

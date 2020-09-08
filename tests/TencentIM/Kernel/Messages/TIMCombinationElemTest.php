@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class TIMCombinationElemTest extends TestCase
 {
-
     public function testTransformToArray()
     {
         $timTextElem = new TIMTextElem('TimText');

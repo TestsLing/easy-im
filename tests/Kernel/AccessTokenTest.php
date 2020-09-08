@@ -3,13 +3,8 @@
 namespace EasyTM\Tests\Kernel;
 
 use EasyIM\Kernel\AccessToken;
-use EasyIM\Kernel\Exceptions\HttpException;
-use EasyIM\Kernel\Exceptions\InvalidArgumentException;
 use EasyIM\Kernel\Exceptions\RuntimeException;
-use EasyIM\Kernel\Http\Response;
 use EasyIM\Kernel\ServiceContainer;
-use EasyIM\Kernel\Support\Collection;
-use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;

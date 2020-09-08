@@ -12,5 +12,4 @@ class TIMTextElemTest extends TestCase
         $tIMTextElem = new TIMTextElem('hello easyIM!');
         $this->assertSame('hello easyIM!', $tIMTextElem->Text);
     }
-
 }
