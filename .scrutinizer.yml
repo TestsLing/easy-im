@@ -5,7 +5,9 @@ filter:
     - tests/*
 
 checks:
-  php: true
+  php:
+    code_rating: true
+    duplication: true
 
 build:
   nodes:
