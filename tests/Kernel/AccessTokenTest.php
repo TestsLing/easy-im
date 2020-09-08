@@ -21,8 +21,6 @@ class AccessTokenTest extends TestCase
         // prepended cache instance
         if (\class_exists('Symfony\Component\Cache\Psr16Cache')) {
             $cache = new ArrayAdapter();
-        } else {
-            $cache = new FilesystemCache();
         }
 
         $app['cache'] = function () use ($cache) {
