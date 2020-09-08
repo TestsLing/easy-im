@@ -7,7 +7,6 @@ use EasyIM\Kernel\Providers\EventDispatcherServiceProvider;
 use EasyIM\Kernel\Providers\HttpClientServiceProvider;
 use EasyIM\Kernel\Providers\LogServiceProvider;
 use EasyIM\Kernel\Providers\RequestServiceProvider;
-use EasyWeChatComposer\Traits\WithAggregator;
 use Pimple\Container;
 
 /**
@@ -21,8 +20,6 @@ use Pimple\Container;
  */
 class ServiceContainer extends Container
 {
-    use WithAggregator;
-
     /**
      * @var string
      */
@@ -59,8 +56,6 @@ class ServiceContainer extends Container
         $this->userConfig = $config;
 
         $this->id = $id;
-
-        $this->aggregate();
 
         $this->events->dispatch(new Events\ApplicationInitialized($this));
     }
@@ -125,10 +120,6 @@ class ServiceContainer extends Container
      */
     public function __get($id)
     {
-        if ($this->shouldDelegate($id)) {
-            return $this->delegateTo($id);
-        }
-
         return $this->offsetGet($id);
     }
 
