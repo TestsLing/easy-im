@@ -18,26 +18,13 @@ checks:
     fix_identation_4spaces: true
     fix_doc_comments: true
     code_rating: true
-
-
-tools:
-  external_code_coverage:
-    timeout: 600
-    runs: 3
-  php_code_coverage: false
-  php_loc:
-    enabled: true
-    excluded_dirs: [tests, vendor]
-  php_cpd:
-    enabled: true
-    excluded_dirs: [tests, vendor]
-
+    duplication: true
 
 build:
   tests:
     override:
       -
-        command: 'phpunit --coverage-text --coverage-clover=coverage.clover'
+        command: phpunit --coverage-text --coverage-clover=coverage.clover
         coverage:
-          file: 'coverage.clover'
-          format: 'php-clover'
+          file: coverage.clover
+          format: php-clover
