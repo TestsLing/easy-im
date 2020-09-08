@@ -8,6 +8,7 @@ use EasyIM\Kernel\ServiceContainer;
 use PHPUnit\Framework\TestCase;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 
 class AccessTokenTest extends TestCase
 {
