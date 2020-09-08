@@ -6,7 +6,6 @@ use EasyIM\Kernel\BaseClient;
 use EasyIM\Kernel\Config;
 use EasyIM\Kernel\Log\LogManager;
 use EasyIM\Kernel\ServiceContainer;
-use EasyWeChatComposer\Delegation\DelegationTo;
 use GuzzleHttp\Client;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
@@ -59,12 +58,7 @@ class ServiceContainerTest extends TestCase
     public function testMagicGetDelegation()
     {
         $container = \Mockery::mock(ServiceContainer::class);
-
-        $container->shouldReceive('delegateTo')->andReturn(DelegationTo::class);
         $container->shouldReceive('offsetGet')->andReturn(BaseClient::class);
-        $container->shouldReceive('shouldDelegate')->andReturn(true, false);
-
-        self::assertSame(DelegationTo::class, $container->log);
         self::assertSame(BaseClient::class, $container->config);
     }
 }
