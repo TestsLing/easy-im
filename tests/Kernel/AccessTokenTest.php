@@ -8,6 +8,7 @@ use EasyIM\Kernel\ServiceContainer;
 use PHPUnit\Framework\TestCase;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 
 class AccessTokenTest extends TestCase
 {
@@ -21,6 +22,8 @@ class AccessTokenTest extends TestCase
         // prepended cache instance
         if (\class_exists('Symfony\Component\Cache\Psr16Cache')) {
             $cache = new ArrayAdapter();
+        } else {
+            $cache = new FilesystemCache();
         }
 
         $app['cache'] = function () use ($cache) {
