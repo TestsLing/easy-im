@@ -35,13 +35,13 @@ class SnsConstant
     */
 
     /**
-     * 单向校验好友关系
+     * 双向校验好友关系
      */
     public const CHECK_RESULT_TYPE_BOTH = 'CheckResult_Type_Both';
 
 
     /**
-     * 双向校验好友关系
+     * 单向校验好友关系
      */
     public const CHECK_RESULT_TYPE_SINGLE = 'CheckResult_Type_Single';
 
